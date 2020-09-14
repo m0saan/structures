@@ -21,6 +21,8 @@ private:
     T *array;
     std::size_t counter;
     std::size_t capacity;
+
+    void checkIndex(size_t at) const;
 };
 
 

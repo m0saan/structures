@@ -3,16 +3,22 @@
 template<typename T>
 
 void Vector<T>::insert(T item) {
-    if (counter >= capacity) allocate(capacity * 2);
+    if (counter >= capacity)
+        allocate(capacity * 2);
     array[counter++] = item;
 }
 
 template<typename T>
 void Vector<T>::removeAt(std::size_t at) {
-    if (at < 0 || at >= counter) throw std::runtime_error { "Invalid index" };
+    checkIndex(at);
     for (int i = at; i < counter && i + 1 < counter; ++i)
         array[i] = array[i + 1];
     counter--;
+}
+
+template<typename T>
+void Vector<T>::checkIndex(size_t at) const {
+    if (at < 0 || at >= counter) throw std::runtime_error {"Invalid index" };
 }
 
 template<typename T>
@@ -33,13 +39,13 @@ void Vector<T>::print() const {
 
 template<typename T>
 T &Vector<T>::operator[](std::size_t index) {
-    if (index > counter) throw std::runtime_error{"Index out of range"};
+    checkIndex(index);
     return array[index];
 }
 
 template<typename T>
 T &Vector<T>::operator[](std::size_t index) const {
-    if (index > counter) throw std::runtime_error{"Index out of range"};
+    checkIndex(index);
     return array[index];
 }
 
