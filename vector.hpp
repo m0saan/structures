@@ -50,7 +50,7 @@ public:
     }
 
     bool operator!=(const VectorIterator& other) const {
-        return *this != other;
+        return m_Ptr != other.m_Ptr;
     }
 private:
     PointerType m_Ptr;

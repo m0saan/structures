@@ -9,12 +9,12 @@ int main(){
     for (int i = 0; i < nums.size(); ++i)
         std::cout << nums[i] << " ";
     std::cout << std::endl;
-/*
+
     std::cout << "using for range-based loops\n";
     for (auto num : nums)
         std::cout << num << " ";
     std::cout << std::endl;
-*/
+
     std::cout << "Using Iterators!\n";
     for(Vector<int>::Iterator it = nums.begin(); it != nums.end(); it++)
         std::cout << *it << " ";
