@@ -2,9 +2,66 @@
 #define VECTOR_HPP
 #include <iostream>
 
+template <typename Vector>
+class VectorIterator{
+public:
+    using ValueType = typename Vector::ValueType;
+    using PointerType = ValueType*;
+    using ReferenceType = ValueType&;
+public:
+    explicit VectorIterator(PointerType p): m_Ptr { p } {}
+
+    VectorIterator& operator++(){
+        m_Ptr++;
+        return *this;
+    }
+
+    VectorIterator operator++(int){
+        VectorIterator iterator = *this;
+        ++(*this);
+        return iterator;
+    }
+
+    VectorIterator& operator--(){
+        m_Ptr--;
+        return *this;
+    }
+
+    VectorIterator operator--(int){
+        VectorIterator iterator = *this;
+        --(*this);
+        return iterator;
+    }
+
+    ReferenceType operator[](std::size_t index){
+        return *(m_Ptr + index);
+    }
+
+    PointerType operator->(){
+        return m_Ptr;
+    }
+
+    ReferenceType operator*(){
+        return *(m_Ptr);
+    }
+
+    bool operator==(const VectorIterator& other) const {
+        return m_Ptr == other.m_Ptr;
+    }
+
+    bool operator!=(const VectorIterator& other) const {
+        return *this != other;
+    }
+private:
+    PointerType m_Ptr;
+};
+
 template <typename T>
 class Vector {
-    public:
+public:
+    using ValueType = T;
+    using Iterator = VectorIterator<Vector<T>>;
+public:
     explicit Vector(std::size_t capacity=2);
     Vector(std::initializer_list<T> initializerList);
 
@@ -23,7 +80,8 @@ class Vector {
     Vector set_intersection(const Vector<T>& other);
     void reverse();
 
-
+    Iterator begin() { return Iterator(array); }
+    Iterator end() { return Iterator(array + counter); }
 private:
     T *array;
     std::size_t counter;

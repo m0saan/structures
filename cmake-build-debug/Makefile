@@ -142,32 +142,32 @@ data_structures_and_algorithms/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/build
 .PHONY : data_structures_and_algorithms/fast
 
-tests.obj: tests.cpp.obj
+main.obj: main.cpp.obj
 
-.PHONY : tests.obj
+.PHONY : main.obj
 
 # target to build an object file
-tests.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/tests.cpp.obj
-.PHONY : tests.cpp.obj
+main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/main.cpp.obj
+.PHONY : main.cpp.obj
 
-tests.i: tests.cpp.i
+main.i: main.cpp.i
 
-.PHONY : tests.i
+.PHONY : main.i
 
 # target to preprocess a source file
-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/tests.cpp.i
-.PHONY : tests.cpp.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-tests.s: tests.cpp.s
+main.s: main.cpp.s
 
-.PHONY : tests.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/tests.cpp.s
-.PHONY : tests.cpp.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 vector.obj: vector.cpp.obj
 
@@ -205,9 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_structures_and_algorithms
-	@echo ... tests.obj
-	@echo ... tests.i
-	@echo ... tests.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 	@echo ... vector.obj
 	@echo ... vector.i
 	@echo ... vector.s
