@@ -56,3 +56,21 @@ void Vector<T>::allocate(std::size_t newCapacity) {
     array = other;
     capacity = newCapacity;
 }
+
+template<typename T>
+T& Vector<T>::getLargest(T item) const {
+    T largest = array[0];
+    for (size_t i { 1 }; i < counter; ++i)
+        if (array[i] > largest) largest = array[i];
+    return largest;
+}
+
+template<typename T>
+std::size_t Vector<T>::size() const {
+    return counter;
+}
+
+template<typename T>
+bool Vector<T>::isEmpty() const {
+    return counter == 0;
+}

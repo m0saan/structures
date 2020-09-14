@@ -14,14 +14,18 @@ class Vector {
     std::size_t indexOf(std::size_t item);
     T& operator[](std::size_t index);
     T& operator[](std::size_t index) const;
+    T& getLargest(T item) const;
+    std::size_t size() const;
+    bool isEmpty() const;
     void print() const;
-    void allocate(std::size_t newCapacity);
+
 
 private:
     T *array;
     std::size_t counter;
     std::size_t capacity;
 
+    void allocate(std::size_t newCapacity);
     void checkIndex(size_t at) const;
 };
 
