@@ -116,4 +116,48 @@ TEST_CASE("Testing LinkedList Data Structure"){
         REQUIRE(list == LinkedList<std::string> { "4", "3", "2", "1" });
         REQUIRE(numbers == LinkedList<size_t> { 1, 2, 3, 4});
     }
+
+    SECTION("Adding elements at the end of the linked list"){
+        list.addLast("David");
+        listaddLast("Donald");
+        list.addLast("Doo");
+
+        REQUIRE(list == LinkedList<std::string> { "David", "Donald", "Doo" });
+    }
+
+    SECTION("Removing items from the begining."){
+        numbers.deleteFirst();
+
+        REQUIRE(list.indexOf(2) == 0);
+
+        numbers.deleteFirst();
+        numbers.deleteFirst();
+
+        REQUIRE(list.size() == 1);
+        REQUIRE(numbers == LinkedList<size_t> { 4 });
+    }
+
+    SECTION("Removing items from the end.") {
+        numbers.deleteLast();
+        REQUIRE_FALSE(numbers.contains(4));
+
+        for(size_t i {}; i < numbers.size() - 1; i++)
+            numbers.deleteLast();
+
+        REQUIRE(numbers.contains(1) && numbers.size() == 1);
+
+    }
+
+    SECTION("Testing Contains() and indexOf() methods"){
+        LinkedList<float> points { 1., 2., 3.14, 4.9 };
+
+        REQUIRE(points.contains(1.));
+        REQUIRE(points.contains(4.9));
+        REQUIRE_FALSE(points.contains(11.));
+
+        REQUIRE(points.indexOf(1.) == 0);
+        REQUIRE(points.indexOf(4.9) == 3);
+        REQUIRE(points.indexOf(points.size() / 2) == 3.14i);
+        REQUIRE_FALSE(points.indexOf(10.));
+    }
 }

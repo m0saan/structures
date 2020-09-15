@@ -13,6 +13,7 @@ int main(){
     list.addLast(200);
     list.addLast(300);
     list.print();
+
 /*
     list.deleteFirst();
     list.print();

@@ -23,7 +23,7 @@ public:
     using ValueType = T;
     using Node = Node<LinkedList<T>>;
 public:
-    //LinkedList() : m_size { } {}
+    LinkedList() : m_size { }, first { nullptr }, last { nullptr } {}
     LinkedList(std::initializer_list<T> list) : m_size {} {
         for(auto iterator = list.begin(); iterator != list.end(); iterator++)
             addLast(*iterator);
@@ -39,10 +39,12 @@ public:
     bool operator==(const LinkedList<T>& other) const;
 
 private:
-    Node *first = nullptr;
-    Node *last = nullptr;
-    std::size_t m_size {};
+    Node *first;
+    Node *last;
+    std::size_t m_size;
 
+private:
+    bool isEmpty();
     Node *getNode(T item) const;
 };
 
