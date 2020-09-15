@@ -5,7 +5,7 @@
 #include "catch.hpp"
 
 int main(){
-    Vector<int> nums { 1, 2, 3, 4, 5 };
+    Vector<int> nums { 1 };
 
     std::cout << "Not using Iterators!\n";
     for (int i = 0; i < nums.size(); ++i)

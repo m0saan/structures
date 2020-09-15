@@ -13,7 +13,7 @@ VectorIterator<Vector>& VectorIterator<Vector>::operator++() {
 template<typename Vector>
 VectorIterator<Vector> VectorIterator<Vector>::operator++(int){
     VectorIterator iterator = *this;
-    (*this)++;
+    ++(*this);
     return iterator;
 }
 
@@ -25,8 +25,8 @@ VectorIterator<Vector>& VectorIterator<Vector>::operator--() {
 
 template<typename Vector>
 VectorIterator<Vector> VectorIterator<Vector>::operator--(int){
-    VectorIterator iterator = *this;
-    (*this)--;
+    VectorIterator iterator = this;
+    --(*this);
     return iterator;
 }
 
@@ -42,7 +42,7 @@ typename VectorIterator<Vector>::PointerType VectorIterator<Vector>::operator->(
 
 template<typename Vector>
 typename VectorIterator<Vector>::ReferenceType VectorIterator<Vector>::operator*() {
-    *m_Ptr;
+    return *m_Ptr;
 }
 
 template<typename Vector>
