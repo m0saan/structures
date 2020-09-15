@@ -1,60 +1,10 @@
-#ifndef VECTOR_HPP
-#define VECTOR_HPP
+
+#ifndef DATA_STRUCTURES_AND_ALGORITHMS_VECTOR_HPP
+#define DATA_STRUCTURES_AND_ALGORITHMS_VECTOR_HPP
+
 #include <iostream>
+#include "vector_iterator.h"
 
-template <typename Vector>
-class VectorIterator{
-public:
-    using ValueType = typename Vector::ValueType;
-    using PointerType = ValueType*;
-    using ReferenceType = ValueType&;
-public:
-    explicit VectorIterator(PointerType p): m_Ptr { p } {}
-
-    VectorIterator& operator++(){
-        m_Ptr++;
-        return *this;
-    }
-
-    VectorIterator operator++(int){
-        VectorIterator iterator = *this;
-        ++(*this);
-        return iterator;
-    }
-
-    VectorIterator& operator--(){
-        m_Ptr--;
-        return *this;
-    }
-
-    VectorIterator operator--(int){
-        VectorIterator iterator = *this;
-        --(*this);
-        return iterator;
-    }
-
-    ReferenceType operator[](std::size_t index){
-        return *(m_Ptr + index);
-    }
-
-    PointerType operator->(){
-        return m_Ptr;
-    }
-
-    ReferenceType operator*(){
-        return *(m_Ptr);
-    }
-
-    bool operator==(const VectorIterator& other) const {
-        return m_Ptr == other.m_Ptr;
-    }
-
-    bool operator!=(const VectorIterator& other) const {
-        return m_Ptr != other.m_Ptr;
-    }
-private:
-    PointerType m_Ptr;
-};
 
 template <typename T>
 class Vector {
@@ -93,4 +43,4 @@ private:
 };
 
 
-#endif
+#endif // DATA_STRUCTURES_AND_ALGORITHMS_VECTOR_HPP

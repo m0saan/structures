@@ -196,6 +196,33 @@ vector.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector.cpp.s
 .PHONY : vector.cpp.s
 
+vector_iterator.obj: vector_iterator.cpp.obj
+
+.PHONY : vector_iterator.obj
+
+# target to build an object file
+vector_iterator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector_iterator.cpp.obj
+.PHONY : vector_iterator.cpp.obj
+
+vector_iterator.i: vector_iterator.cpp.i
+
+.PHONY : vector_iterator.i
+
+# target to preprocess a source file
+vector_iterator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector_iterator.cpp.i
+.PHONY : vector_iterator.cpp.i
+
+vector_iterator.s: vector_iterator.cpp.s
+
+.PHONY : vector_iterator.s
+
+# target to generate assembly for a file
+vector_iterator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector_iterator.cpp.s
+.PHONY : vector_iterator.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -211,6 +238,9 @@ help:
 	@echo ... vector.obj
 	@echo ... vector.i
 	@echo ... vector.s
+	@echo ... vector_iterator.obj
+	@echo ... vector_iterator.i
+	@echo ... vector_iterator.s
 .PHONY : help
 
 

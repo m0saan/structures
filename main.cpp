@@ -1,5 +1,7 @@
 #include "vector.hpp"
 #include "vector.cpp"
+#include "vector_iterator.h"
+#include "vector_iterator.cpp"
 #include "catch.hpp"
 
 int main(){
