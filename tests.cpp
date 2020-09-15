@@ -1,7 +1,11 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "vector.hpp"
+#include "linked_list.h"
+#include "vector_iterator.h"
+#include "vector_iterator.cpp"
 #include "vector.cpp"
+#include "linked_list.cpp"
 #include <string>
 
 TEST_CASE("Testing Vector Class") {
@@ -84,5 +88,32 @@ TEST_CASE("Testing Vector Class") {
         REQUIRE(vector[5] == 6);
         REQUIRE(vector == Vector<int> { 1, 5, 2, 3, 4, 6 });
     }
+    SECTION("Testing Iterators and Base-Range loop"){
+        Vector<int> nums { 1, 2, 3, 4, 5 }, other1, other2;
+
+        for (auto num : nums)
+            other1.insert(num);
+        REQUIRE(nums == other1);
+
+        for(Vector<int>::Iterator it = nums.begin(); it != nums.end(); it++)
+            other2.insert(*it);
+        REQUIRE(nums == other2);
+    }
 }
 
+TEST_CASE("Testing LinkedList Data Structure"){
+    LinkedList<std::string> list {};
+    LinkedList<size_t> numbers { 1, 2, 3, 4 };
+
+
+    SECTION("Adding elements at the front of the linked list"){
+        list.addFirst("1");
+        list.addFirst("2");
+        list.addFirst("3");
+        list.addFirst("4");
+
+        list.print();
+        REQUIRE(list == LinkedList<std::string> { "4", "3", "2", "1" });
+        REQUIRE(numbers == LinkedList<size_t> { 1, 2, 3, 4});
+    }
+}

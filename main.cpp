@@ -1,26 +1,29 @@
 #include "vector.hpp"
-#include "vector.cpp"
 #include "vector_iterator.h"
+#include "linked_list.h"
+#include "vector.cpp"
 #include "vector_iterator.cpp"
-#include "catch.hpp"
+#include "linked_list.cpp"
 
 int main(){
-    Vector<int> nums { 1 };
 
-    std::cout << "Not using Iterators!\n";
-    for (int i = 0; i < nums.size(); ++i)
-        std::cout << nums[i] << " ";
-    std::cout << std::endl;
+    LinkedList<int> list{};
 
-    std::cout << "using for range-based loops\n";
-    for (auto num : nums)
-        std::cout << num << " ";
-    std::cout << std::endl;
+    list.addLast(100);
+    list.addLast(200);
+    list.addLast(300);
+    list.print();
+/*
+    list.deleteFirst();
+    list.print();
 
-    std::cout << "Using Iterators!\n";
-    for(Vector<int>::Iterator it = nums.begin(); it != nums.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
+    list.deleteLast();
+    list.print();
 
+    std::cout << list.contains("100") << '\n';
+    std::cout << list.contains("1004") << '\n';
+    std::cout << list.indexOf("200") << '\n';
+    std::cout << list.indexOf("21") << '\n';
+     */
     return 0;
 }
