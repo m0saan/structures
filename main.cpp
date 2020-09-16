@@ -14,7 +14,7 @@ int main(){
     list.addFirst("3");
     list.addFirst("4");
 
-    list.print();
-    numbers.print();
+    std::cout << list.size() << '\n';
+    std::cout << numbers.size() << '\n';
     return 0;
 }

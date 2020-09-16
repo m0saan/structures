@@ -19,12 +19,11 @@ LinkedList<T>::LinkedList() : m_size{}, first{nullptr}, last{nullptr} {}
 template<typename T>
 void LinkedList<T>::addFirst(T item) {
     Node *node = getNode(item);
-    if (isEmpty()) {
-        first = last = node;
-        return;
+    if (isEmpty()) first = last = node;
+    else {
+        node->next = first;
+        first = node;
     }
-    node->next = first;
-    first = node;
     m_size++;
 }
 

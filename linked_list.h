@@ -21,6 +21,7 @@ public:
     void print() const;
     constexpr std::size_t size() const;
     bool operator==(const LinkedList<T>& other) const;
+    bool isEmpty();
 
 private:
     class Node {
@@ -35,7 +36,6 @@ private:
     std::size_t m_size;
 private:
     Node *getNode(T item) const;
-    bool isEmpty();
 };
 
 

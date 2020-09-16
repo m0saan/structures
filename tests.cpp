@@ -101,33 +101,30 @@ TEST_CASE("Testing Vector Class") {
     }
 }
 */
-TEST_CASE("Testing LinkedList Data Structure"){
-    LinkedList<std::string> list {};
-    LinkedList<size_t> numbers { 1, 2, 3, 4 };
+TEST_CASE("Testing LinkedList Data Structure") {
+    LinkedList<std::string> list{};
+    LinkedList<size_t> numbers{1, 2, 3, 4};
 
 
-    SECTION("Adding elements at the front of the linked list"){
+    SECTION("Adding elements at the front of the linked list") {
         list.addFirst("1");
         list.addFirst("2");
         list.addFirst("3");
         list.addFirst("4");
 
-        list.print();
-        //REQUIRE(list == LinkedList<std::string> { "4", "3", "2", "1" });
-        //REQUIRE(numbers == LinkedList<size_t> { 1, 2, 3, 4});
+        REQUIRE(list == LinkedList<std::string>{"4", "3", "2", "1"});
+        REQUIRE(numbers == LinkedList<size_t>{1, 2, 3, 4});
     }
-}
-    /*
 
-    SECTION("Adding elements at the end of the linked list"){
+    SECTION("Adding elements at the end of the linked list") {
         list.addLast("David");
         list.addLast("Donald");
         list.addLast("Doo");
 
-        REQUIRE(list == LinkedList<std::string> { "David", "Donald", "Doo" });
+        REQUIRE(list == LinkedList<std::string>{"David", "Donald", "Doo"});
     }
 
-    SECTION("Removing items from the begining."){
+    SECTION("Removing items from the beginning.") {
         numbers.deleteFirst();
 
         REQUIRE(numbers.indexOf(2) == 0);
@@ -135,18 +132,25 @@ TEST_CASE("Testing LinkedList Data Structure"){
         numbers.deleteFirst();
         numbers.deleteFirst();
 
-        REQUIRE(list.size() == 1);
-        REQUIRE(numbers == LinkedList<size_t> { 4 });
+        REQUIRE(numbers.size() == 1);
+        REQUIRE(numbers == LinkedList<size_t>{4});
+
+        numbers.deleteFirst();
+        REQUIRE_THROWS_AS(numbers.deleteFirst(), std::runtime_error);
     }
 
     SECTION("Removing items from the end.") {
         numbers.deleteLast();
         REQUIRE_FALSE(numbers.contains(4));
 
-        for(size_t i {}; i < numbers.size() - 1; i++)
+        for(size_t i {}; i < numbers.size(); i++)
             numbers.deleteLast();
+        std::cout << "size is:" << numbers.size()  << std::endl;
 
         REQUIRE((numbers.contains(1) && numbers.size() == 1));
+
+        numbers.deleteLast();
+        REQUIRE_THROWS_AS(numbers.deleteLast(), std::runtime_error);
 
     }
 
@@ -159,22 +163,19 @@ TEST_CASE("Testing LinkedList Data Structure"){
 
         REQUIRE(points.indexOf(1.) == 0);
         REQUIRE(points.indexOf(4.9) == 3);
-        REQUIRE(points.indexOf(points.size() / 2) == 3.14i);
-        REQUIRE_FALSE(points.indexOf(10.));
+        REQUIRE(points.indexOf(3.14) == 2);
+        REQUIRE(points.indexOf(10.) == -1);
     }
 
     SECTION("Testing the size()"){
         REQUIRE(numbers.size() == 4);
-        list.deleteLast();
+        numbers.deleteLast();
         REQUIRE(numbers.size() == 3);
-        list.deleteFirst();
+        numbers.deleteFirst();
         REQUIRE(numbers.size() == 2);
 
-        list.deleteLast();
-        list.deleteLast();
+        numbers.deleteLast();
+        numbers.deleteLast();
         REQUIRE(numbers.size() == 0);
-
-        REQUIRE_THROWS_AS(numbers.size(), std::runtime_error);
     }
 }
-*/
