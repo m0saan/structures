@@ -24,14 +24,16 @@ void LinkedList<T>::addLast(T item) {
     auto *node = getNode(item);
     if (isEmpty())
         first = last = node;
-    last->next = node;
-    last = node;
+    else {
+        last->next = node;
+        last = node;
+    }
     m_size++;
 }
 
 template<typename T>
 void LinkedList<T>::deleteFirst() {
-    if !(size) throw std::runtime_error { "No such element " };
+    if (!(m_size)) throw std::runtime_error { "No such element " };
 
     m_size--;
 
@@ -47,7 +49,7 @@ void LinkedList<T>::deleteFirst() {
 
 template<typename T>
 void LinkedList<T>::deleteLast() {
-    if (!size) throw std::runtime_error { "No such element" };
+    if (!m_size) throw std::runtime_error { "No such element" };
 
     m_size--;
 

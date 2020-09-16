@@ -119,7 +119,7 @@ TEST_CASE("Testing LinkedList Data Structure"){
 
     SECTION("Adding elements at the end of the linked list"){
         list.addLast("David");
-        listaddLast("Donald");
+        list.addLast("Donald");
         list.addLast("Doo");
 
         REQUIRE(list == LinkedList<std::string> { "David", "Donald", "Doo" });
@@ -128,7 +128,7 @@ TEST_CASE("Testing LinkedList Data Structure"){
     SECTION("Removing items from the begining."){
         numbers.deleteFirst();
 
-        REQUIRE(list.indexOf(2) == 0);
+        REQUIRE(numbers.indexOf(2) == 0);
 
         numbers.deleteFirst();
         numbers.deleteFirst();
@@ -159,5 +159,19 @@ TEST_CASE("Testing LinkedList Data Structure"){
         REQUIRE(points.indexOf(4.9) == 3);
         REQUIRE(points.indexOf(points.size() / 2) == 3.14i);
         REQUIRE_FALSE(points.indexOf(10.));
+    }
+
+    SECTION("Testing the size()"){
+        REQUIRE(numbers.size() == 4);
+        list.deleteLast();
+        REQUIRE(numbers.size() == 3);
+        list.deleteFirst();
+        REQUIRE(numbers.size() == 2);
+
+        list.deleteLast();
+        list.deleteLast();
+        REQUIRE(numbers.size() == 0);
+
+        REQUIRE_THROWS_AS(numbers.size(), std::runtime_error);
     }
 }

@@ -9,11 +9,6 @@ int main(){
 
     LinkedList<int> list{};
 
-    list.addLast(100);
-    list.addLast(200);
-    list.addLast(300);
-    list.print();
-
 /*
     list.deleteFirst();
     list.print();
