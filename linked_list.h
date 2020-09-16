@@ -22,6 +22,8 @@ public:
     constexpr std::size_t size() const;
     bool operator==(const LinkedList<T>& other) const;
     bool isEmpty();
+    void reverse();
+    T getKthFromTheEnd(short k);
 
 private:
     class Node {

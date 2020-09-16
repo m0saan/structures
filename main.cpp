@@ -6,15 +6,11 @@
 #include "linked_list.cpp"
 
 int main(){
-    LinkedList<std::string> list {};
     LinkedList<size_t> numbers { 1, 2, 3, 4 };
 
-    list.addFirst("1");
-    list.addFirst("2");
-    list.addFirst("3");
-    list.addFirst("4");
+    numbers.print();
+    numbers.reverse();
+    numbers.print();
 
-    std::cout << list.size() << '\n';
-    std::cout << numbers.size() << '\n';
     return 0;
 }

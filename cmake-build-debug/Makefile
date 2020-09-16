@@ -142,86 +142,32 @@ data_structures_and_algorithms/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/build
 .PHONY : data_structures_and_algorithms/fast
 
-tests.obj: tests.cpp.obj
+main.obj: main.cpp.obj
 
-.PHONY : tests.obj
-
-# target to build an object file
-tests.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/tests.cpp.obj
-.PHONY : tests.cpp.obj
-
-tests.i: tests.cpp.i
-
-.PHONY : tests.i
-
-# target to preprocess a source file
-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/tests.cpp.i
-.PHONY : tests.cpp.i
-
-tests.s: tests.cpp.s
-
-.PHONY : tests.s
-
-# target to generate assembly for a file
-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/tests.cpp.s
-.PHONY : tests.cpp.s
-
-vector.obj: vector.cpp.obj
-
-.PHONY : vector.obj
+.PHONY : main.obj
 
 # target to build an object file
-vector.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector.cpp.obj
-.PHONY : vector.cpp.obj
+main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/main.cpp.obj
+.PHONY : main.cpp.obj
 
-vector.i: vector.cpp.i
+main.i: main.cpp.i
 
-.PHONY : vector.i
-
-# target to preprocess a source file
-vector.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector.cpp.i
-.PHONY : vector.cpp.i
-
-vector.s: vector.cpp.s
-
-.PHONY : vector.s
-
-# target to generate assembly for a file
-vector.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector.cpp.s
-.PHONY : vector.cpp.s
-
-vector_iterator.obj: vector_iterator.cpp.obj
-
-.PHONY : vector_iterator.obj
-
-# target to build an object file
-vector_iterator.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector_iterator.cpp.obj
-.PHONY : vector_iterator.cpp.obj
-
-vector_iterator.i: vector_iterator.cpp.i
-
-.PHONY : vector_iterator.i
+.PHONY : main.i
 
 # target to preprocess a source file
-vector_iterator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector_iterator.cpp.i
-.PHONY : vector_iterator.cpp.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-vector_iterator.s: vector_iterator.cpp.s
+main.s: main.cpp.s
 
-.PHONY : vector_iterator.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-vector_iterator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/vector_iterator.cpp.s
-.PHONY : vector_iterator.cpp.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -232,15 +178,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_structures_and_algorithms
-	@echo ... tests.obj
-	@echo ... tests.i
-	@echo ... tests.s
-	@echo ... vector.obj
-	@echo ... vector.i
-	@echo ... vector.s
-	@echo ... vector_iterator.obj
-	@echo ... vector_iterator.i
-	@echo ... vector_iterator.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 

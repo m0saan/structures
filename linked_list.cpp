@@ -132,3 +132,35 @@ typename LinkedList<T>::Node *LinkedList<T>::getNode(T item) const {
     Node *node = new Node(item);
     return node;
 }
+
+template<typename T>
+void LinkedList<T>::reverse() {
+    if (isEmpty() || m_size == 1) return;
+
+    auto second = first->next;
+    auto current = first;
+    while (second != nullptr) {
+        auto tmp = *second;
+        second->next = current;
+        current = second;
+        second = tmp.next;
+    }
+
+    last = first;
+    last->next = nullptr;
+    first = current;
+}
+
+template<typename T>
+T LinkedList<T>::getKthFromTheEnd(short k) {
+    auto previous = first;
+    while (k-- > 1)
+        previous = previous->next;
+    auto next = previous;
+    previous = first;
+    while (next){
+        next = next->next;
+        previous = previous->next;
+    }
+    return previous->value;
+}
