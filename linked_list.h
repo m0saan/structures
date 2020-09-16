@@ -7,21 +7,8 @@
 #include <cstdio>
 
 
-template<typename LinkedList>
-class Node {
-public:
-    using T = typename LinkedList::ValueType;
-public:
-    explicit Node(T v) : value{ v }, next { nullptr } {}
-    T value;
-    Node *next;
-};
-
 template< typename  T>
 class LinkedList {
-public:
-    using ValueType = T;
-    using Node = Node<LinkedList<T>>;
 public:
     LinkedList() : m_size { }, first { nullptr }, last { nullptr } {}
     LinkedList(std::initializer_list<T> list) : m_size {} {
@@ -39,13 +26,19 @@ public:
     bool operator==(const LinkedList<T>& other) const;
 
 private:
+    class Node {
+    public:
+        explicit Node(T v) : value{ v }, next { nullptr } {}
+        T value;
+        Node *next;
+    };
+private:
     Node *first;
     Node *last;
     std::size_t m_size;
-
 private:
-    bool isEmpty();
     Node *getNode(T item) const;
+    bool isEmpty();
 };
 
 

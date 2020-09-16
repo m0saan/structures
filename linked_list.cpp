@@ -2,14 +2,12 @@
 // Created by one for all on 15/09/2020.
 //
 
-
 #include "linked_list.h"
-#include <iostream>
 
 template<typename T>
 void LinkedList<T>::addFirst(T item) {
     Node *node = getNode(item);
-    if (isEmpty()) {
+    if (first == nullptr) {
         first = last = node;
         return;
     }
@@ -17,12 +15,27 @@ void LinkedList<T>::addFirst(T item) {
     first = node;
     m_size++;
 }
+template <typename T>
+Node<LinkedList<T>> *LinkedList<T>::getNode(T item) const {
+    Node *node = new Node(item);
+    return node;
+}
 
+template<typename T>
+void LinkedList<T>::print() const {
+    auto current = first;
+    printf("[ ");
+    while (current != nullptr) {
+        std::cout << current->value << " ";
+        current = current->next;
+    }
+    printf("]\n");
+}
 
 template<typename T>
 void LinkedList<T>::addLast(T item) {
     auto *node = getNode(item);
-    if (isEmpty())
+    if (first == nullptr)
         first = last = node;
     last->next = node;
     last = node;
@@ -31,14 +44,6 @@ void LinkedList<T>::addLast(T item) {
 
 template<typename T>
 void LinkedList<T>::deleteFirst() {
-    if !(size) throw std::runtime_error { "No such element " };
-
-    m_size--;
-
-    if (first == last) {
-        delete first, last;
-        return;
-    }
     auto firstRef = first;
     first = first->next;
     firstRef->next = nullptr;
@@ -47,14 +52,6 @@ void LinkedList<T>::deleteFirst() {
 
 template<typename T>
 void LinkedList<T>::deleteLast() {
-    if (!size) throw std::runtime_error { "No such element" };
-
-    m_size--;
-
-    if (first == last){
-        delete first, last;
-        return;
-    }
     auto current = first;
     while (current->next->next != nullptr)
         current = current->next;
@@ -65,7 +62,12 @@ void LinkedList<T>::deleteLast() {
 
 template<typename T>
 bool LinkedList<T>::contains(T item) {
-    return indexOf(item) >= 0;
+    auto current = first;
+    while (current) {
+        if (current->value == item) return true;
+        current = current->next;
+    }
+    return false;
 }
 
 template<typename T>
@@ -100,25 +102,3 @@ constexpr std::size_t LinkedList<T>::size() const {
     return m_size;
 }
 
-template <typename T>
-Node<LinkedList<T>> *LinkedList<T>::getNode(T item) const {
-    Node *node = new Node(item);
-    return node;
-}
-
-template<typename T>
-void LinkedList<T>::print() const {
-    auto current = first;
-    printf("[ ");
-    while (current != nullptr) {
-        std::cout << current->value << " ";
-        current = current->next;
-    }
-    printf("]\n");
-}
-
-
-template<typename T>
-bool LinkedList<T>::isEmpty() {
-    return first == nullptr;
-}
