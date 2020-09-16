@@ -24,6 +24,8 @@ public:
     bool isEmpty();
     void reverse();
     T getKthFromTheEnd(short k);
+    void printMiddle();
+    bool hasLoop();
 
 private:
     class Node {
@@ -37,7 +39,8 @@ private:
     Node *last;
     std::size_t m_size;
 private:
-    Node *getNode(T item) const;
+    Node* getNode(T item) const;
+    Node* getKthNextNode(short k);
 };
 
 

@@ -153,14 +153,50 @@ void LinkedList<T>::reverse() {
 
 template<typename T>
 T LinkedList<T>::getKthFromTheEnd(short k) {
-    auto previous = first;
-    while (k-- > 1)
-        previous = previous->next;
-    auto next = previous;
-    previous = first;
-    while (next){
-        next = next->next;
-        previous = previous->next;
+    if (k <= 0 || isEmpty() || k > m_size) throw std::runtime_error { "Invalid index" };
+
+    auto p1 = first;
+    auto p2 = getKthNextNode(k);
+    while (p2){
+        p2 = p2->next;
+        p1 = p1->next;
     }
-    return previous->value;
+    return p1->value;
+}
+
+template<typename T>
+typename LinkedList<T>::Node* LinkedList<T>::getKthNextNode(short k){
+    auto current = first;
+    while (k-- > 0 )
+        current = current->next;
+    return current;
+}
+
+template<typename T>
+void LinkedList<T>::printMiddle() {
+    if (isEmpty()) throw std::runtime_error { "Empty list" };
+    auto p1 = first;
+    auto p2 = first;
+    while (p2->next != last){
+        if (p2 == last) break;
+        p2 = p2->next->next;
+        p1 = p1->next;
+    }
+    if (p2 != last)
+        std::cout << p1->value << ", " << p1->next->value << '\n';
+    else
+        std::cout << p1->value << '\n';
+}
+
+template<typename T>
+bool LinkedList<T>::hasLoop() {
+    if (isEmpty() || m_size < 2) return false;
+    auto slow = first;
+    auto fast = first;
+    while (fast != last && fast->next != last){
+        if (fast == slow) return true;
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return false;
 }
