@@ -1,0 +1,14 @@
+//
+// Created by one for all on 16/09/2020.
+//
+
+#ifndef DATA_STRUCTURES_AND_ALGORITHMS_EXERCISES_H
+#define DATA_STRUCTURES_AND_ALGORITHMS_EXERCISES_H
+
+
+class Exercises {
+
+};
+
+
+#endif //DATA_STRUCTURES_AND_ALGORITHMS_EXERCISES_H

@@ -11,7 +11,7 @@ template< typename  T>
 class LinkedList {
 public:
     LinkedList();
-    LinkedList(std::initializer_list<T> list);
+    explicit LinkedList(std::initializer_list<T> list);
     void addFirst(T item);
     void addLast(T item);
     void deleteFirst();
