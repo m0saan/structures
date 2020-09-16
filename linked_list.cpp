@@ -7,6 +7,16 @@
 #include <iostream>
 
 template<typename T>
+LinkedList<T>::LinkedList(std::initializer_list<T> list) : m_size{}, first{nullptr}, last{nullptr} {
+    for (auto iterator = list.begin(); iterator != list.end(); iterator++)
+        addLast(*iterator);
+}
+
+template<typename T>
+LinkedList<T>::LinkedList() : m_size{}, first{nullptr}, last{nullptr} {}
+
+
+template<typename T>
 void LinkedList<T>::addFirst(T item) {
     Node *node = getNode(item);
     if (isEmpty()) {
@@ -17,7 +27,6 @@ void LinkedList<T>::addFirst(T item) {
     first = node;
     m_size++;
 }
-
 
 template<typename T>
 void LinkedList<T>::addLast(T item) {
@@ -33,7 +42,7 @@ void LinkedList<T>::addLast(T item) {
 
 template<typename T>
 void LinkedList<T>::deleteFirst() {
-    if (!(m_size)) throw std::runtime_error { "No such element " };
+    if (!(m_size)) throw std::runtime_error{"No such element "};
 
     m_size--;
 
@@ -49,11 +58,11 @@ void LinkedList<T>::deleteFirst() {
 
 template<typename T>
 void LinkedList<T>::deleteLast() {
-    if (!m_size) throw std::runtime_error { "No such element" };
+    if (!m_size) throw std::runtime_error{"No such element"};
 
     m_size--;
 
-    if (first == last){
+    if (first == last) {
         delete first, last;
         return;
     }
@@ -72,10 +81,10 @@ bool LinkedList<T>::contains(T item) {
 
 template<typename T>
 short LinkedList<T>::indexOf(T item) {
-    char index {};
+    char index{};
     auto current = first;
     while (current) {
-        if (current->value == item) return short { index };
+        if (current->value == item) return short{index};
         current = current->next;
         index++;
     }
@@ -84,12 +93,12 @@ short LinkedList<T>::indexOf(T item) {
 
 
 template<typename T>
-bool LinkedList<T>::operator==(const LinkedList<T>& other) const {
+bool LinkedList<T>::operator==(const LinkedList<T> &other) const {
     if (m_size != other.size()) return false;
 
     auto current = first;
     auto otherCurrent = other.first;
-    while (current && otherCurrent){
+    while (current && otherCurrent) {
         if (current->value != otherCurrent->value) return false;
         current = current->next;
         otherCurrent = otherCurrent->next;
@@ -100,12 +109,6 @@ bool LinkedList<T>::operator==(const LinkedList<T>& other) const {
 template<typename T>
 constexpr std::size_t LinkedList<T>::size() const {
     return m_size;
-}
-
-template <typename T>
-typename LinkedList<T>::Node *LinkedList<T>::getNode(T item) const {
-    Node *node = new Node(item);
-    return node;
 }
 
 template<typename T>
@@ -123,4 +126,10 @@ void LinkedList<T>::print() const {
 template<typename T>
 bool LinkedList<T>::isEmpty() {
     return first == nullptr;
+}
+
+template<typename T>
+typename LinkedList<T>::Node *LinkedList<T>::getNode(T item) const {
+    Node *node = new Node(item);
+    return node;
 }

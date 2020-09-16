@@ -6,20 +6,15 @@
 #include "linked_list.cpp"
 
 int main(){
+    LinkedList<std::string> list {};
+    LinkedList<size_t> numbers { 1, 2, 3, 4 };
 
-    LinkedList<int> list{};
+    list.addFirst("1");
+    list.addFirst("2");
+    list.addFirst("3");
+    list.addFirst("4");
 
-/*
-    list.deleteFirst();
     list.print();
-
-    list.deleteLast();
-    list.print();
-
-    std::cout << list.contains("100") << '\n';
-    std::cout << list.contains("1004") << '\n';
-    std::cout << list.indexOf("200") << '\n';
-    std::cout << list.indexOf("21") << '\n';
-     */
+    numbers.print();
     return 0;
 }

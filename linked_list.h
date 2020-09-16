@@ -10,11 +10,8 @@
 template< typename  T>
 class LinkedList {
 public:
-    LinkedList() : m_size { }, first { nullptr }, last { nullptr } {}
-    LinkedList(std::initializer_list<T> list) : m_size {} {
-        for(auto iterator = list.begin(); iterator != list.end(); iterator++)
-            addLast(*iterator);
-    }
+    LinkedList();
+    LinkedList(std::initializer_list<T> list);
     void addFirst(T item);
     void addLast(T item);
     void deleteFirst();
