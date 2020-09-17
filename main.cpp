@@ -1,9 +1,16 @@
-#include "Exercises.h"
+#include "Stack.h"
+#include "Stack.cpp"
+#include <string>
 
 int main(){
-    std::string str ("Hello");
-    Exercises::reverse(str);
+    Stack<int> stack;
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.push(40);
+    stack.push(50);
 
-    std::cout << str << std::endl;
+
+    stack.print();
     return 0;
 }
