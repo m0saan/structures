@@ -21,6 +21,22 @@ public:
             stackOfChars.pop();
         }
     }
+
+    static bool isBalanced(std::string& str){
+        std::string closingSymbola(")}>]");
+        std::stack<char> stack;
+        for(char& c : str){
+            if (c == '(' || c == '[' || c == '<' || c == '(') stack.push(c);
+            else if (str.find(c) != std::string::npos){
+                auto current = stack.top();
+                stack.pop();
+                if (current - c == 1 || current - c == 2) continue;
+                else return false;
+            }
+        }
+        return true;
+    }
+
 };
 
 
