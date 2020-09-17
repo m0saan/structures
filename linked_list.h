@@ -43,7 +43,4 @@ private:
     Node* getKthNextNode(short k);
 };
 
-
-
-
 #endif //DATA_STRUCTURES_AND_ALGORITHMS_LINKED_LIST_H

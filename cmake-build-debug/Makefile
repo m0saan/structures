@@ -142,6 +142,33 @@ data_structures_and_algorithms/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/build
 .PHONY : data_structures_and_algorithms/fast
 
+Exercises.obj: Exercises.cpp.obj
+
+.PHONY : Exercises.obj
+
+# target to build an object file
+Exercises.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Exercises.cpp.obj
+.PHONY : Exercises.cpp.obj
+
+Exercises.i: Exercises.cpp.i
+
+.PHONY : Exercises.i
+
+# target to preprocess a source file
+Exercises.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Exercises.cpp.i
+.PHONY : Exercises.cpp.i
+
+Exercises.s: Exercises.cpp.s
+
+.PHONY : Exercises.s
+
+# target to generate assembly for a file
+Exercises.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Exercises.cpp.s
+.PHONY : Exercises.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -178,6 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_structures_and_algorithms
+	@echo ... Exercises.obj
+	@echo ... Exercises.i
+	@echo ... Exercises.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
