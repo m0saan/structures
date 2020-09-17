@@ -27,6 +27,7 @@ public:
     void printMiddle();
     bool hasLoop();
 
+
 private:
     class Node {
     public:

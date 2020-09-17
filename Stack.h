@@ -19,6 +19,8 @@ public:
     T& top();
     bool empty();
     std::size_t size();
+    bool operator==(const Stack& other);
+
 
 private:
     std::size_t count;

@@ -3,10 +3,14 @@
 #include "vector.hpp"
 #include "linked_list.h"
 #include "vector_iterator.h"
+#include "Stack.h"
 #include "vector_iterator.cpp"
 #include "vector.cpp"
 #include "linked_list.cpp"
+#include "Stack.cpp"
+
 #include <string>
+
 /*
 TEST_CASE("Testing Vector Class") {
 
@@ -177,5 +181,31 @@ TEST_CASE("Testing LinkedList Data Structure") {
         numbers.deleteLast();
         numbers.deleteLast();
         REQUIRE(numbers.size() == 0);
+    }
+}
+
+TEST_CASE("Testing Stack Data Structure"){
+    Stack<int> stackOfInts(10);
+    SECTION("Testing push()"){
+        stackOfInts.push(10);
+        stackOfInts.push(20);
+        REQUIRE(StackOfInts.top() == 20);
+
+        stackOfInts.push(30);
+        REQUIRE(StackOfInts.top() == 30);
+        REQUIRE(StackOfInts.size() == 3);
+    }
+
+    SECTION("Testing pop() and top()"){
+        stackOfInts.push(1);
+        stackOfInts.push(3);
+
+        REQUIRE(stackOfInts.top() == 3);
+
+        stackOfInts.pop();
+        REQUIRE(stackOfInts.too() == 1);
+
+        stackOfInts.pop();
+        REQUIRE(StackOfInts.empty());
     }
 }

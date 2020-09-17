@@ -5,8 +5,8 @@
 #include "Stack.h"
 
 template<typename T>
-Stack<T>::Stack() : capacity{2}, count{ 0 } {
-    data = allocate_and_copy(2, 0);
+Stack<T>::Stack() : count{ 0 }, capacity { 2 } {
+    data = allocate_and_copy(capacity, 0);
 }
 
 template<typename T>
@@ -59,4 +59,13 @@ bool Stack<T>::empty() {
 template<typename T>
 std::size_t Stack<T>::size() {
     return count;
+}
+
+template<typename T>
+bool Stack<T>::operator==(const Stack& other){
+    if (this->size() != other.size()) return false;
+    std::size_t index {};
+    while (index++ < other.size())
+        if (data[index] != other.data[index]) return false;
+    return true;
 }
