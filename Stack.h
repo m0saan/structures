@@ -19,6 +19,7 @@ public:
     T& top();
     bool empty();
     std::size_t size();
+    T& min();
     bool operator==(const Stack& other);
 
 

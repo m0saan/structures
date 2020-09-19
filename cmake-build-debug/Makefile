@@ -142,32 +142,32 @@ data_structures_and_algorithms/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/build
 .PHONY : data_structures_and_algorithms/fast
 
-Exercises.obj: Exercises.cpp.obj
+PriorityQueue.obj: PriorityQueue.cpp.obj
 
-.PHONY : Exercises.obj
+.PHONY : PriorityQueue.obj
 
 # target to build an object file
-Exercises.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Exercises.cpp.obj
-.PHONY : Exercises.cpp.obj
+PriorityQueue.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/PriorityQueue.cpp.obj
+.PHONY : PriorityQueue.cpp.obj
 
-Exercises.i: Exercises.cpp.i
+PriorityQueue.i: PriorityQueue.cpp.i
 
-.PHONY : Exercises.i
+.PHONY : PriorityQueue.i
 
 # target to preprocess a source file
-Exercises.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Exercises.cpp.i
-.PHONY : Exercises.cpp.i
+PriorityQueue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/PriorityQueue.cpp.i
+.PHONY : PriorityQueue.cpp.i
 
-Exercises.s: Exercises.cpp.s
+PriorityQueue.s: PriorityQueue.cpp.s
 
-.PHONY : Exercises.s
+.PHONY : PriorityQueue.s
 
 # target to generate assembly for a file
-Exercises.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Exercises.cpp.s
-.PHONY : Exercises.cpp.s
+PriorityQueue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/PriorityQueue.cpp.s
+.PHONY : PriorityQueue.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -205,9 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_structures_and_algorithms
-	@echo ... Exercises.obj
-	@echo ... Exercises.i
-	@echo ... Exercises.s
+	@echo ... PriorityQueue.obj
+	@echo ... PriorityQueue.i
+	@echo ... PriorityQueue.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

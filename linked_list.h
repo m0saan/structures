@@ -4,14 +4,60 @@
 
 #ifndef DATA_STRUCTURES_AND_ALGORITHMS_LINKED_LIST_H
 #define DATA_STRUCTURES_AND_ALGORITHMS_LINKED_LIST_H
-#include <cstdio>
+#include <iostream>
 
+template <typename LinkedList>
+ class LinkedListIterator {
+public:
+    using ValueType =  typename LinkedList::ValueType;
+    using NodeType = typename LinkedList::NodeType;
+    using NodePointerType = NodeType*;
+    using ReferenceType = ValueType&;
+    using PointerType = ValueType*;
+public:
+    explicit LinkedListIterator(NodePointerType ptr) : m_Ptr {ptr } {}
+
+    LinkedListIterator operator++() {
+        m_Ptr = m_Ptr->next;
+        return *this;
+    }
+
+    LinkedListIterator operator++(int){
+        auto LinkedListIterator = *this;
+        m_Ptr = m_Ptr->next;
+        return *this;
+    }
+
+    PointerType operator->() const {
+        m_Ptr->value;
+    }
+
+    ReferenceType operator*() const{
+        return m_Ptr->value;
+    }
+
+    bool operator==(const LinkedListIterator& rhs) const{
+        return m_Ptr == rhs.m_Ptr;
+    }
+
+    bool operator!=(const LinkedListIterator& rhs) const{
+        return m_Ptr != rhs.m_Ptr;
+    }
+
+private:
+    NodePointerType m_Ptr;
+
+};
 
 template< typename  T>
 class LinkedList {
 public:
+    using ValueType = T;
+    using Iterator = LinkedListIterator<LinkedList<T>>;
+
+public:
     LinkedList();
-    explicit LinkedList(std::initializer_list<T> list);
+    LinkedList(std::initializer_list<T> list);
     void addFirst(T item);
     void addLast(T item);
     void deleteFirst();
@@ -27,10 +73,13 @@ public:
     void printMiddle();
     bool hasLoop();
 
+    Iterator begin();
+    Iterator end();
 
 private:
     class Node {
     public:
+        Node() = default;
         explicit Node(T v) : value{ v }, next { nullptr } {}
         T value;
         Node *next;
@@ -42,6 +91,9 @@ private:
 private:
     Node* getNode(T item) const;
     Node* getKthNextNode(short k);
+
+public:
+    using NodeType = Node;
 };
 
 #endif //DATA_STRUCTURES_AND_ALGORITHMS_LINKED_LIST_H

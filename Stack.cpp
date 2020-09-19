@@ -43,12 +43,12 @@ T *Stack<T>::allocate_and_copy(std::size_t newCapacity, char _copy) {
 
 template<typename T>
 void Stack<T>::pop(){
-    data[count--] = 0;
+    data[--count] = 0;
 }
 
 template<typename T>
 T& Stack<T>::top() {
-    return data[count];
+    return data[count - 1];
 }
 
 template <typename T>
@@ -68,4 +68,9 @@ bool Stack<T>::operator==(const Stack& other){
     while (index++ < other.size())
         if (data[index] != other.data[index]) return false;
     return true;
+}
+
+template<typename T>
+T& Stack<T>::min() {
+
 }

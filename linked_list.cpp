@@ -105,6 +105,12 @@ bool LinkedList<T>::operator==(const LinkedList<T> &other) const {
     return true;
 }
 
+template <typename T>
+LinkedListIterator<LinkedList<T>> LinkedList<T>::begin() { return Iterator(first); }
+
+template <typename T>
+LinkedListIterator<LinkedList<T>> LinkedList<T>::end() { return Iterator(nullptr); }
+
 template<typename T>
 constexpr std::size_t LinkedList<T>::size() const {
     return m_size;

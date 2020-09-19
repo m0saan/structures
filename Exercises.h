@@ -9,6 +9,8 @@
 #include <iostream>
 #include <stack>
 #include <algorithm>
+#include <stack>
+#include <queue>
 class Exercises {
 public:
     static void reverse(std::string& input){
@@ -19,6 +21,18 @@ public:
         while (!stackOfChars.empty()) {
             input[i++] = stackOfChars.top();
             stackOfChars.pop();
+        }
+    }
+
+    static void queueReverse(std::queue<int>& queue){
+        std::stack<int> stackOfInts;
+        while(!queue.empty()) {
+            stackOfInts.push(queue.front());
+            queue.pop();
+        }
+        while (!stackOfInts.empty()) {
+            queue.push(stackOfInts.top());
+            stackOfInts.pop();
         }
     }
 

@@ -1,16 +1,37 @@
-#include "Stack.h"
-#include "Stack.cpp"
-#include <string>
+#include <iostream>
+#include "Queue.h"
+#include "PriorityQueue.cpp"
+#include <queue>
+
+/*
+std::ostream& operator<<(std::ostream& o, std::queue<int> queue){
+    std::cout << "[ ";
+    while (!queue.empty()) {
+        o << queue.front() << ' ';
+        queue.pop();
+    }
+    std::cout << "]\n";
+    return o;
+}
+std::ostream& operator<<(std::ostream& o, Queue<int> queue){
+    std::cout << "[ ";
+    while (!queue.empty()) {
+        o << queue.front() << ' ';
+        queue.pop();
+    }
+    std::cout << "]\n";
+    return o;
+}
+ */
 
 int main(){
-    Stack<int> stack;
-    stack.push(10);
-    stack.push(20);
-    stack.push(30);
-    stack.push(40);
-    stack.push(50);
+    PriorityQueue<int> priorityQueue(5);
+    priorityQueue.push(5);
+    priorityQueue.push(3);
+    priorityQueue.push(6);
+    priorityQueue.push(1);
+    priorityQueue.push(4);
 
-
-    stack.print();
+    priorityQueue.print();
     return 0;
 }
