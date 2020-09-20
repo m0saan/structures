@@ -3,7 +3,7 @@
 //
 
 #include "QueueWithLinkedList.h"
-
+#include <iostream>
 
 template<typename T>
 void QueueWithLinkedList<T>::push(T item) {
@@ -17,11 +17,13 @@ bool QueueWithLinkedList<T>::empty() {
 
 template<typename T>
 T &QueueWithLinkedList<T>::front() {
+    if(empty()) throw std::runtime_error{ "Invalid operation" };
     return list.front();
 }
 
 template<typename T>
 T &QueueWithLinkedList<T>::back() {
+    if(empty()) throw std::runtime_error{ "Invalid operation" };
     return list.back();
 }
 

@@ -36,12 +36,18 @@ int main(){
     queue.push(50);
 
     std::cout<< queue.front() << std::endl;
-    //std::cout<< queue.back() << std::endl;
+    std::cout<< queue.back() << std::endl;
     queue.pop();
     std::cout<< queue.front() << std::endl;
     queue.pop();
     queue.push(100);
     std::cout<< queue.front() << std::endl;
+    queue.pop();
+    queue.pop();
+    queue.pop();
+    queue.pop();
+    std::cout << queue.front() << std::endl;
+    std::cout << queue.back() << std::endl;
     std::cout << "**************************************" << std::endl;
 
     Queue<int> nqueue(5);
@@ -52,14 +58,19 @@ int main(){
     nqueue.push(50);
 
     std::cout<< nqueue.front() << std::endl;
-    //std::cout<< nqueue.back() << std::endl;
+    std::cout<< nqueue.back() << std::endl;
     nqueue.pop();
     std::cout<< nqueue.front() << std::endl;
     nqueue.pop();
     nqueue.push(100);
 
     std::cout<< nqueue.front() << std::endl;
-
+    nqueue.pop();
+    nqueue.pop();
+    nqueue.pop();
+    nqueue.pop();
+    std::cout<< nqueue.front() << std::endl;
+    std::cout<< nqueue.back() << std::endl;
 
     return 0;
 }

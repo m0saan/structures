@@ -30,12 +30,14 @@ bool Queue<T>::empty() {
 
 template<typename T>
 T &Queue<T>::front() {
+    if(empty()) throw std::runtime_error{ "Invalid operation" };
     return data[f];
 }
 
 template<typename T>
 T &Queue<T>::back() {
-    return data[nPushedItems];
+    if(empty()) throw std::runtime_error{ "Invalid operation" };
+    return data[nPushedItems - 1];
 }
 
 template<typename T>
