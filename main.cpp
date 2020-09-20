@@ -1,76 +1,52 @@
 #include <iostream>
-#include "Queue.h"
-#include "Queue.cpp"
-#include "PriorityQueue.cpp"
-#include "QueueWithLinkedList.h"
-#include "QueueWithLinkedList.cpp"
-#include <queue>
-#include "Exercises.h"
-/*
-std::ostream& operator<<(std::ostream& o, std::queue<int> queue){
+#include "StackWithTwoQueues.h"
+#include "StackWithTwoQueues.cpp"
+
+std::ostream& operator<<(std::ostream& o, StackWithTwoQueues<int> queue){
     std::cout << "[ ";
     while (!queue.empty()) {
-        o << queue.front() << ' ';
+        o << queue.top() << ' ';
         queue.pop();
     }
     std::cout << "]\n";
     return o;
 }
-std::ostream& operator<<(std::ostream& o, Queue<int> queue){
-    std::cout << "[ ";
-    while (!queue.empty()) {
-        o << queue.front() << ' ';
-        queue.pop();
-    }
-    std::cout << "]\n";
-    return o;
-}
- */
+
 
 int main(){
-    QueueWithLinkedList<int> queue;
+    Queue<int> queue(5);
     queue.push(10);
     queue.push(20);
     queue.push(30);
     queue.push(40);
     queue.push(50);
 
-    std::cout<< queue.front() << std::endl;
-    std::cout<< queue.back() << std::endl;
-    queue.pop();
-    std::cout<< queue.front() << std::endl;
-    queue.pop();
-    queue.push(100);
-    std::cout<< queue.front() << std::endl;
-    queue.pop();
-    queue.pop();
-    queue.pop();
-    queue.pop();
-    std::cout << queue.front() << std::endl;
-    std::cout << queue.back() << std::endl;
-    std::cout << "**************************************" << std::endl;
+    queue.print();
+    std::cout << "front: " << queue.front() << std::endl;
+    std::cout << "back: " << queue.back() << std::endl;
 
-    Queue<int> nqueue(5);
-    nqueue.push(10);
-    nqueue.push(20);
-    nqueue.push(30);
-    nqueue.push(40);
-    nqueue.push(50);
+    queue.pop();
+    std::cout << "front: " << queue.front() << std::endl;
+    std::cout << "back: " << queue.back() << std::endl;
+/*
+    StackWithTwoQueues<int> stack(5);
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.push(40);
+    stack.push(50);
 
-    std::cout<< nqueue.front() << std::endl;
-    std::cout<< nqueue.back() << std::endl;
-    nqueue.pop();
-    std::cout<< nqueue.front() << std::endl;
-    nqueue.pop();
-    nqueue.push(100);
-
-    std::cout<< nqueue.front() << std::endl;
-    nqueue.pop();
-    nqueue.pop();
-    nqueue.pop();
-    nqueue.pop();
-    std::cout<< nqueue.front() << std::endl;
-    std::cout<< nqueue.back() << std::endl;
-
+    //std::cout<< stack.top() << std::endl;
+    stack.pop();
+    std::cout<< stack.top() << std::endl;
+    stack.pop();
+    stack.pop();
+    stack.push(100);
+    std::cout<< stack.top() << std::endl;
+    stack.pop();
+    std::cout<< stack.top() << std::endl;
+*/
     return 0;
 }
+
+// [ 10, 20]

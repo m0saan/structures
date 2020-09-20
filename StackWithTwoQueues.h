@@ -9,7 +9,7 @@ template<typename T>
 class StackWithTwoQueues{
     public:
 
-        StackWithTwoQueues(std::size_t capacity) : nPushedItems {}, capacity { capacity } {
+        explicit StackWithTwoQueues(std::size_t capacity) : nPushedItems {}, capacity { capacity } {
             queue1 = new Queue<T> { capacity };
             queue2 = new Queue<T> { capacity };
         }
@@ -17,7 +17,6 @@ class StackWithTwoQueues{
         ~StackWithTwoQueues() { delete queue1; delete queue2; }
         void push(T item);
         void pop();
-        void print();
         T& top();
         bool empty();
         std::size_t size();
@@ -29,7 +28,7 @@ class StackWithTwoQueues{
         Queue<T>* queue2;
     private:
         bool isFull();
-        void MoveQueue1ToQueue2(Queue<T>& fromQueue, Queue<T>& toQueue, std::size_t i);
+        void MoveQueue1ToQueue2(Queue<T>& fromQueue, Queue<T>& toQueue, int i);
 
 };
 
