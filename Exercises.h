@@ -51,6 +51,26 @@ public:
         return true;
     }
 
+    static std::queue<int> queueReversKElements(std::queue<int>& queue, std::size_t k){
+        if (queue.empty() || k > queue.size() || k < 0) throw std::runtime_error{ "Invalid operation" };
+        std::stack<int> stack;
+        std::queue<int> outQueue;
+        int i = k;
+        while (i--) {
+            stack.push(queue.front());
+            queue.pop();
+        }
+        while (!stack.empty()){
+            outQueue.push(stack.top());
+            stack.pop();
+        }
+        while (!queue.empty()){
+            outQueue.push(queue.front());
+            queue.pop();
+        }
+        return outQueue;
+    }
+
 };
 
 

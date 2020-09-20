@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Queue.h"
 #include "PriorityQueue.cpp"
+#include "QueueWithLinkedList.h"
+#include "QueueWithLinkedList.cpp"
 #include <queue>
-
+#include "Exercises.h"
 /*
 std::ostream& operator<<(std::ostream& o, std::queue<int> queue){
     std::cout << "[ ";
@@ -25,13 +27,16 @@ std::ostream& operator<<(std::ostream& o, Queue<int> queue){
  */
 
 int main(){
-    PriorityQueue<int> priorityQueue(5);
-    priorityQueue.push(5);
-    priorityQueue.push(3);
-    priorityQueue.push(6);
-    priorityQueue.push(1);
-    priorityQueue.push(4);
+    QueueWithLinkedList<int> queue;
+    queue.push(10);
+    queue.push(20);
+    queue.push(30);
+    queue.push(40);
+    queue.push(50);
 
-    priorityQueue.print();
+    std::cout<< queue.front() << std::endl;
+    std::cout<< queue.back() << std::endl;
+    queue.pop();
+
     return 0;
 }

@@ -142,32 +142,32 @@ data_structures_and_algorithms/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/build
 .PHONY : data_structures_and_algorithms/fast
 
-PriorityQueue.obj: PriorityQueue.cpp.obj
+QueueWithLinkedList.obj: QueueWithLinkedList.cpp.obj
 
-.PHONY : PriorityQueue.obj
+.PHONY : QueueWithLinkedList.obj
 
 # target to build an object file
-PriorityQueue.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/PriorityQueue.cpp.obj
-.PHONY : PriorityQueue.cpp.obj
+QueueWithLinkedList.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/QueueWithLinkedList.cpp.obj
+.PHONY : QueueWithLinkedList.cpp.obj
 
-PriorityQueue.i: PriorityQueue.cpp.i
+QueueWithLinkedList.i: QueueWithLinkedList.cpp.i
 
-.PHONY : PriorityQueue.i
+.PHONY : QueueWithLinkedList.i
 
 # target to preprocess a source file
-PriorityQueue.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/PriorityQueue.cpp.i
-.PHONY : PriorityQueue.cpp.i
+QueueWithLinkedList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/QueueWithLinkedList.cpp.i
+.PHONY : QueueWithLinkedList.cpp.i
 
-PriorityQueue.s: PriorityQueue.cpp.s
+QueueWithLinkedList.s: QueueWithLinkedList.cpp.s
 
-.PHONY : PriorityQueue.s
+.PHONY : QueueWithLinkedList.s
 
 # target to generate assembly for a file
-PriorityQueue.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/PriorityQueue.cpp.s
-.PHONY : PriorityQueue.cpp.s
+QueueWithLinkedList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/QueueWithLinkedList.cpp.s
+.PHONY : QueueWithLinkedList.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -205,9 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_structures_and_algorithms
-	@echo ... PriorityQueue.obj
-	@echo ... PriorityQueue.i
-	@echo ... PriorityQueue.s
+	@echo ... QueueWithLinkedList.obj
+	@echo ... QueueWithLinkedList.i
+	@echo ... QueueWithLinkedList.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
