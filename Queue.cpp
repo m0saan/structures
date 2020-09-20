@@ -18,8 +18,8 @@ Queue<T>::Queue(std::size_t capacity) : capacity { capacity }, f {}, b{}, nPushe
 template<typename T>
 void Queue<T>::push(T item) {
     if (nPushedItems >= capacity) throw std::bad_alloc{};
-    b = (b + 1) % capacity;
     data[b] = item;
+    b = (b + 1) % capacity;
     nPushedItems++;
 }
 
@@ -30,19 +30,19 @@ bool Queue<T>::empty() {
 
 template<typename T>
 T &Queue<T>::front() {
-    return data[(f + 1) % capacity ];
+    return data[f];
 }
 
 template<typename T>
 T &Queue<T>::back() {
-    return data[(b + 1) % capacity];
+    return data[nPushedItems];
 }
 
 template<typename T>
 void Queue<T>::pop() {
     if(empty()) throw std::bad_alloc{};
-    f = (f + 1) % capacity;
     data[f] = 0;
+    f = (f + 1) % capacity;
     nPushedItems--;
 }
 

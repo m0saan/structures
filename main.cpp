@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Queue.h"
+#include "Queue.cpp"
 #include "PriorityQueue.cpp"
 #include "QueueWithLinkedList.h"
 #include "QueueWithLinkedList.cpp"
@@ -35,8 +36,30 @@ int main(){
     queue.push(50);
 
     std::cout<< queue.front() << std::endl;
-    std::cout<< queue.back() << std::endl;
+    //std::cout<< queue.back() << std::endl;
     queue.pop();
+    std::cout<< queue.front() << std::endl;
+    queue.pop();
+    queue.push(100);
+    std::cout<< queue.front() << std::endl;
+    std::cout << "**************************************" << std::endl;
+
+    Queue<int> nqueue(5);
+    nqueue.push(10);
+    nqueue.push(20);
+    nqueue.push(30);
+    nqueue.push(40);
+    nqueue.push(50);
+
+    std::cout<< nqueue.front() << std::endl;
+    //std::cout<< nqueue.back() << std::endl;
+    nqueue.pop();
+    std::cout<< nqueue.front() << std::endl;
+    nqueue.pop();
+    nqueue.push(100);
+
+    std::cout<< nqueue.front() << std::endl;
+
 
     return 0;
 }
