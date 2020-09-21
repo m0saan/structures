@@ -39,7 +39,7 @@ class Exercises {
         }
 
         static bool isBalanced(std::string& str){
-            std::string closingSymbola(")}>]");
+            std::string closingSymbol(")}>]");
             std::stack<char> stack;
             for(char& c : str){
                 if (c == '(' || c == '[' || c == '<' || c == '(') stack.push(c);
