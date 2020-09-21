@@ -5,7 +5,7 @@
 #include "Map.h"
 
 template<typename KEY, typename VALUE>
-Map<KEY, VALUE>::Map(std::size_t initial_capacity)  {
+Map<KEY, VALUE>::Map(std::size_t initial_capacity) {
     table = new std::vector<std::list<KVPAIR>>(initial_capacity, std::list<KVPAIR>{});
 }
 
@@ -30,8 +30,7 @@ std::string Map<KEY, VALUE>::get(KEY k) {
 
 template<typename KEY, typename VALUE>
 void Map<KEY, VALUE>::remove(KEY k) {
-    auto bucket = getBucket(k);
-    table->at(hash(k)).remove(bucket);
+    table->at(hash(k)).remove( getBucket(k));
 }
 
 template<typename KEY, typename VALUE>
