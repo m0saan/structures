@@ -11,6 +11,8 @@
 #include <algorithm>
 #include <stack>
 #include <queue>
+#include <set>
+#include <map>
 class Exercises {
     public:
         static void reverse(std::string& input){
@@ -77,9 +79,17 @@ class Exercises {
                 mapOfChars[string[i]] = mapOfChars[string[i]] + 1;
             for (char i : string)
                 if (mapOfChars[i] == 1) return string[i];
+            return '\0';
         }
-        return std::string::npos;
-}
+
+        static char findFirstRepeatedCharacter(const std::string& string){
+            std::set<char> setOfChars;
+            for (const char ch : string){
+                if (setOfChars.count(ch) == 1) return ch;
+                setOfChars.insert(ch);
+            }
+            return '\0';
+        }
 
 };
 
