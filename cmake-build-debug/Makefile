@@ -142,32 +142,32 @@ data_structures_and_algorithms/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/build
 .PHONY : data_structures_and_algorithms/fast
 
-QueueWithLinkedList.obj: QueueWithLinkedList.cpp.obj
+Map.obj: Map.cpp.obj
 
-.PHONY : QueueWithLinkedList.obj
+.PHONY : Map.obj
 
 # target to build an object file
-QueueWithLinkedList.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/QueueWithLinkedList.cpp.obj
-.PHONY : QueueWithLinkedList.cpp.obj
+Map.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Map.cpp.obj
+.PHONY : Map.cpp.obj
 
-QueueWithLinkedList.i: QueueWithLinkedList.cpp.i
+Map.i: Map.cpp.i
 
-.PHONY : QueueWithLinkedList.i
+.PHONY : Map.i
 
 # target to preprocess a source file
-QueueWithLinkedList.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/QueueWithLinkedList.cpp.i
-.PHONY : QueueWithLinkedList.cpp.i
+Map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Map.cpp.i
+.PHONY : Map.cpp.i
 
-QueueWithLinkedList.s: QueueWithLinkedList.cpp.s
+Map.s: Map.cpp.s
 
-.PHONY : QueueWithLinkedList.s
+.PHONY : Map.s
 
 # target to generate assembly for a file
-QueueWithLinkedList.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/QueueWithLinkedList.cpp.s
-.PHONY : QueueWithLinkedList.cpp.s
+Map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\data_structures_and_algorithms.dir\build.make CMakeFiles/data_structures_and_algorithms.dir/Map.cpp.s
+.PHONY : Map.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -205,9 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... data_structures_and_algorithms
-	@echo ... QueueWithLinkedList.obj
-	@echo ... QueueWithLinkedList.i
-	@echo ... QueueWithLinkedList.s
+	@echo ... Map.obj
+	@echo ... Map.i
+	@echo ... Map.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
