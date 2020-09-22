@@ -16,25 +16,11 @@ public:
 
 class MapWithLinearProbing {
 public:
-    explicit MapWithLinearProbing(std::size_t capacity) : capacity{capacity} {
-        entries = new KVPair[capacity]{};
-        tracker = new bool[capacity]{false};
-    };
+    explicit MapWithLinearProbing(std::size_t capacity);
+    ~MapWithLinearProbing();
 
-    ~MapWithLinearProbing() { delete entries; }
-
-    void put(int k, const std::string &v) {
-        std::size_t index = hash(k);
-        if (tracker[index] == false) insertKvPair(k, v, index);
-        else findSlotAndInsertKVPair(k, v, index);
-    }
-
-    void print() const {
-        for (int i = 0; i < capacity; ++i) {
-            if (tracker[i] != false)
-                std::cout << "(" << entries[i].key << ", " << entries[i].value << ")" << std::endl;
-        }
-    }
+    void put(int k, const std::string &v);
+    void print() const;
 
 
 private:
@@ -45,23 +31,10 @@ private:
 
 private:
 
-    std::size_t hash(int &k) const { return k % capacity; }
+    std::size_t hash(int &k) const;
 
-    void insertKvPair(int &k, const std::string &v, const std::size_t &index) {
-        KVPair kvPair{k, v};
-        entries[index] = kvPair;
-        tracker[index] = true;
-    }
-
-    void findSlotAndInsertKVPair(int &k, const std::string &v, std::size_t &index) {
-        int i{};
-        while (++i) {
-            if (tracker[index + i] == false) {
-                insertKvPair(k, v, index + i);
-                return;
-            }
-        }
-    }
+    void insertKvPair(int &k, const std::string &v, const std::size_t &index);
+    void findSlotAndInsertKVPair(int &k, const std::string &v, std::size_t &index);
 };
 
 #endif
