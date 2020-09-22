@@ -1,23 +1,21 @@
-#include <iostream>
-#include <string>
-#include "Map.h"
-#include "Map.cpp"
-#include <map>
+#define CATCH_CONFIG_MAIN
+#include "Exercises.h"
+#include "Exercises.cpp"
+#include "catch.hpp"
 
 
-int main(){
-    std::map<int, std::string> map1;
-    map1.insert({6, "A"});
-    map1.insert({8, "B"});
-    map1.insert({11, "C"});
-    map1.insert({6, "A+"});
-    Map<std::string , std::string> map(10);
-    map.put("6", "A");
-    map.put("8", "B");
-    map.put("11", "C");
-    map.put("6", "A+");
+TEST_CASE("TEST"){
+    Exercises exercises;
 
-    std::cout << map.get("11") << std::endl;
-    return 0;
+    std::vector<int> arr1{ 3, 1, 4, 1, 5};
+    int k1 = 2;
+    std::vector<int> arr2{ 1, 2 ,3, 4, 5};
+    int k2 = 1;
+    std::vector<int> arr3{ 1, 3, 1, 5, 4 };
+    int k3 = 0;
+
+    REQUIRE(exercises.countPairsWithDiff(arr1, k1) == 2);
+    REQUIRE(exercises.countPairsWithDiff(arr2, k2) == 4);
+    REQUIRE(exercises.countPairsWithDiff(arr3, k3) == 1);
 }
 
