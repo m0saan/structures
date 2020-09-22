@@ -31,11 +31,9 @@ public:
     template<size_t N>
     int mostFrequent(int (&input)[N]);
 
-    template<size_t N>
-    int countPairsWithDiff(int (&input)[N], int k);
+    static int countPairsWithDiff(std::vector<int>& nums, int k);
 
-    template<size_t N>
-    int* twoSum(int (&input)[N], int target);
+    static std::vector<int> twoSum(std::vector<int>& nums, int target);
 };
 
 

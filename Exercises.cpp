@@ -91,25 +91,30 @@ int Exercises::mostFrequent(int (&input)[N]) {
     return vectorOfPairs[0].first;
 }
 
-template<size_t N>
-int Exercises::countPairsWithDiff(int (&input) [N], int k) {
+int Exercises::countPairsWithDiff(std::vector<int>& nums, int k) {
+    if (k < 0 || nums.empty()) return 0;
     std::map<int, int> mapOfDiffPairs;
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j)
-            if (input[i] - input[j] == k)
-                mapOfDiffPairs.insert( {input[i], input[j]} );
+    int counter {};
+    for (int & num : nums)
+        mapOfDiffPairs[num] = mapOfDiffPairs[num] + 1;
+    for (auto& itr : mapOfDiffPairs) {
+        if (k == 0) {
+            if (mapOfDiffPairs[itr.first] >= 2) counter++;
+        }
+        else if (mapOfDiffPairs.count(itr.first + k)) counter++;
     }
-    return mapOfDiffPairs.size();
+    return counter;
 }
 
-template <size_t N>
-int* Exercises::twoSum(int (&input)[N], int target) {
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j)
-            if (input[i] + input[j] == target && input[i] != input[j])
-                return new int[2] { input[i], input[j] };
+std::vector<int> Exercises::twoSum(std::vector<int>& nums, int target) {
+    std::map<int , int> map;
+    auto diff = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        diff = target - nums[i];
+        if (map.count(diff)) return std::vector<int> {map[diff], i};
+        map[nums[i]] = i;
     }
-    return 0;
+    throw std::runtime_error { "No such element" };
 }
 
 
