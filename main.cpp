@@ -1,21 +1,17 @@
-#define CATCH_CONFIG_MAIN
-#include "Exercises.h"
-#include "Exercises.cpp"
-#include "catch.hpp"
+#include <iostream>
+#include "MapWithLinearProbing.h"
+#include <gtest/gtest.h>
 
+int main(){
+    MapWithLinearProbing map(5);
+    map.put(6, "A");
+    map.put(8, "B");
+    map.put(11, "C");
+    map.print();
 
-TEST_CASE("TEST"){
-    Exercises exercises;
+    map.remove(6);
+    map.print();
 
-    std::vector<int> arr1{ 3, 1, 4, 1, 5};
-    int k1 = 2;
-    std::vector<int> arr2{ 1, 2 ,3, 4, 5};
-    int k2 = 1;
-    std::vector<int> arr3{ 1, 3, 1, 5, 4 };
-    int k3 = 0;
-
-    REQUIRE(exercises.countPairsWithDiff(arr1, k1) == 2);
-    REQUIRE(exercises.countPairsWithDiff(arr2, k2) == 4);
-    REQUIRE(exercises.countPairsWithDiff(arr3, k3) == 1);
+    std::cout << map.get(8) << std::endl;
+    return 0;
 }
-
