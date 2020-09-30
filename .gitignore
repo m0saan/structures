@@ -3,3 +3,4 @@ a.out.dSYM
 cmake-build-debug
 main.cpp
 .idea
+CMakeLists.txt
