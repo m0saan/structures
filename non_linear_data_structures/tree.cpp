@@ -5,6 +5,16 @@
 #include "tree.h"
 
 /*
+ * Constructor and Destructor
+ */
+template<typename T>
+Tree<T>::Tree() : root { nullptr } {}
+
+template<typename T>
+Tree<T>::~Tree() { delete root; }
+
+
+/*
  * Inserting a node into into the binary search tree
  */
 
@@ -16,14 +26,14 @@ void Tree<T>::insert(T item) {
         Node *current = root;
         while (true) {
             if (item < current->value) {
-                if (current->leftChild == nullptr) {
+                if (isLeftLeaf(current)) {
                     current->leftChild = node;
                     break;
                 }
                 current = current->leftChild;
             }
             else {
-                if (current->rightChild == nullptr) {
+                if (isRightLeaf(current)) {
                     current->rightChild = node;
                     break;
                 }
@@ -33,6 +43,12 @@ void Tree<T>::insert(T item) {
     }
 }
 
+template <typename T>
+bool Tree<T>::isRightLeaf(const Node *current) const { return current->rightChild == nullptr; }
+
+template <typename T>
+bool Tree<T>::isLeftLeaf(const Node *current) const { return current->leftChild == nullptr; }
+
 /*
  * Finding a value in the binary search tree (if found returns true; otherwise false)
  */
@@ -41,10 +57,8 @@ bool Tree<T>::find(T item) {
     auto current = root;
     while (current != nullptr) {
         if (current->value == item) return true;
-        if (item < current->value)
-            current = current->leftChild;
-        else if (item > current->value)
-            current = current->rightChild;
+        else if (item < current->value) current = current->leftChild;
+        else current = current->rightChild;
     }
     return false;
 }
@@ -133,16 +147,32 @@ void Tree<T>::levelOrderTraversal(Node *rootNode) {
  */
 
 template<typename T>
-size_t Tree<T>::hieght() {
+size_t Tree<T>::height() {
     if (root == nullptr) throw std::runtime_error{ "Empty tree" };
     return height(root);
 }
 
 template<typename T>
 size_t Tree<T>::height(Node *rootNode) {
-    if (rootNode->leftChild == nullptr && rootNode->rightChild == nullptr) return 0;
+    if (isLeaf(rootNode)) return 0;
 
     return 1 + std::max( height(rootNode->leftChild), height(rootNode->rightChild));
+}
+
+template<typename T>
+T Tree<T>::min() {
+    return min(root);
+}
+
+template<typename T>
+T Tree<T>::min(Node *rootNode) {
+    if (isLeaf(rootNode)) return rootNode->value;
+    return std::min(std::min(min(rootNode->leftChild), min(rootNode->rightChild)), rootNode->value);
+}
+
+template <typename  T>
+bool Tree<T>::isLeaf(const Node *rootNode) const {
+    return rootNode->leftChild == nullptr && rootNode->rightChild == nullptr;
 }
 
 

@@ -29,13 +29,15 @@ public:
     using Node = Node<Tree<T>>;
 public:
 
-    Tree(): root { nullptr } {};
+    Tree();
+    ~Tree();
 public:
 
     /*
      * Inserting and Searching in the Tree
      */
     void insert(T item);
+
     bool find(T item);
 
     /*
@@ -43,24 +45,39 @@ public:
      */
 
     void preOrderTraversal();
+
     void inOrderTraversal();
+
     void postOrderTraversal();
+
     void levelOrderTraversal();
 
-    size_t hieght();
+    size_t height();
+
+    T min();
 
 private:
     Node *root;
 
 private:
     void preOrderTraversal(Node *rootNode);
+
     void inOrderTraversal(Node *rootNode);
+
     void postOrderTraversal(Node *rootNode);
 
     void levelOrderTraversal(Node *rootNode);
+
     size_t height(Node *rootNode);
 
+    T min(Node *rootNode);
 
+
+    bool isLeaf(const Node *rootNode) const;
+
+    bool isLeftLeaf(const Node *current) const;
+
+    bool isRightLeaf(const Node *current) const;
 };
 
 
