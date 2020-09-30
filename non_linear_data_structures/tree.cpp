@@ -8,7 +8,7 @@
  * Constructor and Destructor
  */
 template<typename T>
-Tree<T>::Tree() : root{nullptr} {}
+Tree<T>::Tree() : root{nullptr}, mSize{} {}
 
 template<typename T>
 Tree<T>::~Tree() { delete root; }
@@ -40,6 +40,7 @@ void Tree<T>::insert(T item) {
             }
         }
     }
+    mSize++;
 }
 
 template<typename T>
@@ -67,7 +68,7 @@ bool Tree<T>::find(T item) {
  */
 
 template<typename T>
-void Tree<T>::preOrderTraversal() {
+void Tree<T>::preOrderTraversal() const{
     /*
      * pre-order-traversal [root, left, right]
      */
@@ -75,7 +76,7 @@ void Tree<T>::preOrderTraversal() {
 }
 
 template<typename T>
-void Tree<T>::preOrderTraversal(Node *rootNode) {
+void Tree<T>::preOrderTraversal(Node *rootNode) const{
     if (rootNode == nullptr) return;
 
     std::cout << rootNode->value << '\n';
@@ -85,7 +86,7 @@ void Tree<T>::preOrderTraversal(Node *rootNode) {
 }
 
 template<typename T>
-void Tree<T>::inOrderTraversal() {
+void Tree<T>::inOrderTraversal() const{
     /*
      * in-order-traversal [left, root, right]
      */
@@ -93,7 +94,7 @@ void Tree<T>::inOrderTraversal() {
 }
 
 template<typename T>
-void Tree<T>::inOrderTraversal(Node *rootNode) {
+void Tree<T>::inOrderTraversal(Node *rootNode) const{
     if (rootNode == nullptr) return;
 
     inOrderTraversal(rootNode->leftChild);
@@ -104,7 +105,7 @@ void Tree<T>::inOrderTraversal(Node *rootNode) {
 }
 
 template<typename T>
-void Tree<T>::postOrderTraversal() {
+void Tree<T>::postOrderTraversal() const{
     /*
      * post-order-traversal [left, right, root]
      */
@@ -112,7 +113,7 @@ void Tree<T>::postOrderTraversal() {
 }
 
 template<typename T>
-void Tree<T>::postOrderTraversal(Node *rootNode) {
+void Tree<T>::postOrderTraversal(Node *rootNode) const{
     if (rootNode == nullptr) return;
 
     postOrderTraversal(rootNode->leftChild);
@@ -122,12 +123,12 @@ void Tree<T>::postOrderTraversal(Node *rootNode) {
 }
 
 template<typename T>
-void Tree<T>::levelOrderTraversal() {
+void Tree<T>::levelOrderTraversal() const{
     auto current = root;
 }
 
 template<typename T>
-void Tree<T>::levelOrderTraversal(Node *rootNode) {
+void Tree<T>::levelOrderTraversal(Node *rootNode) const{
 
     std::cout << rootNode->value << '\n';
 
@@ -146,28 +147,70 @@ void Tree<T>::levelOrderTraversal(Node *rootNode) {
  */
 
 template<typename T>
-size_t Tree<T>::height() {
-    if (root == nullptr) throw std::runtime_error{"Empty tree"};
+size_t Tree<T>::height() const{
+    if (isEmpty()) throw std::runtime_error{"Empty tree"};
     return height(root);
 }
 
 template<typename T>
-size_t Tree<T>::height(Node *rootNode) {
+size_t Tree<T>::height(Node *rootNode) const{
     if (isLeaf(rootNode)) return 0;
 
     return 1 + std::max(height(rootNode->leftChild), height(rootNode->rightChild));
 }
 
+/*
+ * Getting the min and max values in a binary tree.
+ */
+
 template<typename T>
-T Tree<T>::min() {
+T Tree<T>::min() const{
+    if (isEmpty()) throw std::runtime_error { "Empty Tree" };
     return min(root);
 }
 
 template<typename T>
-T Tree<T>::min(Node *rootNode) {
+T Tree<T>::min(Node *rootNode) const{
     if (isLeaf(rootNode)) return rootNode->value;
     return std::min(std::min(min(rootNode->leftChild), min(rootNode->rightChild)), rootNode->value);
 }
+
+template<typename T>
+T Tree<T>::max() const{
+    if (isEmpty()) throw std::runtime_error { "Empty Tree" };
+    return max(root);
+}
+
+template<typename T>
+T Tree<T>::max(Node *rootNode) const{
+    if (isLeaf(rootNode)) return rootNode->value;
+    return std::max(std::max(max(rootNode->leftChild), max(rootNode->rightChild)), rootNode->value);
+}
+
+/*
+ * Checking two binary trees for equality
+ */
+
+template<typename T>
+bool Tree<T>::equals(Tree<T> &other) const {
+    return this->mSize == other.mSize && equals(root, other.root);
+}
+
+template<typename T>
+bool Tree<T>::equals(Node *currentNode, Node *other) const {
+
+    if(currentNode == nullptr && other == nullptr) return true;
+
+    if (currentNode->value != other->value) return false;
+
+    return equals(currentNode->leftChild, other->leftChild) && equals(currentNode->rightChild, other->rightChild);
+}
+
+template<typename T>
+bool Tree<T>::isEmpty() const {
+    return mSize == 0;
+}
+
 
 template<typename T>
 bool Tree<T>::isLeaf(const Node *rootNode) const {
@@ -175,14 +218,13 @@ bool Tree<T>::isLeaf(const Node *rootNode) const {
 }
 
 template<typename T>
-T Tree<T>::max() {
-    return max(root);
+bool Tree<T>::operator==(Tree<T> &rhs) const {
+    return this->equals(rhs);
 }
 
 template<typename T>
-T Tree<T>::max(Node *rootNode) {
-    if (isLeaf(rootNode)) return rootNode->value;
-    return std::max(std::max(max(rootNode->leftChild), max(rootNode->rightChild)), rootNode->value);
+bool Tree<T>::operator!=(Tree<T> &rhs) const {
+    return !(this->equals(rhs));
 }
 
 

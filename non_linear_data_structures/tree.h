@@ -49,37 +49,48 @@ public:
      * Tree Traversal
      */
 
-    void preOrderTraversal();
+    void preOrderTraversal() const;
 
-    void inOrderTraversal();
+    void inOrderTraversal() const;
 
-    void postOrderTraversal();
+    void postOrderTraversal() const;
 
-    void levelOrderTraversal();
+    void levelOrderTraversal() const;
 
-    size_t height();
+    size_t height() const;
 
-    T min();
+    T min() const;
 
-    T max();
+    T max() const;
+
+    bool equals(Tree<T>& other) const;
+
+    bool isEmpty() const;
+
+    bool operator==(Tree<T>& rhs) const;
+
+    bool operator!=(Tree<T>& rhs) const;
 
 private:
     Node *root;
+    std::size_t mSize;
 
 private:
-    void preOrderTraversal(Node *rootNode);
+    void preOrderTraversal(Node *rootNode) const;
 
-    void inOrderTraversal(Node *rootNode);
+    void inOrderTraversal(Node *rootNode) const;
 
-    void postOrderTraversal(Node *rootNode);
+    void postOrderTraversal(Node *rootNode) const;
 
-    void levelOrderTraversal(Node *rootNode);
+    void levelOrderTraversal(Node *rootNode) const;
 
-    size_t height(Node *rootNode);
+    size_t height(Node *rootNode) const;
 
-    T min(Node *rootNode);
+    T min(Node *rootNode) const;
 
-    T max(Node *rootNode);
+    T max(Node *rootNode) const;
+
+    bool equals(Node *currentNode, Node *other) const;
 
 
     bool isLeaf(const Node *rootNode) const;
