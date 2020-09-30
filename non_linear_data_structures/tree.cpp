@@ -4,12 +4,17 @@
 
 #include "tree.h"
 
-void Tree::insert(int item) {
+/*
+ * Inserting a node into into the binary search tree
+ */
+
+template<typename T>
+void Tree<T>::insert(T item) {
     Node *node = new Node { item };
     if (root == nullptr) root = node;
     else {
-        auto current = root;
-        while (current != nullptr) {
+        Node *current = root;
+        while (true) {
             if (item < current->value) {
                 if (current->leftChild == nullptr) {
                     current->leftChild = node;
@@ -25,11 +30,14 @@ void Tree::insert(int item) {
                 current = current->rightChild;
             }
         }
-        root = current;
     }
 }
 
-bool Tree::find(int item) {
+/*
+ * Finding a value in the binary search tree (if found returns true; otherwise false)
+ */
+template<typename T>
+bool Tree<T>::find(T item) {
     auto current = root;
     while (current != nullptr) {
         if (current->value == item) return true;
