@@ -107,3 +107,42 @@ void Tree<T>::postOrderTraversal(Node *rootNode) {
 
     std::cout << rootNode->value << '\n';
 }
+
+template<typename T>
+void Tree<T>::levelOrderTraversal() {
+    auto current = root;
+}
+
+template<typename T>
+void Tree<T>::levelOrderTraversal(Node *rootNode) {
+
+    std::cout << rootNode->value << '\n';
+
+    levelOrderTraversal(rootNode->leftChild);
+    std::cout << rootNode->value << '\n';
+
+    levelOrderTraversal(rootNode->rightChild);
+    std::cout << rootNode->value << '\n';
+
+
+}
+
+/*
+ * Using post-order-traversal to get the height the tree.
+ * Using the formula H = 1 + max(Height(Left), Height(Right)).
+ */
+
+template<typename T>
+size_t Tree<T>::hieght() {
+    if (root == nullptr) throw std::runtime_error{ "Empty tree" };
+    return height(root);
+}
+
+template<typename T>
+size_t Tree<T>::height(Node *rootNode) {
+    if (rootNode->leftChild == nullptr && rootNode->rightChild == nullptr) return 0;
+
+    return 1 + std::max( height(rootNode->leftChild), height(rootNode->rightChild));
+}
+
+

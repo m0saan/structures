@@ -32,11 +32,22 @@ public:
     Tree(): root { nullptr } {};
 public:
 
+    /*
+     * Inserting and Searching in the Tree
+     */
     void insert(T item);
     bool find(T item);
+
+    /*
+     * Tree Traversal
+     */
+
     void preOrderTraversal();
     void inOrderTraversal();
     void postOrderTraversal();
+    void levelOrderTraversal();
+
+    size_t hieght();
 
 private:
     Node *root;
@@ -45,6 +56,10 @@ private:
     void preOrderTraversal(Node *rootNode);
     void inOrderTraversal(Node *rootNode);
     void postOrderTraversal(Node *rootNode);
+
+    void levelOrderTraversal(Node *rootNode);
+    size_t height(Node *rootNode);
+
 
 };
 
