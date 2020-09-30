@@ -8,7 +8,7 @@
  * Constructor and Destructor
  */
 template<typename T>
-Tree<T>::Tree() : root { nullptr } {}
+Tree<T>::Tree() : root{nullptr} {}
 
 template<typename T>
 Tree<T>::~Tree() { delete root; }
@@ -20,7 +20,7 @@ Tree<T>::~Tree() { delete root; }
 
 template<typename T>
 void Tree<T>::insert(T item) {
-    Node *node = new Node { item };
+    Node *node = new Node{item};
     if (root == nullptr) root = node;
     else {
         Node *current = root;
@@ -31,8 +31,7 @@ void Tree<T>::insert(T item) {
                     break;
                 }
                 current = current->leftChild;
-            }
-            else {
+            } else {
                 if (isRightLeaf(current)) {
                     current->rightChild = node;
                     break;
@@ -43,10 +42,10 @@ void Tree<T>::insert(T item) {
     }
 }
 
-template <typename T>
+template<typename T>
 bool Tree<T>::isRightLeaf(const Node *current) const { return current->rightChild == nullptr; }
 
-template <typename T>
+template<typename T>
 bool Tree<T>::isLeftLeaf(const Node *current) const { return current->leftChild == nullptr; }
 
 /*
@@ -148,7 +147,7 @@ void Tree<T>::levelOrderTraversal(Node *rootNode) {
 
 template<typename T>
 size_t Tree<T>::height() {
-    if (root == nullptr) throw std::runtime_error{ "Empty tree" };
+    if (root == nullptr) throw std::runtime_error{"Empty tree"};
     return height(root);
 }
 
@@ -156,7 +155,7 @@ template<typename T>
 size_t Tree<T>::height(Node *rootNode) {
     if (isLeaf(rootNode)) return 0;
 
-    return 1 + std::max( height(rootNode->leftChild), height(rootNode->rightChild));
+    return 1 + std::max(height(rootNode->leftChild), height(rootNode->rightChild));
 }
 
 template<typename T>
@@ -170,9 +169,20 @@ T Tree<T>::min(Node *rootNode) {
     return std::min(std::min(min(rootNode->leftChild), min(rootNode->rightChild)), rootNode->value);
 }
 
-template <typename  T>
+template<typename T>
 bool Tree<T>::isLeaf(const Node *rootNode) const {
     return rootNode->leftChild == nullptr && rootNode->rightChild == nullptr;
+}
+
+template<typename T>
+T Tree<T>::max() {
+    return max(root);
+}
+
+template<typename T>
+T Tree<T>::max(Node *rootNode) {
+    if (isLeaf(rootNode)) return rootNode->value;
+    return std::max(std::max(max(rootNode->leftChild), max(rootNode->rightChild)), rootNode->value);
 }
 
 

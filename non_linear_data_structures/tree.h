@@ -4,6 +4,7 @@
 
 #ifndef DATA__STRUCTURES_TREE_H
 #define DATA__STRUCTURES_TREE_H
+
 #include <iostream>
 
 
@@ -15,8 +16,10 @@ public:
 
 public:
 
-    explicit Node(T v) : value{ v }, leftChild { nullptr }, rightChild { nullptr } {}
+    explicit Node(T v) : value{v}, leftChild{nullptr}, rightChild{nullptr} {}
+
     Node() = default;
+
     T value;
     Node *leftChild;
     Node *rightChild;
@@ -30,7 +33,9 @@ public:
 public:
 
     Tree();
+
     ~Tree();
+
 public:
 
     /*
@@ -56,6 +61,8 @@ public:
 
     T min();
 
+    T max();
+
 private:
     Node *root;
 
@@ -71,6 +78,8 @@ private:
     size_t height(Node *rootNode);
 
     T min(Node *rootNode);
+
+    T max(Node *rootNode);
 
 
     bool isLeaf(const Node *rootNode) const;
