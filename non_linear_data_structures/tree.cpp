@@ -48,3 +48,62 @@ bool Tree<T>::find(T item) {
     }
     return false;
 }
+
+/*
+ *  Traversing the tree using Depth-First Approaches
+ */
+
+template<typename T>
+void Tree<T>::preOrderTraversal() {
+    /*
+     * pre-order-traversal [root, left, right]
+     */
+    preOrderTraversal(root);
+}
+
+template<typename T>
+void Tree<T>::preOrderTraversal(Node *rootNode) {
+    if (rootNode == nullptr) return;
+
+    std::cout << rootNode->value << '\n';
+
+    preOrderTraversal(rootNode->leftChild);
+    preOrderTraversal(rootNode->rightChild);
+}
+
+template<typename T>
+void Tree<T>::inOrderTraversal() {
+    /*
+     * in-order-traversal [left, root, right]
+     */
+    inOrderTraversal(root);
+}
+
+template<typename T>
+void Tree<T>::inOrderTraversal(Node *rootNode) {
+    if (rootNode == nullptr) return;
+
+    inOrderTraversal(rootNode->leftChild);
+
+    std::cout << rootNode->value << '\n';
+
+    inOrderTraversal(rootNode->rightChild);
+}
+
+template<typename T>
+void Tree<T>::postOrderTraversal() {
+    /*
+     * post-order-traversal [left, right, root]
+     */
+    postOrderTraversal(root);
+}
+
+template<typename T>
+void Tree<T>::postOrderTraversal(Node *rootNode) {
+    if (rootNode == nullptr) return;
+
+    postOrderTraversal(rootNode->leftChild);
+    postOrderTraversal(rootNode->rightChild);
+
+    std::cout << rootNode->value << '\n';
+}
