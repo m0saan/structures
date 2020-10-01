@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(non_linear_data_structures)
 
 add_executable(Data__Structures
-        non_linear_data_structures/tree.cpp
-        non_linear_data_structures/tree.h
+        non_linear_data_structures/AVLTree.cpp
+        non_linear_data_structures/AVLTree.h
+        non_linear_data_structures/AVLNode.cpp
+        non_linear_data_structures/AVLNode.h
         non_linear_data_structures/main.cpp)
