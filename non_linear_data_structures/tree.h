@@ -6,6 +6,7 @@
 #define DATA__STRUCTURES_TREE_H
 
 #include <iostream>
+#include <limits>
 
 
 template<typename TREE>
@@ -67,9 +68,19 @@ public:
 
     bool isEmpty() const;
 
+    bool isBinarySearchTree();
+
     bool operator==(Tree<T>& rhs) const;
 
     bool operator!=(Tree<T>& rhs) const;
+
+    void nodeAtKDistance(int K);
+
+    void swap(){
+        auto tmp = root->leftChild;
+        root->leftChild = root->rightChild;
+        root->rightChild = tmp;
+    }
 
 private:
     Node *root;
@@ -92,6 +103,9 @@ private:
 
     bool equals(Node *currentNode, Node *other) const;
 
+    bool isBinarySearchTree(Node *rootNode, int min, int max);
+
+    void nodeAtKDistance(Node *rootNode, int K);
 
     bool isLeaf(const Node *rootNode) const;
 
