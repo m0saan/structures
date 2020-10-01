@@ -74,7 +74,7 @@ public:
 
     bool operator!=(Tree<T>& rhs) const;
 
-    void nodeAtKDistance(int K);
+    void nodeAtKDistance(int K) const;
 
     void swap(){
         auto tmp = root->leftChild;
@@ -93,8 +93,6 @@ private:
 
     void postOrderTraversal(Node *rootNode) const;
 
-    void levelOrderTraversal(Node *rootNode) const;
-
     size_t height(Node *rootNode) const;
 
     T min(Node *rootNode) const;
@@ -105,7 +103,7 @@ private:
 
     bool isBinarySearchTree(Node *rootNode, int min, int max);
 
-    void nodeAtKDistance(Node *rootNode, int K);
+    void nodeAtKDistance(Node *rootNode, int K) const;
 
     bool isLeaf(const Node *rootNode) const;
 

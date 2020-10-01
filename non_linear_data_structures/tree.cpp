@@ -124,21 +124,9 @@ void Tree<T>::postOrderTraversal(Node *rootNode) const {
 
 template<typename T>
 void Tree<T>::levelOrderTraversal() const {
-    auto current = root;
-}
-
-template<typename T>
-void Tree<T>::levelOrderTraversal(Node *rootNode) const {
-
-    std::cout << rootNode->value << '\n';
-
-    levelOrderTraversal(rootNode->leftChild);
-    std::cout << rootNode->value << '\n';
-
-    levelOrderTraversal(rootNode->rightChild);
-    std::cout << rootNode->value << '\n';
-
-
+    auto h = height();
+    for (size_t i = 0; i <= h; ++i)
+        nodeAtKDistance(static_cast<int>(i));
 }
 
 /*
@@ -246,14 +234,14 @@ bool Tree<T>::isBinarySearchTree(Node *rootNode, int min, int max) {
 }
 
 template<typename T>
-void Tree<T>::nodeAtKDistance(int K) {
+void Tree<T>::nodeAtKDistance(int K) const {
     if (isEmpty()) throw std::runtime_error{"Empty Tree"};
 
     nodeAtKDistance(root, K);
 }
 
 template<typename T>
-void Tree<T>::nodeAtKDistance(Node *rootNode, int K) {
+void Tree<T>::nodeAtKDistance(Node *rootNode, int K) const {
 
     if (rootNode == nullptr)
         return;
