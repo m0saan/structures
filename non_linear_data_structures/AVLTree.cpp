@@ -2,29 +2,45 @@
 // Created by moboustt on 10/1/20.
 //
 
-#include "AVLTrees.h"
+#include "AVLTree.h"
 
 
 template<typename T>
-AVLTrees<T>::AVLTrees() : root {nullptr } {
+AVLTree<T>::AVLTree() : root {nullptr } {
 
 }
 
 template<typename T>
-AVLTrees<T>::~AVLTrees() {
+AVLTree<T>::~AVLTree() {
     delete root;
 }
 
 template<typename T>
-void AVLTrees<T>::insert(const T &item) {
-    insert(root, item)
+void AVLTree<T>::insert(const T &item) {
+    root = insert(root, item);
 }
 
 template<typename T>
-void AVLTrees<T>::insert(AVLTrees::Node *rootNode, const T &item) {
-    if (rootNode == nullptr) {
-        rootNode = new Node{item};
-        return;
+auto AVLTree<T>::insert(AVLTree::AVLNode *pRoot, const T &item) {
+    if (pRoot == nullptr) {
+        pRoot = new AVLNode{ item };
+        return pRoot;
     }
-    
+
+
+    if (item < pRoot->value) {
+        if (pRoot->leftChild == nullptr) {
+            pRoot->leftChild = new AVLNode{ item };
+            return pRoot;
+        }
+        insert(pRoot->leftChild, item);
+    }
+    else if (item > pRoot->value) {
+        if (pRoot->rightChild == nullptr) {
+            pRoot->rightChild = new AVLNode{ item };
+            return pRoot;
+        }
+        insert(pRoot->rightChild, item);
+    }
+
 }

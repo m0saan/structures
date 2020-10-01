@@ -2,31 +2,31 @@
 // Created by moboustt on 10/1/20.
 //
 
-#ifndef DATA__STRUCTURES_AVLTREES_H
-#define DATA__STRUCTURES_AVLTREES_H
+#ifndef DATA__STRUCTURES_AVLTREE_H
+#define DATA__STRUCTURES_AVLTREE_H
 
 #include "AVLNode.h"
 
 template<typename T>
-class AVLTrees {
+class AVLTree {
 public:
-    using Node = AVLNode<AVLTrees<T>>;
+    using AVLNode = AVLNode<AVLTree<T>>;
     using ValueType = T;
 
 public:
-    AVLTrees();
-    ~AVLTrees();
+    AVLTree();
+    ~AVLTree();
 
 public:
     void insert(const T &item);
 
 private:
-    Node *root;
+    AVLNode *root;
 
 private:
-    void insert(Node *rootNode, const T &item);
+    auto insert(AVLNode *pRoot, const T &item);
 
 };
 
 
-#endif //DATA__STRUCTURES_AVLTREES_H
+#endif //DATA__STRUCTURES_AVLTREE_H
