@@ -257,4 +257,41 @@ void Tree<T>::nodeAtKDistance(Node *rootNode, int K) const {
     nodeAtKDistance(rootNode->rightChild, K);
 }
 
+template<typename T>
+size_t Tree<T>::countLeaves() const {
+    size_t counter {};
+    countLeaves(root, counter);
+    return counter;
+}
+
+template<typename T>
+void Tree<T>::countLeaves(Node *rootNode, size_t &counter) const {
+    if (isLeaf(rootNode)){
+        counter++;
+        return;
+    }
+
+    countLeaves(rootNode->leftChild, counter);
+    countLeaves(rootNode->rightChild, counter);
+}
+
+
+template<typename T>
+bool Tree<T>::contains(T item) const {
+    return contains(root, item);
+}
+
+template<typename T>
+bool Tree<T>::contains(Node* rootNode,T item) const {
+    if (rootNode == nullptr)
+        return false;
+
+    if (item < rootNode->value)
+        return contains(rootNode->leftChild, item);
+    else if (item > rootNode->value)
+        return contains(rootNode->rightChild, item);
+
+    return rootNode->value == item;
+}
+
 

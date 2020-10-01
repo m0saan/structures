@@ -46,6 +46,8 @@ public:
 
     bool find(T item);
 
+    bool contains(T item) const;
+
     /*
      * Tree Traversal
      */
@@ -58,23 +60,38 @@ public:
 
     void levelOrderTraversal() const;
 
+    /*
+     * Get the height if a binary tree
+     */
+
     size_t height() const;
 
+    /*
+     * Min and Max of a binary tree
+     */
     T min() const;
 
     T max() const;
 
+    /*
+     * Checking two binary trees for equality or inequality
+     */
+
     bool equals(Tree<T>& other) const;
-
-    bool isEmpty() const;
-
-    bool isBinarySearchTree();
 
     bool operator==(Tree<T>& rhs) const;
 
     bool operator!=(Tree<T>& rhs) const;
 
+
+
+    bool isEmpty() const;
+
+    bool isBinarySearchTree();
+
     void nodeAtKDistance(int K) const;
+
+    size_t countLeaves() const;
 
     void swap(){
         auto tmp = root->leftChild;
@@ -110,6 +127,12 @@ private:
     bool isLeftLeaf(const Node *current) const;
 
     bool isRightLeaf(const Node *current) const;
+
+    void countLeaves(Node *rootNode, size_t &counter) const;
+
+    bool contains(Node *rootNode, T item) const;
+
+
 };
 
 
