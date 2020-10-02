@@ -19,12 +19,14 @@ public:
 
 public:
     void insert(const T &item);
+    void insert_(const T &item);
 
 private:
     AVLNode *root;
 
 private:
     auto insert(AVLNode *pRoot, const T &item);
+    auto insert_(AVLNode *pRoot, const T &item);
 
 };
 
