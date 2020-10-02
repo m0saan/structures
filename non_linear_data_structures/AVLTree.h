@@ -48,9 +48,9 @@ private:
 
     auto *balance(AVLNode *pRoot) const;
 
-    auto *rotateLeft(AVLNode *pRoot) const ;
+    auto *rotateLeft(AVLNode *pRoot) const;
 
-    auto *rotateRight(AVLNode *pRoot) const ;
+    auto *rotateRight(AVLNode *pRoot) const;
 
     void resetHeight(AVLNode *pRoot, AVLNode &newRoot) const;
 };

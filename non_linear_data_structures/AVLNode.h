@@ -13,6 +13,7 @@ public:
     using T = typename AVLTREE::ValueType;
 public:
     AVLNode() = default;
+
     explicit AVLNode(T v);
 
     T value;
@@ -20,7 +21,6 @@ public:
     AVLNode *leftChild;
     AVLNode *rightChild;
 };
-
 
 
 #endif //DATA__STRUCTURES_AVLNODE_H

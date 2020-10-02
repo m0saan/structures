@@ -45,6 +45,11 @@ auto AVLTree<T>::insert_(AVLTree::AVLNode *pRoot, const T &item) {
 }
 
 
+/*
+ * This is another cleaner and easy to understand implementation for the insert method
+ */
+
+
 template<typename T>
 void AVLTree<T>::insert(const T &item) {
     root = insert(root, item);
@@ -74,9 +79,7 @@ auto *AVLTree<T>::balance(AVLNode *pRoot) const {
         if (getBalanceFactor(pRoot->leftChild) < 0)
             pRoot->leftChild = rotateLeft(pRoot->leftChild);
         return rotateRight(pRoot);
-    }
-
-    else if (isRightHeavy(balanceFactor)) {
+    } else if (isRightHeavy(balanceFactor)) {
         if (getBalanceFactor(pRoot->rightChild) > 0)
             pRoot->rightChild = rotateRight(pRoot->rightChild);
         return rotateLeft(pRoot);
@@ -98,8 +101,6 @@ auto *AVLTree<T>::rotateLeft(AVLNode *pRoot) const {
 
     return &newRoot;
 }
-
-
 
 
 template<typename T>
@@ -142,36 +143,3 @@ template<typename T>
 int AVLTree<T>::getHeight(const AVLNode *node) const {
     return node == nullptr ? -1 : node->height;
 }
-
-
-
-/*
- * This is a cleaner and easy to understand implementation for the insert method
- */
-
-
-/*
- * auto *AVLTree<T>::balance(AVLNode *pRoot) const {
-    auto balanceFactor = getBalanceFactor(pRoot);
-    if (isLeftHeavy(balanceFactor)) {
-        if (getBalanceFactor(pRoot->leftChild) < 0)
-            std::cout << " leftRotate(" << pRoot->leftChild->value << ')' << std::endl;
-        std::cout << " rightRotate(" << pRoot->value << ')' << std::endl;
-    } else if (isRightHeavy(balanceFactor)) {
-        if (getBalanceFactor(pRoot->rightChild) > 0) {
-            auto tmp = pRoot->rightChild;
-            pRoot->rightChild = pRoot->rightChild->leftChild;
-            tmp->leftChild = tmp->rightChild = nullptr;
-            pRoot->rightChild->rightChild = tmp;
-        }
-        auto newRoot = *pRoot->rightChild;
-        pRoot->rightChild = nullptr;
-        if (newRoot.leftChild != nullptr)
-            pRoot->rightChild = newRoot.leftChild;
-        newRoot.leftChild = pRoot;
-        return &newRoot;
-    }
-    return pRoot;
-}
-
- */
