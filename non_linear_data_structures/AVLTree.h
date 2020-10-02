@@ -10,25 +10,49 @@
 template<typename T>
 class AVLTree {
 public:
+
     using AVLNode = AVLNode<AVLTree<T>>;
     using ValueType = T;
 
 public:
+
     AVLTree();
+
     ~AVLTree();
 
 public:
-    void insert(const T &item);
+
     void insert_(const T &item);
 
+    void insert(const T &item);
+
 private:
+
     AVLNode *root;
 
 private:
-    auto insert(AVLNode *pRoot, const T &item);
+
     auto insert_(AVLNode *pRoot, const T &item);
 
-};
+    auto insert(AVLNode *pRoot, const T &item);
 
+    bool isLeaf(const AVLNode *pRoot) const;
+
+    int getHeight(const AVLNode *pRoot) const;
+
+    int getBalanceFactor(const AVLNode *pRoot) const;
+
+    bool isLeftHeavy(int balanceFactor) const;
+
+    bool isRightHeavy(int balanceFactor) const;
+
+    auto *balance(AVLNode *pRoot) const;
+
+    auto *rotateLeft(AVLNode *pRoot) const ;
+
+    auto *rotateRight(AVLNode *pRoot) const ;
+
+    void resetHeight(AVLNode *pRoot, AVLNode &newRoot) const;
+};
 
 #endif //DATA__STRUCTURES_AVLTREE_H

@@ -6,4 +6,4 @@
 
 
 template<typename AVLTREE>
-AVLNode<AVLTREE>::AVLNode(T v) : value{ v }, leftChild { nullptr }, rightChild { nullptr } {}
+AVLNode<AVLTREE>::AVLNode(T v) : value{ v }, height {} , leftChild { nullptr }, rightChild { nullptr } {}

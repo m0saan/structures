@@ -5,6 +5,7 @@
 #ifndef DATA__STRUCTURES_AVLNODE_H
 #define DATA__STRUCTURES_AVLNODE_H
 
+#include <iostream>
 
 template<typename AVLTREE>
 class AVLNode {
@@ -15,6 +16,7 @@ public:
     explicit AVLNode(T v);
 
     T value;
+    std::size_t height;
     AVLNode *leftChild;
     AVLNode *rightChild;
 };
