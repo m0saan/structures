@@ -32,10 +32,40 @@
 #ifndef DATA__STRUCTURES_HEAPS_H
 #define DATA__STRUCTURES_HEAPS_H
 
+#include <vector>
 
+template<typename T>
 class Heaps {
+public:
+    Heaps();
 
+    explicit Heaps(std::size_t capacity);
+
+    Heaps(std::initializer_list<T> initializerList);
+
+    ~Heaps();
+
+public:
+
+    void insert(const T& item);
+
+private:
+
+    std::vector<T> *vector;
+
+private:
+
+    constexpr std::size_t getLeftIndex(std::size_t parentIndex) const;
+
+    constexpr std::size_t getRightIndex(std::size_t parentIndex) const;
+
+    constexpr std::size_t getParentIndex(std::size_t index) const;
+
+    void bubbleUp(const T &item);
+
+    void swapHeapNodes(int parentIndex, int index);
 };
+
 
 
 #endif //DATA__STRUCTURES_HEAPS_H
