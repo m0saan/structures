@@ -5,18 +5,18 @@
  *  |  \  _  |_  _    (_  |_  _      _ |_      _  _  _
  *  |__/ (_| |_ (_|   __) |_ |  |_| (_ |_ |_| |  (- _)
  *
+ * -> Trees Applications:
+ *  1. Represent hierarchical data
+ *  2. Build Auto-completions and Databases
+ *  3. Compilers
  *
- * Binary Tree (data structure)
+ * Binary Tree (Type of Tree)
  *
  * -> Features, being N the number of elements in the tree:
  * 1. Look Up O(log N)
  * 2. Delete O(log N)
- * 3. Search O(log N)
+ * 3. Insert O(log N)
  * NOTE: if the tree is not well structured performance may degrade to O(n).
- * -> Trees Applications:
- * 1. Represent hierarchical data
- * 2. Build Auto-completions and Databases
- * 3. Compilers
  *
  * https://en.wikipedia.org/wiki/Tree
  * https://en.wikipedia.org/wiki/Binary_tree
