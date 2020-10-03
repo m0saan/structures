@@ -6,22 +6,25 @@
  *  |__/ (_| |_ (_|   __) |_ |  |_| (_ |_ |_| |  (- _)
  *
  *
- * Binary Tree (data structure)
+ * Heaps (Type of Tree)
  *
- * -> Features, being N the number of elements in the tree:
- * 1. Look Up O(log N)
+ * -> Heaps Applications:
+ *  1. Sorting (heapSort)
+ *  2. Graph algorithms (shortest path)
+ *  3. Priority queues
+ *
+ * -> Features:
+ * being N the number of elements in the tree
+ * being H the height of the binary heap:
+ * Height = log(N)
+ * 1. Look Up O(log N) / log(H)
  * 2. Delete O(log N)
- * 3. Search O(log N)
+ * 3. Insert O(log N)
  * NOTE: if the tree is not well structured performance may degrade to O(n).
- * -> Trees Applications:
- * 1. Represent hierarchical data
- * 2. Build Auto-completions and Databases
- * 3. Compilers
  *
  * https://en.wikipedia.org/wiki/Tree
  * https://en.wikipedia.org/wiki/Binary_tree
  *
- * Created by moboustt on 10/3/20
  * @author (moboustta6@gmail.com)
  * @github MoBoustta
  ******************************************************************************/
