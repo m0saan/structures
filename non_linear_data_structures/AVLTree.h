@@ -26,8 +26,12 @@ public:
 
     void insert(const T &item);
 
-private:
+    bool isBalanced();
 
+    bool isPerfect();
+
+private:
+    std::size_t mSize;
     AVLNode *root;
 
 private:
@@ -46,7 +50,7 @@ private:
 
     bool isRightHeavy(int balanceFactor) const;
 
-    auto *balance(AVLNode *pRoot) const;
+    auto *balance(AVLNode *pRoot);
 
     auto *rotateLeft(AVLNode *pRoot) const;
 

@@ -6,7 +6,7 @@
 
 
 template<typename T>
-AVLTree<T>::AVLTree() : root{nullptr} {
+AVLTree<T>::AVLTree() : mSize{}, root{nullptr} {
 
 }
 
@@ -53,6 +53,7 @@ auto AVLTree<T>::insert_(AVLTree::AVLNode *pRoot, const T &item) {
 template<typename T>
 void AVLTree<T>::insert(const T &item) {
     root = insert(root, item);
+    mSize++;
 }
 
 template<typename T>
@@ -68,11 +69,14 @@ auto AVLTree<T>::insert(AVLNode *pRoot, const T &item) {
 
     pRoot->height = std::max(getHeight(pRoot->leftChild), getHeight(pRoot->rightChild)) + 1;
 
-    return balance(pRoot);
+    if (!isBalanced())
+        pRoot = balance(pRoot);
+
+    return pRoot;
 }
 
 template<typename T>
-auto *AVLTree<T>::balance(AVLNode *pRoot) const {
+auto *AVLTree<T>::balance(AVLNode *pRoot) {
     auto balanceFactor = getBalanceFactor(pRoot);
 
     if (isLeftHeavy(balanceFactor)) {
@@ -142,4 +146,15 @@ bool AVLTree<T>::isLeaf(const AVLNode *pRoot) const {
 template<typename T>
 int AVLTree<T>::getHeight(const AVLNode *node) const {
     return node == nullptr ? -1 : node->height;
+}
+
+template<typename T>
+bool AVLTree<T>::isBalanced() {
+    return getHeight(root->leftChild) - getHeight(root->rightChild) <= 1;
+}
+
+template<typename T>
+bool AVLTree<T>::isPerfect() {
+    auto treeHeight = std::max(getHeight(root->leftChild), getHeight(root->rightChild)) + 1;
+    return ((2 * treeHeight) + 1) - 1 == mSize;
 }
