@@ -60,6 +60,10 @@ private:
 
     bool isLeaf(const AVLNode *pRoot) const;
 
+    constexpr std::size_t size() const;
+
+    bool isEmpty() const;
+
     int getHeight(const AVLNode *pRoot) const;
 
     int getBalanceFactor(const AVLNode *pRoot) const;

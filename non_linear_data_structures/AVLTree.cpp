@@ -64,6 +64,7 @@ auto AVLTree<T>::insert_(AVLTree::AVLNode *pRoot, const T &item) {
 
 /*
  * This is another cleaner and easy to understand implementation for the insert method
+ * + Rotation implemented for this version unlike the previous one.
  */
 
 
@@ -84,6 +85,9 @@ auto AVLTree<T>::insert(AVLNode *pRoot, const T &item) {
     else
         pRoot->rightChild = insert(pRoot->rightChild, item);
 
+    /*
+     * Set the height of every node
+     */
     pRoot->height = std::max(getHeight(pRoot->leftChild), getHeight(pRoot->rightChild)) + 1;
 
     return balance(pRoot);;
@@ -135,6 +139,7 @@ auto *AVLTree<T>::rotateRight(AVLNode *pRoot) const {
     return new AVLNode { newRoot };
 }
 
+
 template<typename T>
 void AVLTree<T>::resetHeight(AVLNode *pRoot, AVLNode &newRoot) const {
     pRoot->height = std::max(getHeight(pRoot->leftChild), getHeight(pRoot->rightChild)) + 1;
@@ -171,4 +176,14 @@ template<typename T>
 bool AVLTree<T>::isPerfect() {
     auto treeHeight = std::max(getHeight(root->leftChild), getHeight(root->rightChild)) + 1;
     return ((2 * treeHeight) + 1) - 1 == mSize;
+}
+
+template<typename T>
+constexpr std::size_t AVLTree<T>::size() const {
+    return mSize;
+}
+
+template<typename T>
+bool AVLTree<T>::isEmpty() const {
+    return mSize == 0;
 }
