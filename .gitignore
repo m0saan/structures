@@ -2,4 +2,5 @@ a.out
 a.out.dSYM
 cmake-build-debug
 main.cpp
-.ideanon_linear_data_structures/main.cpp
+.idea
+non_linear_data_structures/main.cpp
