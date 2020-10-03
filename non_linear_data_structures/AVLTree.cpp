@@ -86,10 +86,7 @@ auto AVLTree<T>::insert(AVLNode *pRoot, const T &item) {
 
     pRoot->height = std::max(getHeight(pRoot->leftChild), getHeight(pRoot->rightChild)) + 1;
 
-    if (!isBalanced())
-        pRoot = balance(pRoot);
-
-    return pRoot;
+    return balance(pRoot);;
 }
 
 template<typename T>
@@ -120,7 +117,7 @@ auto *AVLTree<T>::rotateLeft(AVLNode *pRoot) const {
 
     resetHeight(pRoot, newRoot);
 
-    return &newRoot;
+    return new AVLNode { newRoot };
 }
 
 
@@ -135,7 +132,7 @@ auto *AVLTree<T>::rotateRight(AVLNode *pRoot) const {
 
     resetHeight(pRoot, newRoot);
 
-    return &newRoot;
+    return new AVLNode { newRoot };
 }
 
 template<typename T>
