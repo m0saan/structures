@@ -6,9 +6,9 @@ This repository contains a simple implementation to linear and non linear data s
 
 ### Goal
 
-(classical data structures implementations)
-(based on MacOS Catalina/gcc)
-(ease of use, one or at most two header files per ds)
+1. (classical data structures implementations)
+2. (based on MacOS Catalina/gcc)
+3. (ease of use, one or at most two header files per ds)
 
 ### Linear Data Structures
 
