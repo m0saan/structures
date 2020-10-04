@@ -22,8 +22,7 @@
  * 3. Insert O(log N)
  * NOTE: if the tree is not well structured performance may degrade to O(n).
  *
- * https://en.wikipedia.org/wiki/Tree
- * https://en.wikipedia.org/wiki/Binary_tree
+ * https://en.wikipedia.org/wiki/Heap_(data_structure)
  *
  * @author (moboustta6@gmail.com)
  * @github MoBoustta
@@ -52,11 +51,18 @@ public:
 
     void insert(const T& item);
 
-    void remove(const T& item);
+    T remove();
+
+    T& getMax() const;
 
     [[nodiscard]] constexpr bool isEmpty() const;
 
     [[nodiscard]] constexpr bool size() const;
+
+
+public:
+
+    static void heapify(T& input);
 
 private:
 
@@ -81,6 +87,8 @@ private:
     [[nodiscard]] constexpr std::size_t getRightIndex(std::size_t parentIndex) const;
 
     [[nodiscard]] constexpr std::size_t getParentIndex(std::size_t index) const;
+
+    static int swapItems(T &input, int largerItemIndex, int parentIndex, int rightIndex, int leftIndex);
 };
 
 

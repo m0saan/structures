@@ -22,8 +22,7 @@
  * 3. Insert O(log N)
  * NOTE: if the tree is not well structured performance may degrade to O(n).
  *
- * https://en.wikipedia.org/wiki/Tree
- * https://en.wikipedia.org/wiki/Binary_tree
+ * https://en.wikipedia.org/wiki/Heap_(data_structure)
  *
  * @author (moboustta6@gmail.com)
  * @github MoBoustta
@@ -34,7 +33,7 @@
 
 template<typename T>
 Heaps<T>::Heaps() {
-    vector = new std::vector<T> {};
+    vector = new std::vector<T>{};
 }
 
 template<typename T>
@@ -44,7 +43,7 @@ Heaps<T>::Heaps(std::size_t capacity) {
 
 template<typename T>
 Heaps<T>::Heaps(std::initializer_list<T> initializerList) {
-    vector = new std::vector<T> (initializerList.begin(), initializerList.end());
+    vector = new std::vector<T>(initializerList.begin(), initializerList.end());
 }
 
 template<typename T>
@@ -70,20 +69,30 @@ void Heaps<T>::insert(const T &item) {
 
 
 template<typename T>
-void Heaps<T>::remove(const T &item) {
-    if (isEmpty()) throw std::runtime_error { "Heap empty can't remove" };
+T Heaps<T>::remove() {
+    if (isEmpty()) throw std::runtime_error{"Heap empty can't remove"};
 
 
     auto leftMostRightNodeIndex = getLeftMostRightNodeIndex();
+    auto toRemove = vector->at(0);
     vector->at(0) = vector->at(leftMostRightNodeIndex);
     vector->erase(vector->begin() + leftMostRightNodeIndex);
 
     bubbleDown();
 
+    return toRemove;
 }
 
+
 template<typename T>
-constexpr bool Heaps<T>::isEmpty() const{
+T& Heaps<T>::getMax() const {
+
+    return vector->at(0);
+}
+
+
+template<typename T>
+constexpr bool Heaps<T>::isEmpty() const {
     return vector->empty();
 }
 
@@ -94,7 +103,7 @@ constexpr bool Heaps<T>::size() const {
 }
 
 
-template <typename T>
+template<typename T>
 void Heaps<T>::bubbleUp(const T &item) {
 
     int parentIndex = getParentIndex(vector->size() - 1);
@@ -111,12 +120,12 @@ void Heaps<T>::bubbleUp(const T &item) {
 
 template<typename T>
 void Heaps<T>::bubbleDown() {
-    int parentIndex {};
-    int whichToSwapWithParent {};
-    int leftNodeIndex {};
-    int rightNodeIndex {};
+    int parentIndex{};
+    int whichToSwapWithParent{};
+    int leftNodeIndex{};
+    int rightNodeIndex{};
 
-    while (!(isValidParent(parentIndex, leftNodeIndex, rightNodeIndex))){
+    while (!(isValidParent(parentIndex, leftNodeIndex, rightNodeIndex))) {
 
         whichToSwapWithParent = getLargerChildIndex(leftNodeIndex, rightNodeIndex);
         swapHeapNodes(parentIndex, whichToSwapWithParent);
@@ -138,8 +147,8 @@ bool Heaps<T>::isValidParent(int parentIndex, int &leftNodeIndex, int &rightNode
            && vector->at(parentIndex) >= vector->at(rightNodeIndex);
 }
 
-template <typename T>
-int Heaps<T>::getLargerChildIndex(const int &leftNodeIndex, const int& rightNodeIndex) const{
+template<typename T>
+int Heaps<T>::getLargerChildIndex(const int &leftNodeIndex, const int &rightNodeIndex) const {
     return vector->at(leftNodeIndex) > vector->at(rightNodeIndex) ? leftNodeIndex : rightNodeIndex;
 
 }
@@ -151,10 +160,10 @@ int Heaps<T>::getLeftMostRightNodeIndex() const {
     int nodeIndex = 0;
     int i = 0;
 
-    size_t n = floor(log2(vector->size())) + 1;
+    size_t n = std::floor(std::log2(vector->size())) + 1;
     str = str.substr(str.length() - n);
 
-    while (i++ < str.size() - 1){
+    while (i++ < str.size() - 1) {
         if (str[i] == '0')
             nodeIndex = getLeftIndex(nodeIndex);
         else
@@ -165,8 +174,7 @@ int Heaps<T>::getLeftMostRightNodeIndex() const {
 }
 
 
-
-template <typename T>
+template<typename T>
 void Heaps<T>::swapHeapNodes(int parentIndex, int index) {
     auto tmp = vector->at(parentIndex);
     vector->at(parentIndex) = vector->at(index);
@@ -191,5 +199,26 @@ constexpr std::size_t Heaps<T>::getParentIndex(std::size_t index) const {
     return (index - 1) / 2;
 }
 
+template<typename T>
+void Heaps<T>::heapify(T &input) {
+    int largerItemIndex{};
+    for (size_t i{}; i < input.size() / 2  -1 ; i++) {
+        int parentIndex = i;
+        int rightIndex = (parentIndex * 2) + 2;
+        int leftIndex = (parentIndex * 2) + 1;
+        if (input[parentIndex] < input[leftIndex] || input[parentIndex] < input[rightIndex])
+            largerItemIndex = swapItems(input, largerItemIndex, parentIndex, rightIndex, leftIndex);
+        parentIndex = largerItemIndex;
+    }
+}
+
+template <typename T>
+int Heaps<T>::swapItems(T &input, int largerItemIndex, int parentIndex, int rightIndex, int leftIndex) {
+    largerItemIndex = input[leftIndex] > input[rightIndex] ? leftIndex : rightIndex;
+    auto tmp = input[parentIndex];
+    input[parentIndex] = input[largerItemIndex];
+    input[largerItemIndex] = tmp;
+    return largerItemIndex;
+}
 
 
