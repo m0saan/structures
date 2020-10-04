@@ -33,6 +33,9 @@
 #define DATA__STRUCTURES_HEAPS_H
 
 #include <vector>
+#include <bitset>
+#include <iostream>
+#include <cmath>
 
 template<typename T>
 class Heaps {
@@ -49,21 +52,31 @@ public:
 
     void insert(const T& item);
 
+    void remove(const T& item);
+
+    [[nodiscard]] constexpr bool isEmpty() const;
+
+    [[nodiscard]] constexpr bool size() const;
+
 private:
 
     std::vector<T> *vector;
 
 private:
 
-    constexpr std::size_t getLeftIndex(std::size_t parentIndex) const;
+    [[nodiscard]] constexpr std::size_t getLeftIndex(std::size_t parentIndex) const;
 
-    constexpr std::size_t getRightIndex(std::size_t parentIndex) const;
+    [[nodiscard]] constexpr std::size_t getRightIndex(std::size_t parentIndex) const;
 
-    constexpr std::size_t getParentIndex(std::size_t index) const;
+    [[nodiscard]] constexpr std::size_t getParentIndex(std::size_t index) const;
 
     void bubbleUp(const T &item);
 
     void swapHeapNodes(int parentIndex, int index);
+
+    [[nodiscard]] int getLeftMostRightNodeIndex() const;
+
+    void bubbleDown();
 };
 
 

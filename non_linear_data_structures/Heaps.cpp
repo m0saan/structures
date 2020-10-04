@@ -68,6 +68,54 @@ void Heaps<T>::insert(const T &item) {
     bubbleUp(item);
 }
 
+
+template<typename T>
+void Heaps<T>::remove(const T &item) {
+    if (isEmpty()) throw std::runtime_error { "Heap empty can't remove" };
+
+
+    auto leftMostRightNodeIndex = getLeftMostRightNodeIndex();
+    vector->at(0) = vector->at(leftMostRightNodeIndex);
+    vector->erase(vector->begin() + leftMostRightNodeIndex);
+
+    bubbleDown();
+
+}
+
+template<typename T>
+void Heaps<T>::bubbleDown() {
+    auto parentIndex = 0;
+    auto index = getLeftIndex(parentIndex);
+
+    while (vector->at(parentIndex) < vector->at(index)){
+        swapHeapNodes(parentIndex, index);
+
+        parentIndex = index;
+        index = getLeftIndex(parentIndex);
+    }
+}
+
+template<typename T>
+int Heaps<T>::getLeftMostRightNodeIndex() const {
+
+    std::string str = std::bitset<sizeof(decltype(vector->size()))>(vector->size()).to_string();
+    int nodeIndex = 0;
+    int i = 0;
+
+    size_t n = floor(log2(vector->size())) + 1;
+    str = str.substr(str.length() - n);
+
+    while (i++ < str.size() - 1){
+        if (str[i] == '0')
+            nodeIndex = getLeftIndex(nodeIndex);
+        else
+            nodeIndex = getRightIndex(nodeIndex);
+    }
+
+    return nodeIndex;
+}
+
+
 template <typename T>
 void Heaps<T>::bubbleUp(const T &item) {
 
@@ -82,6 +130,8 @@ void Heaps<T>::bubbleUp(const T &item) {
     }
 }
 
+
+
 template <typename T>
 void Heaps<T>::swapHeapNodes(int parentIndex, int index) {
     auto tmp = vector->at(parentIndex);
@@ -89,17 +139,32 @@ void Heaps<T>::swapHeapNodes(int parentIndex, int index) {
     vector->at(index) = tmp;
 }
 
+
 template<typename T>
 constexpr std::size_t Heaps<T>::getRightIndex(std::size_t parentIndex) const {
     return (parentIndex * 2) + 2;
 }
+
 
 template<typename T>
 constexpr std::size_t Heaps<T>::getLeftIndex(std::size_t parentIndex) const {
     return (parentIndex * 2) + 1;
 }
 
+
 template<typename T>
 constexpr std::size_t Heaps<T>::getParentIndex(std::size_t index) const {
     return (index - 1) / 2;
+}
+
+
+template<typename T>
+constexpr bool Heaps<T>::isEmpty() const{
+    return vector->empty();
+}
+
+
+template<typename T>
+constexpr bool Heaps<T>::size() const {
+    return vector->size();
 }
