@@ -80,6 +80,7 @@ private:
 
     [[nodiscard]] int getLargerChildIndex(const int &leftNodeIndex, const int& rightNodeIndex) const;
 
+    [[nodiscard]] bool isValidParent(int parentIndex, int &leftNodeIndex, int &rightNodeIndex);
 };
 
 

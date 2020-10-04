@@ -85,18 +85,30 @@ void Heaps<T>::remove(const T &item) {
 template<typename T>
 void Heaps<T>::bubbleDown() {
     int parentIndex {};
-    int whichToSwapWith {};
+    int whichToSwapWithParent {};
     int leftNodeIndex {};
     int rightNodeIndex {};
 
-    while (vector->at(parentIndex) < vector->at(leftNodeIndex = getLeftIndex(parentIndex))
-        && vector->at(parentIndex) < vector->at(rightNodeIndex = getRightIndex(parentIndex))){
+    while (!(isValidParent(parentIndex, leftNodeIndex, rightNodeIndex))){
 
-        whichToSwapWith = getLargerChildIndex(leftNodeIndex,rightNodeIndex);
-        swapHeapNodes(parentIndex, whichToSwapWith);
+        whichToSwapWithParent = getLargerChildIndex(leftNodeIndex, rightNodeIndex);
+        swapHeapNodes(parentIndex, whichToSwapWithParent);
 
-        parentIndex = whichToSwapWith;
+        parentIndex = whichToSwapWithParent;
     }
+}
+
+template<typename T>
+bool Heaps<T>::isValidParent(int parentIndex, int &leftNodeIndex, int &rightNodeIndex) {
+
+    leftNodeIndex = getLeftIndex(parentIndex);
+    rightNodeIndex = getRightIndex(parentIndex);
+
+    if ((leftNodeIndex >= vector->size()) || (rightNodeIndex >= vector->size()))
+        return true;
+
+    return vector->at(parentIndex) >= vector->at(leftNodeIndex)
+           && vector->at(parentIndex) >= vector->at(rightNodeIndex);
 }
 
 template <typename T>
