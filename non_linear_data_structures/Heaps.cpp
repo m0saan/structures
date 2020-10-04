@@ -83,6 +83,33 @@ void Heaps<T>::remove(const T &item) {
 }
 
 template<typename T>
+constexpr bool Heaps<T>::isEmpty() const{
+    return vector->empty();
+}
+
+
+template<typename T>
+constexpr bool Heaps<T>::size() const {
+    return vector->size();
+}
+
+
+template <typename T>
+void Heaps<T>::bubbleUp(const T &item) {
+
+    int parentIndex = getParentIndex(vector->size() - 1);
+    int index = vector->size() - 1;
+
+    while (parentIndex >= 0 && item > vector->at(parentIndex)) {
+        swapHeapNodes(parentIndex, index);
+
+        index = parentIndex;
+        parentIndex = getParentIndex(index);
+    }
+}
+
+
+template<typename T>
 void Heaps<T>::bubbleDown() {
     int parentIndex {};
     int whichToSwapWithParent {};
@@ -138,21 +165,6 @@ int Heaps<T>::getLeftMostRightNodeIndex() const {
 }
 
 
-template <typename T>
-void Heaps<T>::bubbleUp(const T &item) {
-
-    int parentIndex = getParentIndex(vector->size() - 1);
-    int index = vector->size() - 1;
-
-    while (parentIndex >= 0 && item > vector->at(parentIndex)) {
-        swapHeapNodes(parentIndex, index);
-
-        index = parentIndex;
-        parentIndex = getParentIndex(index);
-    }
-}
-
-
 
 template <typename T>
 void Heaps<T>::swapHeapNodes(int parentIndex, int index) {
@@ -180,13 +192,4 @@ constexpr std::size_t Heaps<T>::getParentIndex(std::size_t index) const {
 }
 
 
-template<typename T>
-constexpr bool Heaps<T>::isEmpty() const{
-    return vector->empty();
-}
 
-
-template<typename T>
-constexpr bool Heaps<T>::size() const {
-    return vector->size();
-}

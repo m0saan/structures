@@ -64,11 +64,7 @@ private:
 
 private:
 
-    [[nodiscard]] constexpr std::size_t getLeftIndex(std::size_t parentIndex) const;
-
-    [[nodiscard]] constexpr std::size_t getRightIndex(std::size_t parentIndex) const;
-
-    [[nodiscard]] constexpr std::size_t getParentIndex(std::size_t index) const;
+    void bubbleDown();
 
     void bubbleUp(const T &item);
 
@@ -76,11 +72,15 @@ private:
 
     [[nodiscard]] int getLeftMostRightNodeIndex() const;
 
-    void bubbleDown();
-
     [[nodiscard]] int getLargerChildIndex(const int &leftNodeIndex, const int& rightNodeIndex) const;
 
     [[nodiscard]] bool isValidParent(int parentIndex, int &leftNodeIndex, int &rightNodeIndex);
+
+    [[nodiscard]] constexpr std::size_t getLeftIndex(std::size_t parentIndex) const;
+
+    [[nodiscard]] constexpr std::size_t getRightIndex(std::size_t parentIndex) const;
+
+    [[nodiscard]] constexpr std::size_t getParentIndex(std::size_t index) const;
 };
 
 
