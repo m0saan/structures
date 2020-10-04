@@ -77,6 +77,9 @@ private:
     [[nodiscard]] int getLeftMostRightNodeIndex() const;
 
     void bubbleDown();
+
+    [[nodiscard]] int getLargerChildIndex(const int &leftNodeIndex, const int& rightNodeIndex) const;
+
 };
 
 

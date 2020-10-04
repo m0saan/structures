@@ -84,15 +84,25 @@ void Heaps<T>::remove(const T &item) {
 
 template<typename T>
 void Heaps<T>::bubbleDown() {
-    auto parentIndex = 0;
-    auto index = getLeftIndex(parentIndex);
+    int parentIndex {};
+    int whichToSwapWith {};
+    int leftNodeIndex {};
+    int rightNodeIndex {};
 
-    while (vector->at(parentIndex) < vector->at(index)){
-        swapHeapNodes(parentIndex, index);
+    while (vector->at(parentIndex) < vector->at(leftNodeIndex = getLeftIndex(parentIndex))
+        && vector->at(parentIndex) < vector->at(rightNodeIndex = getRightIndex(parentIndex))){
 
-        parentIndex = index;
-        index = getLeftIndex(parentIndex);
+        whichToSwapWith = getLargerChildIndex(leftNodeIndex,rightNodeIndex);
+        swapHeapNodes(parentIndex, whichToSwapWith);
+
+        parentIndex = whichToSwapWith;
     }
+}
+
+template <typename T>
+int Heaps<T>::getLargerChildIndex(const int &leftNodeIndex, const int& rightNodeIndex) const{
+    return vector->at(leftNodeIndex) > vector->at(rightNodeIndex) ? leftNodeIndex : rightNodeIndex;
+
 }
 
 template<typename T>
