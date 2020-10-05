@@ -44,12 +44,27 @@ void Trie::insert(std::basic_string<char, std::char_traits<char>, std::allocator
     auto current = root;
     for (char& c : str){
         auto index = c - 'a';
-        if (current->children->at(index) == nullptr) {
-            current->children->at(index) = new Node{c};
-            current = current->children->at(index);
+        if (current->hasChild(c)) {
+            current->addChild(c);
+            current = current->getChild(c);
         }
     }
     current->isEndOfWord = true;
 }
 
 
+Node::Node(char v) : value {v}, isEndOfWord{ false } {
+    children = new std::map<char, Node*> {};
+}
+
+bool Node::hasChild(char &c) const {
+    return !children->count(c);
+}
+
+void Node::addChild(char &c) const {
+    children->insert({c, new Node{c }});
+}
+
+Node* Node::getChild(char &c) const {
+    return children->at(c);
+}

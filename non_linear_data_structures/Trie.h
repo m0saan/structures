@@ -30,26 +30,27 @@
 #ifndef DATA__STRUCTURES_TRIE_H
 #define DATA__STRUCTURES_TRIE_H
 
-#include <array>
+#include <map>
 #include <string>
 
 class Node {
-private:
 public:
 
     Node() = default;
-    explicit Node(char v) : value {v}, isEndOfWord{ false } {
-        children = new std::array<Node*, NUMBER_OF_CHARACTERS> { nullptr };
-
-       // std::fill(children->begin(), children->end(), Node{});
-    }
+    explicit Node(char v);
 
 public:
+    bool hasChild(char& c) const;
+
+    void addChild(char &c) const;
+
+    Node* getChild(char& c) const;
+
+public:
+
     char value;
     bool isEndOfWord;
-
-    static constexpr size_t NUMBER_OF_CHARACTERS = 26;
-    std::array<Node*, NUMBER_OF_CHARACTERS>  *children;
+    std::map<char, Node*> *children;
 };
 
 
