@@ -64,6 +64,8 @@ public:
 
     static void heapify(T& input);
 
+    static bool isMaxHeap(T& input);
+
 private:
 
     std::vector<T> *vector;

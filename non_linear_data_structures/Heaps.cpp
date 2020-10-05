@@ -212,6 +212,23 @@ void Heaps<T>::heapify(T &input) {
     }
 }
 
+
+template<typename T>
+bool Heaps<T>::isMaxHeap(T &input) {
+    for (size_t i{}; i < input.size() ; i++) {
+
+        int rightIndex = (static_cast<int>(i) * 2) + 2;
+        int leftIndex = (static_cast<int>(i) * 2) + 1;
+
+        if (input[i] < input[leftIndex] || input[i] < input[rightIndex])
+            return false;
+    }
+
+    return true;
+}
+
+
+
 template <typename T>
 int Heaps<T>::swapItems(T &input, int largerItemIndex, int parentIndex, int rightIndex, int leftIndex) {
     largerItemIndex = input[leftIndex] > input[rightIndex] ? leftIndex : rightIndex;
