@@ -63,7 +63,10 @@ public:
 
 public:
 
-    void insert(std::basic_string<char, std::char_traits<char>, std::allocator<char>> str);
+    void insert(const std::string &str);
+
+    bool contains(const std::string& str);
+
 private:
     Node *root;
 };

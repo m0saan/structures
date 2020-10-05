@@ -37,19 +37,28 @@ Trie::~Trie() {
     delete root;
 }
 
-void Trie::insert(std::basic_string<char, std::char_traits<char>, std::allocator<char>> str) {
+void Trie::insert(const std::string &str) {
 
-    std::transform(str.begin(), str.end(), str.begin(), tolower);
 
     auto current = root;
-    for (char& c : str){
+    for (char c : str){
         auto index = c - 'a';
-        if (current->hasChild(c)) {
+        if (!current->hasChild(c))
             current->addChild(c);
-            current = current->getChild(c);
-        }
+        current = current->getChild(c);
     }
     current->isEndOfWord = true;
+}
+
+
+bool Trie::contains(const std::string &str) {
+    auto current = root;
+    for (char c : str) {
+        if (current->hasChild(c))
+            current = current->getChild(c);
+        else return false;
+    }
+    return current->isEndOfWord;
 }
 
 
@@ -58,7 +67,7 @@ Node::Node(char v) : value {v}, isEndOfWord{ false } {
 }
 
 bool Node::hasChild(char &c) const {
-    return !children->count(c);
+    return children->count(c);
 }
 
 void Node::addChild(char &c) const {
