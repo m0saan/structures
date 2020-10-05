@@ -10,8 +10,6 @@
  *
  * -> Tries Applications:
  *  1. Building auto-completion
- *  2.
- *  3.
  *
  * -> Features:
  * being 'L' the length of the word we want to insert or delete
@@ -33,9 +31,40 @@
 
 Trie::Trie()  : root { new Node { '\0'} } {}
 
+
 Trie::~Trie() {
     delete root;
 }
+
+
+Node::Node(char v) : value {v}, isEndOfWord{ false } {
+    children = new std::map<char, Node*> {};
+}
+
+
+bool Node::hasChild(char &c) const {
+    return children->count(c);
+}
+
+
+void Node::addChild(char &c) const {
+    children->insert({c, new Node{c }});
+}
+
+
+Node* Node::getChild(char &c) const {
+    return children->at(c);
+}
+
+std::vector<Node *> Node::getChildren() const {
+    std::vector<Node*> values;
+
+    for (auto & itr : *children)
+        values.push_back(itr.second);
+
+    return values;
+}
+
 
 void Trie::insert(const std::string &str) {
 
@@ -53,27 +82,41 @@ void Trie::insert(const std::string &str) {
 
 bool Trie::contains(const std::string &str) {
     auto current = root;
+
     for (char c : str) {
         if (current->hasChild(c))
             current = current->getChild(c);
         else return false;
     }
+
     return current->isEndOfWord;
 }
 
 
-Node::Node(char v) : value {v}, isEndOfWord{ false } {
-    children = new std::map<char, Node*> {};
+
+void Trie::preOrderTraversal() const  {
+    preOrderTraversal(root);
 }
 
-bool Node::hasChild(char &c) const {
-    return children->count(c);
+
+void Trie::preOrderTraversal(Node *node) const {
+
+    std::cout << node->value << std::endl;
+
+    for (auto & child : node->getChildren())
+        preOrderTraversal(child);
 }
 
-void Node::addChild(char &c) const {
-    children->insert({c, new Node{c }});
+void Trie::postOrderTraversal() const {
+    postOrderTraversal(root);
 }
 
-Node* Node::getChild(char &c) const {
-    return children->at(c);
+
+
+void Trie::postOrderTraversal(Node *node) const {
+
+    for (auto & child : node->getChildren())
+        postOrderTraversal(child);
+
+    std::cout << node->value << std::endl;
 }

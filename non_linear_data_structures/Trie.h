@@ -10,8 +10,6 @@
  *
  * -> Tries Applications:
  *  1. Building auto-completion
- *  2.
- *  3.
  *
  * -> Features:
  * being 'L' the length of the word we want to insert or delete
@@ -32,6 +30,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Node {
 public:
@@ -45,6 +44,8 @@ public:
     void addChild(char &c) const;
 
     Node* getChild(char& c) const;
+
+    [[nodiscard]] std::vector<Node*> getChildren() const;
 
 public:
 
@@ -67,8 +68,17 @@ public:
 
     bool contains(const std::string& str);
 
+    void preOrderTraversal() const;
+    void postOrderTraversal() const;
+
 private:
     Node *root;
+
+private:
+
+    void preOrderTraversal(Node *node) const;
+    void postOrderTraversal(Node *node) const;
+
 };
 
 
