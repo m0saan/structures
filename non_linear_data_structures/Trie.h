@@ -72,7 +72,10 @@ public:
 
     bool contains(const std::string& str);
 
+    std::vector<std::string> autoCompletion(const std::string& str);
+
     void preOrderTraversal() const;
+
     void postOrderTraversal() const;
 
 private:
@@ -87,6 +90,11 @@ private:
     void postOrderTraversal(Node *node) const;
 
     bool hasNoChildren(const Node *rootNode, const std::string &str, int i) const;
+
+    void autoCompletion(Node *rootNode, std::string str, std::vector<std::string> &out);
+
+    Node *getLastNode(const std::string &str);
+
 };
 
 

@@ -29,7 +29,7 @@
 #include <iostream>
 
 
-Trie::Trie()  : root { new Node { '\0'} } {}
+Trie::Trie()  : root { new Node { ' '} } {}
 
 
 Trie::~Trie() {
@@ -143,7 +143,43 @@ void Trie::remove(Node *rootNode, const std::string &str, int i) {
         rootNode->removeChild(const_cast<char &>(str.at(i)));
 }
 
+
+std::vector<std::string> Trie::autoCompletion(const std::string &str) {
+
+    std::vector<std::string> out{};
+
+    autoCompletion(getLastNode(str), str, out);
+
+    return out;
+}
+
+
+void Trie::autoCompletion(Node *rootNode, std::string str, std::vector<std::string> &out) {
+
+    if (rootNode->isEndOfWord)
+        out.push_back(str);
+
+    for (auto &child : rootNode->getChildren())
+        autoCompletion(child, str + child->value, out);
+
+}
+
+
 bool Trie::hasNoChildren(const Node *rootNode, const std::string &str,
                          int i) const {
     return rootNode->getChild(const_cast<char &>(str.at(i)))->getChildren().empty();
+}
+
+
+
+Node *Trie::getLastNode(const std::string &str){
+    auto current = root;
+
+    for (char c :str ){
+        auto child = current->getChild(c);
+        if (child == nullptr)
+            return nullptr;
+        current = child;
+    }
+    return current;
 }
