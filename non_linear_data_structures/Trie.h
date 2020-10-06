@@ -47,7 +47,7 @@ public:
 
     [[nodiscard]] std::vector<Node*> getChildren() const;
 
-    void removeChild(char c);
+    void removeChild(char c) const;
 
 public:
 
@@ -89,7 +89,7 @@ private:
 
     void postOrderTraversal(Node *node) const;
 
-    bool hasNoChildren(const Node *rootNode, const std::string &str, int i) const;
+    static bool hasNoChildren(const Node *rootNode, const std::string &str, int i) ;
 
     void autoCompletion(Node *rootNode, std::string str, std::vector<std::string> &out);
 

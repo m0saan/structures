@@ -65,7 +65,7 @@ std::vector<Node *> Node::getChildren() const {
     return values;
 }
 
-void Node::removeChild(char c)  {
+void Node::removeChild(char c) const  {
     children->erase(c);
 }
 
@@ -166,7 +166,7 @@ void Trie::autoCompletion(Node *rootNode, std::string str, std::vector<std::stri
 
 
 bool Trie::hasNoChildren(const Node *rootNode, const std::string &str,
-                         int i) const {
+                         int i) {
     return rootNode->getChild(const_cast<char &>(str.at(i)))->getChildren().empty();
 }
 
