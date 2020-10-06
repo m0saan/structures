@@ -82,6 +82,8 @@ public:
 
     void postOrderTraversal() const;
 
+    std::string longestCommonPrefix(std::vector<std::string>& words);
+
 private:
     Node *root;
 
@@ -103,6 +105,7 @@ private:
 
     Node *getLastNode(const std::string &str);
 
+    void longestCommonPrefix(Node *rootNode, std::string &lgp, int len);
 };
 
 

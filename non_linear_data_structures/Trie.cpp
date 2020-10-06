@@ -175,7 +175,7 @@ bool Trie::hasNoChildren(const Node *rootNode, const std::string &str,
 Node *Trie::getLastNode(const std::string &str){
     auto current = root;
 
-    for (char c :str ){
+    for (char c : str ){
         auto child = current->getChild(c);
         if (child == nullptr)
             return nullptr;
@@ -213,4 +213,33 @@ void Trie::countWords(Node *rootNode, size_t &counter) {
 
     for (auto &child : rootNode->getChildren())
         countWords(child, counter);
+}
+
+std::string Trie::longestCommonPrefix(std::vector<std::string> &words) {
+    Trie trie;
+    std::string lgp {};
+
+    auto firstChar = words.at(0).at(0);
+    auto smallestWord = words.at(0);
+    for (auto & word : words) {
+        if (word.at(0) != firstChar) return std::string { "" };
+        if (word < smallestWord) smallestWord = word;
+        trie.insert(word);
+    }
+
+    longestCommonPrefix(trie.root->getChild(words.at(0).at(0)), lgp, smallestWord.length());
+
+    return lgp;
+}
+
+void Trie::longestCommonPrefix(Node *rootNode, std::string &lgp, int len) {
+    if (rootNode->getChildren().size() >= 2 || len == 1) {
+        lgp.push_back(rootNode->value);
+        return;
+    }
+
+    lgp.push_back(rootNode->value);
+
+    for (auto & child : rootNode->getChildren())
+        longestCommonPrefix(child, lgp, len - 1);
 }
