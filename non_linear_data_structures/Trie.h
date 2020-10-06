@@ -47,6 +47,8 @@ public:
 
     [[nodiscard]] std::vector<Node*> getChildren() const;
 
+    void removeChild(char c);
+
 public:
 
     char value;
@@ -66,6 +68,8 @@ public:
 
     void insert(const std::string &str);
 
+    void remove(const std::string &str);
+
     bool contains(const std::string& str);
 
     void preOrderTraversal() const;
@@ -76,9 +80,13 @@ private:
 
 private:
 
+    void remove(Node *rootNode, const std::string &str, int i);
+
     void preOrderTraversal(Node *node) const;
+
     void postOrderTraversal(Node *node) const;
 
+    bool hasNoChildren(const Node *rootNode, const std::string &str, int i) const;
 };
 
 

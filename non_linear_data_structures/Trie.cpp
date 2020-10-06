@@ -65,6 +65,10 @@ std::vector<Node *> Node::getChildren() const {
     return values;
 }
 
+void Node::removeChild(char c)  {
+    children->erase(c);
+}
+
 
 void Trie::insert(const std::string &str) {
 
@@ -119,4 +123,27 @@ void Trie::postOrderTraversal(Node *node) const {
         postOrderTraversal(child);
 
     std::cout << node->value << std::endl;
+}
+
+void Trie::remove(const std::string &str) {
+    int i {};
+    remove(root ,str, i);
+}
+
+void Trie::remove(Node *rootNode, const std::string &str, int i) {
+
+    if (i == str.length()){
+        rootNode->isEndOfWord = false;
+        return;
+    }
+
+    remove(rootNode->getChild(const_cast<char &>(str.at(i))), str, i + 1);
+
+    if (hasNoChildren(rootNode, str, i) && !rootNode->isEndOfWord)
+        rootNode->removeChild(const_cast<char &>(str.at(i)));
+}
+
+bool Trie::hasNoChildren(const Node *rootNode, const std::string &str,
+                         int i) const {
+    return rootNode->getChild(const_cast<char &>(str.at(i)))->getChildren().empty();
 }
