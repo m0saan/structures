@@ -196,3 +196,21 @@ bool Trie::contains_rec(Node *rootNode, const std::string &str) {
     }
     return rootNode->isEndOfWord;
 }
+
+std::size_t Trie::countWords() {
+
+    std::size_t counter{};
+
+    countWords(root, counter);
+
+    return counter;
+}
+
+void Trie::countWords(Node *rootNode, size_t &counter) {
+
+    if (rootNode->isEndOfWord)
+        counter++;
+
+    for (auto &child : rootNode->getChildren())
+        countWords(child, counter);
+}

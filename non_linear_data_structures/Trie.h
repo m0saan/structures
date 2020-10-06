@@ -74,6 +74,8 @@ public:
 
     bool contains_rec(const std::string &str);
 
+    std::size_t countWords();
+
     std::vector<std::string> autoCompletion(const std::string& str);
 
     void preOrderTraversal() const;
@@ -87,6 +89,7 @@ private:
 
     bool contains_rec(Node *rootNode, const std::string &str);
 
+    void countWords(Node *rootNode, std::size_t &counter);
 
     void remove(Node *rootNode, const std::string &str, int i);
 
