@@ -84,7 +84,7 @@ void Trie::insert(const std::string &str) {
 }
 
 
-bool Trie::contains(const std::string &str) {
+bool Trie::contains_iter(const std::string &str) {
     auto current = root;
 
     for (char c : str) {
@@ -182,4 +182,17 @@ Node *Trie::getLastNode(const std::string &str){
         current = child;
     }
     return current;
+}
+
+bool Trie::contains_rec(const std::string &str) {
+    return contains_rec(root, str);
+}
+
+bool Trie::contains_rec(Node *rootNode, const std::string &str) {
+
+    for (char c : str) {
+        if (!rootNode->hasChild(c)) return false;
+        return contains_rec(rootNode->getChild(c), std::string{str.begin() + 1, str.end()});
+    }
+    return rootNode->isEndOfWord;
 }

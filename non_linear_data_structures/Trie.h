@@ -70,7 +70,9 @@ public:
 
     void remove(const std::string &str);
 
-    bool contains(const std::string& str);
+    bool contains_iter(const std::string& str);
+
+    bool contains_rec(const std::string &str);
 
     std::vector<std::string> autoCompletion(const std::string& str);
 
@@ -82,6 +84,9 @@ private:
     Node *root;
 
 private:
+
+    bool contains_rec(Node *rootNode, const std::string &str);
+
 
     void remove(Node *rootNode, const std::string &str, int i);
 
