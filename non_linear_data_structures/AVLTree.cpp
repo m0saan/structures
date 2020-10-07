@@ -90,7 +90,7 @@ auto AVLTree<T>::insert(AVLNode *pRoot, const T &item) {
      */
     pRoot->height = std::max(getHeight(pRoot->leftChild), getHeight(pRoot->rightChild)) + 1;
 
-    return balance(pRoot);;
+    return balance(pRoot);
 }
 
 template<typename T>
