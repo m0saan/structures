@@ -44,7 +44,7 @@
 
 template<typename T>
 Graph<T>::Graph() : mCounter { } {
-    adjacencyList = new std::map< Node* ,  std::list<Node*>* > { };
+    adjacencyList = new std::map< Node* ,  std::list<Node*>* > {};
     vertices = new std::map<T, Node*> {};
 }
 
@@ -61,7 +61,7 @@ void Graph<T>::addNode(const T &label) {
 
     auto node = new Node { label };
     vertices->insert({ label, node });
-    adjacencyList->insert( { node, new std::list<Node*>{ } } );
+    adjacencyList->insert( { node, new std::list<Node*>{  } });
 }
 
 template<typename T>
@@ -73,11 +73,6 @@ void Graph<T>::addEdge(const T &from, const T &to) {
         throw std::runtime_error { "No such elements" };
 
     adjacencyList->lower_bound(fromNode->second)->second->push_back(toNode->second);
-}
-
-template<typename T>
-typename Graph<T>::iterator Graph<T>::getNode(const T &from) {
-    return vertices->lower_bound(from);
 }
 
 
@@ -92,11 +87,9 @@ void Graph<T>::removeNode(const T &label) {
 
     if (node == vertices->end()) throw std::runtime_error { "No such element to be removed" };
 
-    for (auto &pair : adjacencyList) {
-        for (auto &l : pair->second)
-            if (l == node->second)
-                l->erase(node->second);
-    }
+    for (auto itr = adjacencyList->begin(); itr != adjacencyList->end(); itr++)
+        adjacencyList->lower_bound(itr->first)->second->remove(node->second);
+
     vertices->erase(label);
     adjacencyList->erase(node->second);
 }
@@ -110,8 +103,7 @@ void Graph<T>::removeEdge(const T &from, const T &to) {
     if (fromNode == vertices->end() || toNode == vertices->end())
         throw std::runtime_error { "No such elements" };
 
-    auto list = adjacencyList->at(fromNode->second);
-    //*list->erase(toNode);
+    adjacencyList->at(fromNode->second)->remove(toNode->second);
 }
 
 template<typename T>
@@ -124,5 +116,7 @@ void Graph<T>::print() const {
     }
 }
 
-
-
+template<typename T>
+typename Graph<T>::iterator Graph<T>::getNode(const T &value) {
+    return vertices->lower_bound(value);
+}

@@ -100,7 +100,7 @@ private:
     std::map<Node*, std::list<Node*>* > *adjacencyList;
     std::map<T, Node*> *vertices;
 
-    iterator getNode(const T &from);
+    iterator getNode(const T &value);
 };
 
 
