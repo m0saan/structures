@@ -73,11 +73,12 @@ public:
 
     using VT = T;
     using Node = Node<Graph<T>>;
+    using iterator = typename std::map<T, Node*>::iterator;
 
 public:
 
     Graph();
-    ~Graph() = default;
+    ~Graph();
 
 public:
 
@@ -87,17 +88,19 @@ public:
 
     void addEdge(const T& from, const T& to);
 
-    /*
-     * RemoveNode(label)
-     * RemoveEdge(from, to)
-     * print()
-     */
+    void removeNode(const T &label);
+
+    void removeEdge(const T &from, const T &to);
+
+    void print() const;
 
 private:
 
     size_t mCounter;
     std::map<Node*, std::list<Node*>* > *adjacencyList;
     std::map<T, Node*> *vertices;
+
+    iterator getNode(const T &from);
 };
 
 
