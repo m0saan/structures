@@ -11,6 +11,7 @@
  * -> Graph Applications:
  *  1. Used in social networks
  *  2. GPS
+ *  3. Represent connected objects
  *
  * -> There are two approaches to implement a graph:
  *      Being:
@@ -19,17 +20,17 @@
  *      - K the number of edges a given node has
  *
  *
- *                       Matrix   |         List
+ *               Adjacency Matrix   |     Adjacency List
  *      ---------------------------------------------------
- *      Case             Worst    |   Average    Worst
+ *      Case             Worst      |    Average    Worst
  *      ---------------------------------------------------
- *      Space            O(V^2)   |  O(V+K)     O(V^2)
- *      Add edge         O(1)     |  O(K)       O(V)
- *      Remove edge      O(1)     |  O(K)       O(V)
- *      Query edge       O(1)     |  O(K)       O(V)
- *      Find neighbors   O(V)     |  O(K)       O(V)
- *      Add node         O(V^2)   |  O(K)       O(1)
- *      Remove node      O(V^2)   |  O(K)       O(V^2)
+ *      Space            O(V^2)     |     O(V+K)     O(V^2)
+ *      Add edge         O(1)       |     O(K)       O(V)
+ *      Remove edge      O(1)       |     O(K)       O(V)
+ *      Query edge       O(1)       |     O(K)       O(V)
+ *      Find neighbors   O(V)       |     O(K)       O(V)
+ *      Add node         O(V^2)     |     O(K)       O(1)
+ *      Remove node      O(V^2)     |     O(K)       O(V^2)
  *
  *
  * https://en.wikipedia.org/wiki/Graph
@@ -250,4 +251,31 @@ void Graph<T>::topologicalSort(Node* node, std::stack<Node *> &stack, std::set<N
             topologicalSort(neighbors, stack, visited);
     }
     stack.push(node);
+}
+
+template<typename T>
+bool Graph<T>::hasCycle() {
+    std::set<Node*> all;
+    std::set<Node*> visiting;
+    std::set<Node*> visited;
+
+    for (auto &pair : *vertices)
+        return hasCycle(pair.second, visiting, visited);
+}
+
+template<typename T>
+bool Graph<T>::hasCycle(Node* node, std::set<Node *> &visiting, std::set<Node *> &visited) {
+
+    if (visiting.count(node))
+        return true;
+
+    visiting.insert(node);
+
+    for (auto &neighbor : *adjacencyList->at(node)) {
+        if (!visited.count(neighbor))
+            return hasCycle(neighbor, visiting, visited);
+    }
+
+    visiting.erase(node);
+    visited.insert(node);
 }
