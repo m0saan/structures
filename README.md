@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains a simple implementation to linear and non linear data structures as well as to some of thier algorithms.
+This repository contains a simple implementation to linear and non linear data structures as well as to some of their algorithms.
 
 ### Goal
 
