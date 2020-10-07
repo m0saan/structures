@@ -44,7 +44,7 @@
 
 #include <iostream>
 #include <map>
-#include <forward_list>
+#include <list>
 
 template<typename GRAPH>
 class Node {
@@ -81,13 +81,14 @@ public:
 
 public:
 
-    void addNode(const std::string &label);
+    void addNode(const T &label);
 
     [[nodiscard]] bool isEmpty() const;
 
+    void addEdge(const T& from, const T& to);
+
     /*
      * RemoveNode(label)
-     * AddEdge(from, to);
      * RemoveEdge(from, to)
      * print()
      */
@@ -95,7 +96,7 @@ public:
 private:
 
     size_t mCounter;
-    std::map< T, std::forward_list<Node*> > *adjacencyList;
+    std::map<Node*, std::list<Node*>* > *adjacencyList;
     std::map<T, Node*> *vertices;
 };
 

@@ -45,17 +45,29 @@
 
 template<typename T>
 Graph<T>::Graph() : mCounter { } {
-    adjacencyList = new std::map< T, std::forward_list<Node*> > { };
+    adjacencyList = new std::map< Node* ,  std::list<Node*>* > { };
     vertices = new std::map<T, Node*> {};
 }
 
 template<typename T>
-void Graph<T>::addNode(const std::string &label) {
+void Graph<T>::addNode(const T &label) {
 
     auto node = new Node { label };
     vertices->insert({ label, node });
-    adjacencyList->insert( { label, std::forward_list<Node*>{} } );
+    adjacencyList->insert( { node, new std::list<Node*>{ } } );
 }
+
+template<typename T>
+void Graph<T>::addEdge(const T &from, const T &to) {
+    auto fromNode = vertices->lower_bound(from);
+    auto toNode = vertices->lower_bound(to);
+
+    if (fromNode == vertices->end() || toNode == vertices->end())
+        throw std::runtime_error { "No such elements" };
+
+    adjacencyList->lower_bound(fromNode->second)->second->push_back(toNode->second);
+}
+
 
 template<typename T>
 bool Graph<T>::isEmpty() const {
