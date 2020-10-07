@@ -75,7 +75,6 @@ void Trie::insert(const std::string &str) {
 
     auto current = root;
     for (char c : str){
-        auto index = c - 'a';
         if (!current->hasChild(c))
             current->addChild(c);
         current = current->getChild(c);
