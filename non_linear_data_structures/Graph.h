@@ -45,6 +45,7 @@
 #include <iostream>
 #include <map>
 #include <list>
+#include <set>
 
 template<typename GRAPH>
 class Node {
@@ -94,13 +95,20 @@ public:
 
     void print() const;
 
+    void depthFirstTraversal(const T& root);
+
 private:
 
     size_t mCounter;
     std::map<Node*, std::list<Node*>* > *adjacencyList;
     std::map<T, Node*> *vertices;
 
+private:
+
     iterator getNode(const T &value);
+
+    void depthFirstTraversal(Node *root, std::set<Node*> visited);
+
 };
 
 

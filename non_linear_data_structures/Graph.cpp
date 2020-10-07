@@ -109,6 +109,7 @@ void Graph<T>::removeEdge(const T &from, const T &to) {
 template<typename T>
 void Graph<T>::print() const {
     for (auto itr = adjacencyList->begin(); itr != adjacencyList->end(); itr++){
+        if (itr->second->empty()) continue;
         std::cout << itr->first->label << " is connected to [ ";
         for (auto &values : *itr->second)
             std::cout << values->label << " ";
@@ -119,4 +120,29 @@ void Graph<T>::print() const {
 template<typename T>
 typename Graph<T>::iterator Graph<T>::getNode(const T &value) {
     return vertices->lower_bound(value);
+}
+
+
+template<typename T>
+void Graph<T>::depthFirstTraversal(const T& root) {
+    auto nodeIter = getNode(root);
+
+    if (nodeIter == vertices->end()) throw std::runtime_error { "No such element." };
+
+    std::set<Node*> visited;
+    depthFirstTraversal(nodeIter->second, visited);
+}
+
+template<typename T>
+void Graph<T>::depthFirstTraversal(Node *root, std::set<Node*> visited) {
+
+    std::cout << root->label << std::endl;
+
+    visited.insert(root);
+
+    for (auto &item : *adjacencyList->at(root)) {
+        if (!visited.count(item))
+            depthFirstTraversal(item, visited);
+        break;
+    }
 }
