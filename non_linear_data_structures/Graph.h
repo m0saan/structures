@@ -47,6 +47,7 @@
 #include <list>
 #include <set>
 #include <stack>
+#include <queue>
 
 template<typename GRAPH>
 class Node {
@@ -100,6 +101,10 @@ public:
 
     void DFSIter(const T& root);
 
+    void BFS(const T &root);
+
+    std::vector<T> topologicalSort();
+
 private:
 
     size_t mCounter;
@@ -112,6 +117,7 @@ private:
 
     void DFSRec(Node *root, std::set<Node*> visited);
 
+    void topologicalSort(Node* node, std::stack<Node *> &stack, std::set<Node*> &visited);
 };
 
 
