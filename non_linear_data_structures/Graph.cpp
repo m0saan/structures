@@ -124,17 +124,17 @@ typename Graph<T>::iterator Graph<T>::getNode(const T &value) {
 
 
 template<typename T>
-void Graph<T>::depthFirstTraversal(const T& root) {
-    auto nodeIter = getNode(root);
+void Graph<T>::DFSRec(const T& root) {
+    auto pair = getNode(root);
 
-    if (nodeIter == vertices->end()) throw std::runtime_error { "No such element." };
+    if (pair == vertices->end()) throw std::runtime_error { "Invalid argument" };
 
     std::set<Node*> visited;
-    depthFirstTraversal(nodeIter->second, visited);
+    DFSRec(pair->second, visited);
 }
 
 template<typename T>
-void Graph<T>::depthFirstTraversal(Node *root, std::set<Node*> visited) {
+void Graph<T>::DFSRec(Node *root, std::set<Node*> visited) {
 
     std::cout << root->label << std::endl;
 
@@ -142,7 +142,35 @@ void Graph<T>::depthFirstTraversal(Node *root, std::set<Node*> visited) {
 
     for (auto &item : *adjacencyList->at(root)) {
         if (!visited.count(item))
-            depthFirstTraversal(item, visited);
+            DFSRec(item, visited);
         break;
+    }
+}
+
+template<typename T>
+void Graph<T>::DFSIter(const T &root) {
+    auto pair = getNode(root);
+
+    if (pair == vertices->end()) throw std::runtime_error { "Invalid argument" };
+
+    std::stack<Node*> stack;
+    std::set<Node*> visited;
+
+    stack.push(pair->second);
+    while (!stack.empty()){
+
+        auto current = stack.top();
+        stack.pop();
+
+        if (visited.count(current))
+            continue;
+
+        std::cout << current->label << std::endl;
+        visited.insert(current);
+
+        for (auto &neighbor : *adjacencyList->at(current)) {
+            if (!visited.count(neighbor))
+                stack.push(neighbor);
+        }
     }
 }

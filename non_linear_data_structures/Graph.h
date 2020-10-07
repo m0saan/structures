@@ -46,6 +46,7 @@
 #include <map>
 #include <list>
 #include <set>
+#include <stack>
 
 template<typename GRAPH>
 class Node {
@@ -95,7 +96,9 @@ public:
 
     void print() const;
 
-    void depthFirstTraversal(const T& root);
+    void DFSRec(const T& root);
+
+    void DFSIter(const T& root);
 
 private:
 
@@ -107,7 +110,7 @@ private:
 
     iterator getNode(const T &value);
 
-    void depthFirstTraversal(Node *root, std::set<Node*> visited);
+    void DFSRec(Node *root, std::set<Node*> visited);
 
 };
 
