@@ -45,7 +45,7 @@
 template <typename T>
 Graph<T>::Graph() : mCounter{}
 {
-    adjacencyList = new std::map<Node *, std::list<Node *> *>{};
+    adjacencyList = new std::map<Node*, std::list<Node *> *>{};
     vertices = new std::map<T, Node *>{};
 }
 

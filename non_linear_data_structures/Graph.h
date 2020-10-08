@@ -68,8 +68,6 @@ public:
     const T& label;
 };
 
-
-
 template<typename T>
 class Graph {
 
