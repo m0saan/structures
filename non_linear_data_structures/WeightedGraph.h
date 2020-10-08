@@ -115,6 +115,8 @@ public:
 
     void addEdge(const T& from, const T& to, const int& weight);
 
+    void print() const;
+
 private:
 
     std::map<Node*, std::list<Edge*>* > *adjacencyList;

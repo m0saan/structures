@@ -43,18 +43,19 @@
 #include "WeightedGraph.h"
 
 
-
 template<typename T>
 WeightedGraph<T>::WeightedGraph() {
     adjacencyList = new std::map<Node *, std::list<Edge *> *>{};
     vertices = new std::map<T, Node *>{};
 }
 
+
 template<typename T>
 WeightedGraph<T>::~WeightedGraph() {
     delete adjacencyList;
     delete vertices;
 }
+
 
 template<typename T>
 void WeightedGraph<T>::addNode(const T &label) {
@@ -64,6 +65,7 @@ void WeightedGraph<T>::addNode(const T &label) {
     vertices->insert(std::make_pair( label, node ) );
     adjacencyList->insert(std::make_pair(node, new std::list<Edge*> {}));
 }
+
 
 template<typename T>
 void WeightedGraph<T>::addEdge(const T &from, const T &to, const int& weight) {
@@ -80,8 +82,23 @@ void WeightedGraph<T>::addEdge(const T &from, const T &to, const int& weight) {
     adjacencyList->lower_bound(toPair->second)->second->push_back(toFromEdge);
 }
 
+
 template <typename T>
-typename WeightedGraph<T>::iterator WeightedGraph<T>::getNode(const T &label)
-{
+typename WeightedGraph<T>::iterator WeightedGraph<T>::getNode(const T &label) {
     return vertices->lower_bound(label);
+}
+
+template <typename T>
+void WeightedGraph<T>::print() const {
+    for (auto itr = adjacencyList->begin(); itr != adjacencyList->end(); itr++)
+    {
+        if (itr->second->empty())
+            continue;
+        std::cout << itr->first->label << " is connected to [ ";
+        for (auto &values : *itr->second) {
+            std::cout << values->from->label << "->";
+            std::cout << values->to->label << " ";
+        }
+        std::cout << "]\n";
+    }
 }
