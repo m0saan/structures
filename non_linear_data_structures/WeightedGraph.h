@@ -57,18 +57,36 @@ template<typename GRAPH>
 class Node {
 
 public:
-
     using T = typename GRAPH::VT;
+    using Edge = typename GRAPH::Edge;
 
+    /*
+     * This section is dedicated to the constructors and destructor of the Node class
+     */
 public:
-
     Node() = default;
     explicit Node(const T& label) : label { label } {};
     ~Node() = default;
 
+    /*
+     * This section is dedicated to the public fields and methods
+     */
 public:
-
     const T& label;
+
+    void addEdge(Node *to, int weight) {
+        edges.push_back(new Edge{ this, to, weight});
+    }
+
+    std::vector<Edge*>& getEdges() {
+        return edges;
+    }
+
+    /*
+     * This section is dedicated to the private fields
+     */
+private:
+    std::vector<Edge*> edges;
 };
 
 template <typename GRAPH>
@@ -80,8 +98,8 @@ public:
     using T = typename GRAPH::VT;
 public:
     Edge() = default;
-    Edge(Node* f, Node* t, const int& wight) :
-                    from{ f }, to { t }, weight { weight } {}
+    Edge(Node* f, Node* t, int w) :
+                    from{ f }, to { t }, weight { w } {}
     ~Edge() {
         delete from;
         delete to;
@@ -91,7 +109,7 @@ public:
     
     Node *from;
     Node *to;
-    int& weight;
+    int weight;
 };
 
 template<typename T>
@@ -119,7 +137,6 @@ public:
 
 private:
 
-    std::map<Node*, std::list<Edge*>* > *adjacencyList;
     std::map<T, Node*> *vertices;
 
 private:
