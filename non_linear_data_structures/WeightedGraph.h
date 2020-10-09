@@ -92,74 +92,14 @@ public:
 
     void addEdge(const T& from, const T& to, const int& weight);
 
-    Path getShortestDistance(const T& from, const T& to) {
-        auto comparator = [](NodeEntry &nodeEntry, NodeEntry &other) { return nodeEntry.priority > other.priority; };
+    Path getShortestDistance(const T& from, const T& to);
 
-        std::priority_queue<NodeEntry, std::vector<NodeEntry>, decltype(comparator)> priorityQueue(comparator);
-        std::map<Node *, int> distances;
-        std::map<Node *, Node *> previousNodes;
-        std::set<Node*> visited;
+    Path buildPath(const T &to, const std::map<Node *, Node *> &previousNodes);
+    std::stack<const std::string> pushPathsToStack(const T &to,
+                                                   const std::map<Node *, Node *> &previousNodes,
+                                                   std::stack<const std::string>& stack);
 
-
-        for (auto &vertexPair : *vertices) {
-            distances.insert(std::make_pair(vertexPair.second, std::numeric_limits<int>::max()));
-            previousNodes.insert(std::make_pair(vertexPair.second, nullptr));
-        }
-
-        auto nodePair = getNode(from);
-        priorityQueue.push(NodeEntry{0, nodePair->second});
-        distances.at(nodePair->second) = 0;
-
-        while (!priorityQueue.empty()) {
-            auto current = priorityQueue.top().node;
-            priorityQueue.pop();
-
-            if (visited.count(current))
-                continue;
-
-            visited.insert(current);
-
-            for (auto &edge : current->getEdges()) {
-                if (!visited.count(edge->to)) {
-                    auto distance = edge->weight + distances[current];
-                    if (distance < distances.at(edge->to)) distances.at(edge->to) = distance;
-                    previousNodes.at(edge->to) = current;
-                    priorityQueue.push(NodeEntry{ distances[edge->to], edge->to });
-                }
-            }
-        }
-
-        Path path = buildPath(to, previousNodes);
-
-        return path;
-    }
-
-    Path buildPath(const T &to, const std::map<Node *, Node *> &previousNodes) {
-        std::__1::stack<const std::string> stack;
-        pushPathsToStack(to, previousNodes, stack);
-
-        Path path;
-        while (!stack.empty()) {
-            path.addNode(stack.top());
-            stack.pop();
-        }
-        return path;
-    }
-
-    std::stack<const std::string> pushPathsToStack(const T &to, const std::map<Node *, Node *> &previousNodes, std::stack<const std::string>& stack) {
-        stack.push(to);
-        auto previous = to;
-        auto current = previousNodes.at(vertices->at(previous));
-        while (current != nullptr){
-            stack.push(current->label);
-            previous = current->label;
-            current = previousNodes.at(vertices->at(previous));
-        }
-        return stack;
-    }
-
-
-    //void print() const;
+    void print() const;
 
 private:
 

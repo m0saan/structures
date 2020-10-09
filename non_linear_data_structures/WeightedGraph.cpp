@@ -82,7 +82,79 @@ typename WeightedGraph<T>::iterator WeightedGraph<T>::getNode(const T &label) {
     return vertices->lower_bound(label);
 }
 
-/*
+template<typename T>
+Path WeightedGraph<T>::getShortestDistance(const T &from, const T &to) {
+    auto comparator = [](NodeEntry &nodeEntry, NodeEntry &other) { return nodeEntry.priority > other.priority; };
+
+    std::priority_queue<NodeEntry, std::vector<NodeEntry>, decltype(comparator)> priorityQueue(comparator);
+    std::map<Node *, int> distances;
+    std::map<Node *, Node *> previousNodes;
+    std::set<Node*> visited;
+
+
+    for (auto &vertexPair : *vertices) {
+        distances.insert(std::make_pair(vertexPair.second, std::numeric_limits<int>::max()));
+        previousNodes.insert(std::make_pair(vertexPair.second, nullptr));
+    }
+
+    auto nodePair = getNode(from);
+    priorityQueue.push(NodeEntry{0, nodePair->second});
+    distances.at(nodePair->second) = 0;
+
+    while (!priorityQueue.empty()) {
+        auto current = priorityQueue.top().node;
+        priorityQueue.pop();
+
+        if (visited.count(current))
+            continue;
+
+        visited.insert(current);
+
+        for (auto &edge : current->getEdges()) {
+            if (!visited.count(edge->to)) {
+                auto distance = edge->weight + distances[current];
+                if (distance < distances.at(edge->to)) distances.at(edge->to) = distance;
+                previousNodes.at(edge->to) = current;
+                priorityQueue.push(NodeEntry{ distances[edge->to], edge->to });
+            }
+        }
+    }
+
+    Path path = buildPath(to, previousNodes);
+
+    return path;
+}
+
+template<typename T>
+Path WeightedGraph<T>::buildPath(const T &to, const std::map<Node *, Node *> &previousNodes) {
+    std::__1::stack<const std::string> stack;
+    pushPathsToStack(to, previousNodes, stack);
+
+    Path path;
+    while (!stack.empty()) {
+        path.addNode(stack.top());
+        stack.pop();
+    }
+    return path;
+}
+
+template<typename T>
+std::stack<const std::string>
+WeightedGraph<T>::pushPathsToStack(const T &to, const std::map<Node *, Node *> &previousNodes,
+                                   std::stack<const std::string> &stack) {
+    stack.push(to);
+    auto previous = to;
+    auto current = previousNodes.at(vertices->at(previous));
+    while (current != nullptr){
+        stack.push(current->label);
+        previous = current->label;
+        current = previousNodes.at(vertices->at(previous));
+    }
+    return stack;
+}
+
+
+
 template <typename T>
 void WeightedGraph<T>::print() const {
     for (auto itr = vertices->begin(); itr != vertices->end(); itr++)
@@ -95,4 +167,3 @@ void WeightedGraph<T>::print() const {
         std::cout << "]\n";
     }
 }
- */
