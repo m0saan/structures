@@ -82,6 +82,7 @@ typename WeightedGraph<T>::iterator WeightedGraph<T>::getNode(const T &label) {
     return vertices->lower_bound(label);
 }
 
+/*
 template <typename T>
 void WeightedGraph<T>::print() const {
     for (auto itr = vertices->begin(); itr != vertices->end(); itr++)
@@ -94,3 +95,4 @@ void WeightedGraph<T>::print() const {
         std::cout << "]\n";
     }
 }
+ */
