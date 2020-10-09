@@ -99,6 +99,8 @@ public:
                                                    const std::map<Node *, Node *> &previousNodes,
                                                    std::stack<const std::string>& stack);
 
+    bool hasCycle();
+
     void print() const;
 
 private:
@@ -108,6 +110,8 @@ private:
 private:
 
     iterator getNode(const T& label);
+
+    bool hasCycle(Node *node, Node *parent, std::set<Node *> &visited);
 };
 
 

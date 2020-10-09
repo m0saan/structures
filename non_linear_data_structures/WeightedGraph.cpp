@@ -73,6 +73,30 @@ void WeightedGraph<T>::addEdge(const T &from, const T &to, const int& weight) {
     toPair->second->addEdge(fromPair->second, weight);
 }
 
+template<typename T>
+bool WeightedGraph<T>::hasCycle() {
+
+    std::set<Node*> visited;
+
+    for (auto &nodePair : *vertices)
+        if (!visited.count(nodePair.second))
+            return hasCycle(nodePair.second, nodePair.second ,visited);
+}
+
+template<typename T>
+bool WeightedGraph<T>::hasCycle(Node *node, Node *parent, std::set<Node *> &visited) {
+    if (visited.count(node))
+        return true;
+
+    visited.insert(node);
+
+    for (auto &neighbor : node->getEdges())
+        if(neighbor->to != parent)
+            return hasCycle(neighbor->to, node, visited);
+
+    return false;
+}
+
 
 template <typename T>
 typename WeightedGraph<T>::iterator WeightedGraph<T>::getNode(const T &label) {
@@ -164,3 +188,4 @@ void WeightedGraph<T>::print() const {
         std::cout << "]\n";
     }
 }
+
