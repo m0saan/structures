@@ -69,9 +69,6 @@ void WeightedGraph<T>::addEdge(const T &from, const T &to, const int& weight) {
     if (fromPair == vertices->end() || toPair == vertices->end())
         throw std::runtime_error{ "Invalid argument" };
 
-    Edge *fromToEdge = new Edge{ fromPair->second, toPair->second, weight};
-    Edge *toFromEdge = new Edge{ toPair->second, fromPair->second, weight};
-
     fromPair->second->addEdge(toPair->second, weight);
     toPair->second->addEdge(fromPair->second, weight);
 }
