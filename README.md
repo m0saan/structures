@@ -3,12 +3,16 @@
 ## Description
 
 This repository contains a simple implementation to linear and non linear data structures as well as to some of their algorithms.
+There are basically two implementations **Go** and **C++**
 
 ### Goal
 
 1. (classical data structures implementations)
 2. (based on MacOS Catalina/gcc)
 3. (ease of use, one or at most two header files per ds)
+
+### What is a Data Structure
+
 
 ### Linear Data Structures
 
