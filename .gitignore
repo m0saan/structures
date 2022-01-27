@@ -4,3 +4,5 @@ cmake-build-debug
 main.cpp
 .idea
 non_linear_data_structures/main.cpp
+Go/linear-data-structures/Array/Array
+.vscode/
