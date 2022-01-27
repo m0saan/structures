@@ -13,6 +13,14 @@ There are basically two implementations **Go** and **C++**
 
 ### What is a Data Structure
 
+A **data structure** is a data organization, management and storage format that enables efficient access and modification   
+
+### What is an Algorithm
+
+An **Algorithm** basically is a **sequence of instructions**, typically to solve a class of problems or perform a computation.    
+
+### What is Big O notation
+ **Big O notation** is a way used to give the **efficiency of an algorithm**, more precisely, It tells us the **growth of an algorithm**
 
 ### Linear Data Structures
 
