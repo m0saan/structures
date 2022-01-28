@@ -1,15 +1,19 @@
 
+<<<<<<< HEAD
 ## Linked List
 
 ### Description
-    We use a linkedlist to store objects in a squential manner in memory,       
-    But unlike arrays, likendlists can grow and shrink automatically.
+
+### Linked List
+We use a **linkedlist** to store objects in a squential manner in memory,       
+But unlike arrays, likendlists can grow and shrink automatically.
     
-    /*     ---------    ---------           */
-    /*     | Value |    | Value |           */
-    /*     |  ---  |    |  ---  |           */
-    /*     |  next-|--> |  next-|--> NULL   */
-    /*     ---------    ---------           */
+/*     ---------    ---------           */
+/*     | Value |    | Value |           */
+/*     |  ---  |    |  ---  |           */
+/*     |  next-|--> |  next-|--> NULL   */
+/*     ---------    ---------           */
+
 
 ### Complexity
     - Look Up: O(n)     
@@ -21,3 +25,4 @@
         - From the Beggining O(1).      
         - From the Middle O(n).     
         - From the End O(1) 
+
