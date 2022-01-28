@@ -21,6 +21,7 @@ An **Algorithm** basically is a **sequence of instructions**, typically to solve
 
 ### What is Big O notation
  **Big O notation** is a way used to give the **efficiency of an algorithm**, more precisely, It tells us the **growth of an algorithm**
+![alt text](https://github.com/M0-san/Data__Structures/blob/master/images/Big-O-Notation-Cheat-Sheet.png)
 
 ### Linear Data Structures
 
