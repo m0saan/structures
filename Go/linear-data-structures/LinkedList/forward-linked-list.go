@@ -25,15 +25,22 @@ package main
 import "fmt"
 
 type Node struct {
-	value int
-	next  *Node
+	value int   // value property -> holds the value !! generics will be added later on.
+	next  *Node // reference to the next Node.
 }
 
 type ForwardList struct {
-	size       int
-	head, tail *Node
+	size       int   // n of elements the linkedlist contains.
+	head, tail *Node // head -> first Node
+	// tail -> last Node. (Optional)
+	// tail node help decrease the insertion/deletion to the end of
+	// the linkedlist from O(n) to O(1).
 }
 
+/*
+	IForawrdList has the methods that should be
+	implemented for the forwardlist
+*/
 type IForawrdList interface {
 	// Element Access
 	front() int
@@ -58,10 +65,14 @@ type IForawrdList interface {
 	sort()
 }
 
+// Helper function that takes a value and returns a constructed Node.
 func createNode(value int) *Node {
 	return &Node{value: value, next: nil}
 }
 
+// String -> The fmt package (and many others) look for this interface to print values.
+// i.e Implementing this function help printing out the element of the list
+// to the console (like toString in Java / operator<< in C++)-.
 func (list ForwardList) String() string {
 	listValues := make([]int, list.length(), list.length())
 
@@ -75,6 +86,8 @@ func (list ForwardList) String() string {
 	return fmt.Sprintf("%v", listValues)
 }
 
+// pushFront takes a value and adds it to the font of the linkedList
+// returns the value that was inserted.
 func (list *ForwardList) pushFront(elem int) int {
 	if list.head == nil {
 		list.head = createNode(elem)
@@ -90,6 +103,8 @@ func (list *ForwardList) pushFront(elem int) int {
 	return newFront.value
 }
 
+// pushBack takes a value and adds it to the back of the linkedList
+// returns the value that was inserted.
 func (list *ForwardList) pushBack(elem int) int {
 	if list.tail == nil {
 		list.head = createNode(elem)
@@ -105,6 +120,7 @@ func (list *ForwardList) pushBack(elem int) int {
 	return newBack.value
 }
 
+// Front peeks the value in the front of the linkedlist
 func (list *ForwardList) front() int {
 	if list.head != nil {
 		return list.head.value
@@ -112,6 +128,8 @@ func (list *ForwardList) front() int {
 	panic("error: list empty. can't get element at font")
 }
 
+// Back peeks the value in the back of the linkedlist.
+// i.e returns the last value in the linkedlist
 func (list *ForwardList) back() int {
 	if list.tail != nil {
 		return list.tail.value
@@ -119,6 +137,8 @@ func (list *ForwardList) back() int {
 	panic("error: list empty. can't get element at back")
 }
 
+// contains -> checks whether <elem> is in the linkedlist
+// returns a boolean value.
 func (list *ForwardList) contains(elem int) bool {
 	if list == nil {
 		panic("error: list empty")
@@ -134,6 +154,8 @@ func (list *ForwardList) contains(elem int) bool {
 	return false
 }
 
+// indexOf -> returns the index of <elem>.
+// returns -1 if not found.
 func (list *ForwardList) indexOf(elem int) int {
 	if list == nil {
 		panic("error: list empty")
@@ -151,6 +173,7 @@ func (list *ForwardList) indexOf(elem int) int {
 	return -1
 }
 
+// length returns the number of elements the linkedlist have.
 func (list *ForwardList) length() int {
 	return list.size
 }
