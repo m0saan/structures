@@ -88,6 +88,7 @@ func (list ForwardList) String() string {
 
 // pushFront takes a value and adds it to the font of the linkedList
 // returns the value that was inserted.
+// runs in O(1) time complexity
 func (list *ForwardList) pushFront(elem int) int {
 	if list.head == nil {
 		list.head = createNode(elem)
@@ -105,6 +106,7 @@ func (list *ForwardList) pushFront(elem int) int {
 
 // pushBack takes a value and adds it to the back of the linkedList
 // returns the value that was inserted.
+// runs in O(1) time complexity
 func (list *ForwardList) pushBack(elem int) int {
 	if list.tail == nil {
 		list.head = createNode(elem)
@@ -122,6 +124,7 @@ func (list *ForwardList) pushBack(elem int) int {
 
 // popBack erases the value in the back of the linkedList
 // returns the value that was erased.
+// runs in O(n) time complexity
 func (list *ForwardList) popBack() int {
 	if list.length() == 0 {
 		panic("list empty. can't erase")
@@ -158,6 +161,7 @@ func (list *ForwardList) popBack() int {
 
 // popFronmt erases the value in the beggining of the linkedList
 // returns the value that was erased.
+// runs in O(1) time complexity
 func (list *ForwardList) popFront() int {
 	if list.length() == 0 {
 		panic("list empty. can't erase")
@@ -180,6 +184,8 @@ func (list *ForwardList) popFront() int {
 	return retValue
 }
 
+// clear -> Erases all the elements.
+// runs in O(n) time complexity
 func (list *ForwardList) clear() {
 	for list.head != nil {
 		list.popFront()
@@ -187,6 +193,7 @@ func (list *ForwardList) clear() {
 }
 
 // Front peeks the value in the front of the linkedlist
+// runs in O(1) time complexity
 func (list *ForwardList) front() int {
 	if list.head != nil {
 		return list.head.value
@@ -196,6 +203,7 @@ func (list *ForwardList) front() int {
 
 // Back peeks the value in the back of the linkedlist.
 // i.e returns the last value in the linkedlist
+// runs in O(1) time complexity
 func (list *ForwardList) back() int {
 	if list.tail != nil {
 		return list.tail.value
@@ -205,6 +213,7 @@ func (list *ForwardList) back() int {
 
 // contains -> checks whether <elem> is in the linkedlist
 // returns a boolean value.
+// runs in O(n) time complexity
 func (list *ForwardList) contains(elem int) bool {
 	if list == nil {
 		panic("error: list empty")
@@ -222,6 +231,7 @@ func (list *ForwardList) contains(elem int) bool {
 
 // indexOf -> returns the index of <elem>.
 // returns -1 if not found.
+// runs in O(n) time complexity
 func (list *ForwardList) indexOf(elem int) int {
 	if list == nil {
 		panic("error: list empty")
@@ -240,10 +250,12 @@ func (list *ForwardList) indexOf(elem int) int {
 }
 
 // length returns the number of elements the linkedlist have.
+// runs in O(1) time complexity
 func (list *ForwardList) length() int {
 	return list.size
 }
 
+// runs in O(1) time complexity
 func (list *ForwardList) isEmpty() bool {
 	return list.length() == 0
 }
