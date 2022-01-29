@@ -22,7 +22,9 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	value int   // value property -> holds the value !! generics will be added later on.
@@ -33,8 +35,6 @@ type ForwardList struct {
 	size       int   // n of elements the linkedlist contains.
 	head, tail *Node // head -> first Node
 	// tail -> last Node. (Optional)
-	// tail node help decrease the insertion/deletion to the end of
-	// the linkedlist from O(n) to O(1).
 }
 
 /*
@@ -51,7 +51,7 @@ type IForawrdList interface {
 	pushFront(elem int) int
 	popBack() int
 	popFront() int
-	splice(elem int)
+	// splice(elem int)
 	clear()
 
 	// Capacity
@@ -120,6 +120,72 @@ func (list *ForwardList) pushBack(elem int) int {
 	return newBack.value
 }
 
+// popBack erases the value in the back of the linkedList
+// returns the value that was erased.
+func (list *ForwardList) popBack() int {
+	if list.length() == 0 {
+		panic("list empty. can't erase")
+	}
+
+	if list.head == list.tail {
+		retValue := list.head.value
+		list.head = nil
+		list.tail = nil
+		list.size = 0
+		return retValue
+	}
+
+	prevNode := list.head
+
+	// When loop is done prevNode will be pointing at
+	// the element past the end.
+	for prevNode.next != nil {
+		if prevNode.next.next == nil {
+			break
+		}
+		prevNode = prevNode.next
+	}
+
+	tmpBack := list.tail
+	retValue := tmpBack.value
+
+	prevNode.next = nil
+	tmpBack = nil
+	list.tail = prevNode
+	list.size--
+	return retValue
+}
+
+// popFronmt erases the value in the beggining of the linkedList
+// returns the value that was erased.
+func (list *ForwardList) popFront() int {
+	if list.length() == 0 {
+		panic("list empty. can't erase")
+	}
+
+	if list.head == list.tail {
+		retValue := list.head.value
+		list.head = nil
+		list.tail = nil
+		list.size = 0
+		return retValue
+	}
+
+	second := list.head.next
+	retValue := second.value
+
+	list.head.next = nil
+	list.head = second
+	list.size--
+	return retValue
+}
+
+func (list *ForwardList) clear() {
+	for list.head != nil {
+		list.popFront()
+	}
+}
+
 // Front peeks the value in the front of the linkedlist
 func (list *ForwardList) front() int {
 	if list.head != nil {
@@ -184,5 +250,7 @@ func (list *ForwardList) isEmpty() bool {
 
 func main() {
 	list := ForwardList{}
-	list.pushBack(10)
+	list.clear()
+	fmt.Println(list.head)
+	fmt.Println(list.tail)
 }
