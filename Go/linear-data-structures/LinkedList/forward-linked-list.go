@@ -356,40 +356,64 @@ func (list *ForwardList) getMiddle() []int {
 		panic("list empty")
 	}
 
-	if list.length() <= 2 {
-		if list.length() == 1 {
-			return []int{list.front()}
-		}
-		return []int{list.front(), list.back()}
+	if list.length() == 1 {
+		return []int{list.front()}
 	}
 
 	first := list.head
-	second := first.next
-	prev := first
-	i := 1
+	second := list.head.next
 
-	for second != nil {
-		prev = first
+	for second != nil && second.next != nil {
 		first = first.next
-		second = second.next
-		i++
-		if second != nil {
-			second = second.next
-			i++
-		}
+		second = second.next.next
 	}
-	if i%2 != 0 {
-		return []int{first.value}
+	if second == list.tail {
+		return []int{first.value, first.next.value}
 	}
-	return []int{prev.value, first.value}
+	return []int{first.value}
 }
 
+// [1 -> 2 -> 3 -> 4 -> 5]
+//  	 *	  		*
+// hasLoop: detects if the linkedlist has a loop
+// runs in ->
+// 			 - O(n) time complexity
+//			 - O(1) space complexity
 func (list *ForwardList) hasLoop() bool {
+	if list.isEmpty() {
+		return false
+	}
+	slow := list.head
+	fast := slow.next
+	for fast != nil && fast.next != nil {
+		slow = slow.next
+		fast = fast.next.next
+
+		if slow == fast {
+			return true
+		}
+	}
 	return false
+}
+
+func (list *ForwardList) createLoop(nodeIndex int) {
+	curr := list.head
+	nodeIndex--
+	for curr != nil && nodeIndex > 0 {
+		curr = curr.next
+		nodeIndex--
+	}
+	fmt.Println(curr.value)
+	list.tail.next = curr
 }
 
 func main() {
 	list := ForwardList{}
-	list.pushFront(10)
-	fmt.Println(list.getMiddle())
+	list.pushBack(1)
+	list.pushBack(2)
+	list.pushBack(3)
+	list.pushBack(4)
+	list.pushBack(5)
+	list.createLoop(1)
+	fmt.Println(list.hasLoop())
 }
