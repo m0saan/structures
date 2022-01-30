@@ -288,30 +288,108 @@ func (list *ForwardList) sort() {
 }
 
 // reverse -> reversing the linkedlist in place.
-// run in O(n) time complexity.
-// O(1) space complexity.
+// runs in ->
+//			- O(n) time complexity.
+// 			- O(1) space complexity.
 func (list *ForwardList) reverse() {
 	if list.length() < 2 {
 		return
 	}
-	current := list.head
-	nextNode := current.next
-	current.next = nil
-	list.tail = current
-	for true {
-		nextOfNext := nextNode.next
-		nextNode.next = current
-		current = nextNode
-		nextNode = nextOfNext
-		if nextNode == nil {
-			break
+	prev := list.head
+	current := prev.next
+
+	prev.next = nil
+	list.tail = prev
+
+	for current != nil {
+		nextOfCurrent := current.next
+		current.next = prev
+		prev = current
+		current = nextOfCurrent
+	}
+
+	list.head = prev
+}
+
+/*
+	Common linkedlist problems
+*/
+
+// get the kth element from the end of the linkedlist
+// in ONE PASS.
+// runs in ->
+//			- O(n) time complexity.
+//			- O(1) space complexity.
+func (list *ForwardList) getKthFromEnd(k int) int {
+
+	if k < 0 || k > list.length() {
+		panic("K has an invalid value.")
+	}
+
+	first := list.head
+	last := list.head
+
+	k -= 1
+	for last != nil {
+		if k < 0 {
+			first = first.next
+		}
+		last = last.next
+		k--
+	}
+	return first.value
+}
+
+// 3 -> 2
+// 4 -> 2,3
+// 5 -> 3
+// 7 -> 4
+// 9 -> 5
+
+// getMiddle -> find the middle node/nodes of a
+// linkedlist in one pass.
+// runs in ->
+//			 - O(n/2) time complexity
+//			 - O(1) space complexity.
+func (list *ForwardList) getMiddle() []int {
+	if list.isEmpty() {
+		panic("list empty")
+	}
+
+	if list.length() <= 2 {
+		if list.length() == 1 {
+			return []int{list.front()}
+		}
+		return []int{list.front(), list.back()}
+	}
+
+	first := list.head
+	second := first.next
+	prev := first
+	i := 1
+
+	for second != nil {
+		prev = first
+		first = first.next
+		second = second.next
+		i++
+		if second != nil {
+			second = second.next
+			i++
 		}
 	}
-	list.head = current
+	if i%2 != 0 {
+		return []int{first.value}
+	}
+	return []int{prev.value, first.value}
+}
+
+func (list *ForwardList) hasLoop() bool {
+	return false
 }
 
 func main() {
 	list := ForwardList{}
-	list.reverse()
-	fmt.Println(list)
+	list.pushFront(10)
+	fmt.Println(list.getMiddle())
 }
