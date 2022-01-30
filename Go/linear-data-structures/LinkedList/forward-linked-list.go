@@ -24,6 +24,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 type Node struct {
@@ -260,9 +261,57 @@ func (list *ForwardList) isEmpty() bool {
 	return list.length() == 0
 }
 
+// sort -> sorts the linkedlist in place
+// runs in O(n log(n)) where n is the number of elements.
+// O(n) time complexity.
+func (list *ForwardList) sort() {
+	if list.length() == 0 {
+		return
+	}
+
+	s := make([]int, list.length())
+	current := list.head
+	i := 0
+	for current != nil {
+		s[i] = current.value
+
+		i++
+		current = current.next
+	}
+
+	sort.Slice(s, func(i, j int) bool { return s[i] < s[j] })
+	current = list.head
+	for i = 0; i < len(s); i++ {
+		current.value = s[i]
+		current = current.next
+	}
+}
+
+// reverse -> reversing the linkedlist in place.
+// run in O(n) time complexity.
+// O(1) space complexity.
+func (list *ForwardList) reverse() {
+	if list.length() < 2 {
+		return
+	}
+	current := list.head
+	nextNode := current.next
+	current.next = nil
+	list.tail = current
+	for true {
+		nextOfNext := nextNode.next
+		nextNode.next = current
+		current = nextNode
+		nextNode = nextOfNext
+		if nextNode == nil {
+			break
+		}
+	}
+	list.head = current
+}
+
 func main() {
 	list := ForwardList{}
-	list.clear()
-	fmt.Println(list.head)
-	fmt.Println(list.tail)
+	list.reverse()
+	fmt.Println(list)
 }
