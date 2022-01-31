@@ -79,10 +79,13 @@ func (s *Stack[T]) Peek() (retValue T, _ bool) {
 	Common Stack problems.
 */
 
-/*
+// reverseString: reverse a string using Stack
+// 	runs in ->
+// 			- O(n) time complexity
+// 			- O(n) space complexity
 func reverseString(str string) string {
 	reversed := make([]byte, len(str))
-	stack := Stack{}
+	stack := Stack[byte]{}
 
 	for i := 0; i < len(str); i++ {
 		stack.Push(str[i])
@@ -93,17 +96,11 @@ func reverseString(str string) string {
 	for stack.isEmpty() != true {
 		ch, _ = stack.Pop()
 		reversed[i] = byte(ch)
+		i++
 	}
+	return string(reversed)
 }
-*/
 
 func main() {
-	s := Stack[int]{}
-	for i := 0; i < 1e4; i++ {
-		s.Push(i)
-	}
-
-	for s.isEmpty() != true {
-		fmt.Println(s.Pop())
-	}
+	fmt.Println(reverseString("21"))
 }
