@@ -101,6 +101,38 @@ func reverseString(str string) string {
 	return string(reversed)
 }
 
+func isBalancedExpression(str string) bool {
+	// Supported Expression [<{(
+	openingSymbols := map[byte]bool{
+		'[': true,
+		'<': true,
+		'{': true,
+		'(': true,
+	}
+
+	symbolsPairs := map[byte]byte{
+		']': '[',
+		'>': '<',
+		'}': '{',
+		')': '(',
+	}
+
+	s := Stack[byte]{}
+
+	for _, v := range str {
+		if _, ok := openingSymbols[byte(v)]; ok {
+			s.Push(byte(v))
+			continue
+		}
+
+		if openingPair, ok := symbolsPairs[byte(v)]; ok {
+			fmt.Println(string(openingPair), string(v))
+			s.Pop()
+		}
+	}
+	return s.isEmpty()
+}
+
 func main() {
-	fmt.Println(reverseString("21"))
+	fmt.Println(isBalancedExpression(""))
 }
