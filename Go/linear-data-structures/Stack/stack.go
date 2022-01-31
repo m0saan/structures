@@ -24,47 +24,86 @@ package main
 
 import "fmt"
 
-type Stack struct {
-	vals []interface{}
+/*
+	Stack struct
+*/
+type Stack[T any] struct {
+	vals []T // value container
 }
 
-func (s Stack) String() string {
+// Implement the Stringer interface
+// So that it is easier to print out the
+// Stack on the console
+// String method is required by the fmt package
+func (s Stack[T]) String() string {
 	return fmt.Sprintf("%v", s.vals)
 }
 
-func (s *Stack) isEmpty() bool {
+//	isEmpty: checks if the stack has any element
+//	O(1) time complexity
+//	O(1) Space complexity
+func (s *Stack[T]) isEmpty() bool {
 	return len(s.vals) == 0
 }
 
-func (s *Stack) Push(val interface{}) {
+//	Push: insert an element on top of the Stack
+//	average O(1) time complexity
+//	average O(1) Space complexity
+func (s *Stack[T]) Push(val T) {
 	s.vals = append(s.vals, val)
 }
 
-func (s *Stack) Pop() (interface{}, bool) {
+//	Pop: remove the element on top of the Stack
+//	O(1) time complexity
+//	O(1) Space complexity
+func (s *Stack[T]) Pop() (ret T, _ bool) {
 	if s.isEmpty() {
-		return nil, false
+		return ret, false
 	}
-	ret := s.vals[len(s.vals)-1]
+	ret = s.vals[len(s.vals)-1]
 	s.vals = s.vals[:len(s.vals)-1]
 	return ret, false
 }
 
-func (s *Stack) Peek() (interface{}, bool) {
+//	Peek: retrieve the element on top of the Stack
+//	O(1) time complexity
+//	O(1) Space complexity
+func (s *Stack[T]) Peek() (retValue T, _ bool) {
 	if s.isEmpty() {
-		return nil, false
+		return retValue, false
 	}
 	return s.vals[len(s.vals)-1], true
 }
 
+/*
+	Common Stack problems.
+*/
+
+/*
+func reverseString(str string) string {
+	reversed := make([]byte, len(str))
+	stack := Stack{}
+
+	for i := 0; i < len(str); i++ {
+		stack.Push(str[i])
+	}
+
+	i := 0
+	var ch byte
+	for stack.isEmpty() != true {
+		ch, _ = stack.Pop()
+		reversed[i] = byte(ch)
+	}
+}
+*/
+
 func main() {
-	s := Stack{}
-	s.Push(10)
-	s.Push(20)
-	s.Push(30)
-	s.Push(40)
+	s := Stack[int]{}
+	for i := 0; i < 1e4; i++ {
+		s.Push(i)
+	}
 
 	for s.isEmpty() != true {
-		v, _ := s.Pop()
-		fmt.Println(v)
+		fmt.Println(s.Pop())
 	}
 }
