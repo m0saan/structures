@@ -51,6 +51,8 @@ An **Algorithm** basically is a **sequence of instructions**, typically to solve
 ### 8. Observations : 
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-go.svg)
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 need help:
