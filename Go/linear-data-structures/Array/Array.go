@@ -24,37 +24,22 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math"
 )
 
-type Array struct {
+type Array[T any] struct {
 	_length, _capacity int
-	container          []int
+	container          []T
 }
 
-type IArray interface {
-	push(elem int) int
-	pushAt(elem int, index int) int
-	remove(elem int) int
-	at(index int) int
-	indexOf(elem int) int
-	contains(elem int) bool
-	isEmpty() bool
-	size() int
-	capacity() int
-	max() int
-	min() int
-	reverse() []int
-	intersect() []int
-}
-
-func (arr Array) String() string {
+func (arr Array[T]) String() string {
 	return fmt.Sprintf("%v", arr.container[0:arr.size()])
 }
 
-func (arr *Array) resize() {
+func (arr *Array[T]) resize() {
 	arr._capacity = arr.capacity() * 2
-	tmp := make([]int, arr.capacity())
+	tmp := make([]T, arr.capacity())
 
 	for i := 0; i < arr.size(); i++ {
 		tmp[i] = arr.container[i]
@@ -63,10 +48,10 @@ func (arr *Array) resize() {
 	arr.container = tmp
 }
 
-func (arr *Array) push(elem int) int {
+func (arr *Array[T]) push(elem T) T {
 	if arr.capacity() == 0 {
 		arr._capacity = int(math.Max(float64(1), float64(arr._capacity)))
-		arr.container = make([]int, arr.capacity())
+		arr.container = make([]T, arr.capacity())
 	}
 
 	if arr.size() == arr.capacity() {
@@ -78,10 +63,10 @@ func (arr *Array) push(elem int) int {
 	return elem
 }
 
-func (arr *Array) pushAt(elem int, index int) int {
+func (arr *Array[T]) pushAt(elem T, index int) T {
 
 	if index < 0 || index > arr._length {
-		panic("error: index out of range")
+		log.Panic("Invalid index")
 	}
 
 	if index == arr._length {
@@ -102,45 +87,48 @@ func (arr *Array) pushAt(elem int, index int) int {
 	return elem
 }
 
-func (arr *Array) isEmpty() bool {
+func (arr *Array[T]) isEmpty() bool {
 	return arr.size() == 0
 }
 
-func (arr *Array) capacity() int {
+func (arr *Array[T]) capacity() int {
 	return arr._capacity
 }
 
-func (arr *Array) size() int {
+func (arr *Array[T]) size() int {
 	return arr._length
 }
 
-func (arr *Array) at(index int) int {
+func (arr *Array[T]) at(index int) T {
 	if index < 0 || index > arr.size() {
-		panic(fmt.Sprintf("error: index out of range: %v", index))
+		log.Panicf("error: index out of range: %v", index)
 	}
 	return arr.container[index]
 }
 
-func (arr *Array) contains(elem int) bool {
+func (arr *Array[T]) contains(elem T, Equal func(elem, arrElem T) bool) bool {
 	for i := 0; i < arr.size(); i++ {
-		if elem == arr.at(i) {
+		if Equal(elem, arr.at(i)) {
 			return true
 		}
 	}
 	return false
 }
 
-func (arr *Array) indexOf(elem int) int {
+func (arr *Array[T]) indexOf(elem T, Equal func(elem, arrElem T) bool) int {
 	for i := 0; i < arr.size(); i++ {
-		if elem == arr.at(i) {
+		if Equal(elem, arr.at(i)) {
 			return i
 		}
 	}
 	return -1
 }
 
-func (arr *Array) remove(elem int) int {
-	elemIndex := arr.indexOf(elem)
+/*
+func (arr *Array[T]) remove(elem T) T {
+	elemIndex := arr.indexOf(elem, func(elem, arrElem T) bool {
+		return elem == arrElem
+	})
 
 	if elemIndex != -1 {
 		for i := elemIndex; i < arr.size()-1; i++ {
@@ -151,37 +139,43 @@ func (arr *Array) remove(elem int) int {
 	}
 	return -1
 }
-
-func (arr *Array) max() int {
+*/
+func (arr *Array[T]) max(compare func(i, j T) bool) T {
 	if arr.isEmpty() {
-		panic("error: Array empty. can't find max element")
+		log.Panic("error: Array empty. can't find max element")
 	}
 
 	maxElem := arr.at(0)
 
-	for i := 0; i < arr.size(); i++ {
-		maxElem = int(math.Max(float64(maxElem), float64(arr.at(i))))
+	for i := 0; i < arr.size()-1; i++ {
+		if compare(maxElem, arr.at(i)) {
+			maxElem = arr.at(i)
+		}
 	}
 
 	return maxElem
 }
 
-func (arr *Array) min() int {
+/*
+func (arr *Array[T]) min() T {
 	if arr.isEmpty() {
-		panic("error: Array empty. can't find min element")
+		log.Panic("error: Array empty. can't find min element")
 	}
 
 	minElem := arr.at(0)
 
 	for i := 0; i < arr.size(); i++ {
-		minElem = int(math.Min(float64(minElem), float64(arr.at(i))))
+		if arr.at(i) < minElem {
+			minElem = arr.at(i)
+		}
 	}
 
 	return minElem
 }
+*/
 
-func (arr *Array) reverse() []int {
-	reversed := make([]int, arr.size(), arr.size())
+func (arr *Array[T]) reverse() []T {
+	reversed := make([]T, arr.size(), arr.size())
 	for i := arr.size(); i > 0; {
 		reversed[arr.size()-i] = arr.at(i)
 		i--
@@ -189,18 +183,16 @@ func (arr *Array) reverse() []int {
 	return reversed
 }
 
-func (arr *Array) intersect(other *Array) Array {
+func (arr *Array[T]) intersect(other *Array[T]) {
 	// will be implemented once set is implemented.
-	return Array{}
+
 }
 
 func main() {
-	numbers := Array{}
-	for i := 0; i < 10; i++ {
+	numbers := Array[int]{}
+	for i := 0; i < 1e1; i++ {
 		numbers.push(i * 2)
 	}
 
-	fmt.Println(numbers)
-	// numbers.pushAt(99, numbers._length)
-	fmt.Println(numbers.reverse())
+	fmt.Println(numbers.indexOf(400), nil)
 }
