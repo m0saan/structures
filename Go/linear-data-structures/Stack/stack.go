@@ -6,7 +6,7 @@
 *  |__/ (_| |_ (_|   __) |_ |  |_| (_ |_ |_| |  (- _)								//
 *																					//
 *																					//
-* Stack.																			//
+* Stack -> Using array.																//
 *																					//
 * Features, being n the number of elements in the tree:								//
 * 1. Look-ups 		-> O(1)															//
@@ -22,13 +22,40 @@
 
 package main
 
-import "fmt"
+import (
+	"constraints"
+	"fmt"
+)
+
+/*
+	Utility
+*/
+
+func max[T constraints.Ordered](args ...T) (maxElem T) {
+	for _, arg := range args {
+		if arg > maxElem {
+			maxElem = arg
+		}
+	}
+	return maxElem
+}
+
+func min[T constraints.Ordered](args ...T) (minElem T) {
+	for _, arg := range args {
+		if arg > minElem {
+			minElem = arg
+		}
+	}
+	return minElem
+}
 
 /*
 	Stack struct
 */
 type Stack[T any] struct {
 	vals []T // value container
+	min  T
+	max  T
 }
 
 // Implement the Stringer interface
@@ -49,19 +76,31 @@ func (s *Stack[T]) isEmpty() bool {
 //	Push: insert an element on top of the Stack
 //	average O(1) time complexity
 //	average O(1) Space complexity
+
+/*
 func (s *Stack[T]) Push(val T) {
 	s.vals = append(s.vals, val)
+	s.max = max(val, s.max)
+	s.min = min(val, s.min)
 }
-
+*/
 //	Pop: remove the element on top of the Stack
-//	O(1) time complexity
+//	O(n) time complexity -> because of the min and max to be retrieved in o(1) time complexity.
 //	O(1) Space complexity
+
+/*
 func (s *Stack[T]) Pop() (ret T, _ bool) {
 	if s.isEmpty() {
 		return ret, false
 	}
 	ret = s.vals[len(s.vals)-1]
 	s.vals = s.vals[:len(s.vals)-1]
+
+	for _, v := range s.vals {
+		s.max = max(v, s.max)
+		s.min = min(v, s.min)
+	}
+
 	return ret, false
 }
 
@@ -73,6 +112,30 @@ func (s *Stack[T]) Peek() (retValue T, _ bool) {
 		return retValue, false
 	}
 	return s.vals[len(s.vals)-1], true
+}
+
+//	Min: get the min element of the Stack
+//	O(1) time complexity
+//	O(1) Space complexity
+
+func (s *Stack[T]) Min() T {
+	if s.isEmpty() {
+		log.Panicln("stack empty. can't get min.")
+	}
+
+	return s.min
+}
+
+//	Max: get the max element of the Stack
+//	O(1) time complexity
+//	O(1) Space complexity
+
+func (s *Stack[T]) Max() T {
+	if s.isEmpty() {
+		log.Panicln("stack empty. can't get max.")
+	}
+
+	return s.max
 }
 
 /*
@@ -95,7 +158,7 @@ func reverseString(str string) string {
 	var ch byte
 	for stack.isEmpty() != true {
 		ch, _ = stack.Pop()
-		reversed[i] = byte(ch)
+		reversed[i] = ch
 		i++
 	}
 	return string(reversed)
@@ -125,8 +188,10 @@ func isBalancedExpression(str string) bool {
 			continue
 		}
 
-		if openingPair, ok := symbolsPairs[byte(v)]; ok {
-			fmt.Println(string(openingPair), string(v))
+		if openingSymbol, ok := symbolsPairs[byte(v)]; ok && openingSymbol == byte(v) {
+			if _, okk := s.Peek(); okk == false {
+				return false
+			}
 			s.Pop()
 		}
 	}
@@ -134,5 +199,23 @@ func isBalancedExpression(str string) bool {
 }
 
 func main() {
-	fmt.Println(isBalancedExpression(""))
+
+	s := Stack[int]{}
+
+	s.Push(5)
+	s.Push(8)
+	s.Push(10)
+	s.Push(2)
+	fmt.Println(s.Max())
+	fmt.Println(s.Min())
+
+	// Edge case:
+	// ((
+	// (()
+	// ())
+	// )(
+	// (>
+
+	// fmt.Println(isBalancedExpression("(1+2>"))
+	// fmt.Println(max[int](1, 2, 3, 4, 5))
 }
