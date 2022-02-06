@@ -25,6 +25,7 @@ package main
 import (
 	"constraints"
 	"fmt"
+	"log"
 )
 
 /*
@@ -77,18 +78,16 @@ func (s *Stack[T]) isEmpty() bool {
 //	average O(1) time complexity
 //	average O(1) Space complexity
 
-/*
 func (s *Stack[T]) Push(val T) {
 	s.vals = append(s.vals, val)
 	s.max = max(val, s.max)
 	s.min = min(val, s.min)
 }
-*/
+
 //	Pop: remove the element on top of the Stack
 //	O(n) time complexity -> because of the min and max to be retrieved in o(1) time complexity.
 //	O(1) Space complexity
 
-/*
 func (s *Stack[T]) Pop() (ret T, _ bool) {
 	if s.isEmpty() {
 		return ret, false
